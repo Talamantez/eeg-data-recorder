@@ -1,4 +1,3 @@
-var Express = require('express');
 var Cylon = require('cylon');
 var mongoose = require('mongoose');
 var eegSnapshot = require('./models/eegSnapshot.js');
@@ -19,14 +18,6 @@ Cylon.robot({
 })
 .on('ready', function(robot) {
   robot.headset.on('eeg', function(data) {
-    console.log(
-    	'delta: ' + data.delta + '\n',
-    	'theta: ' + data.theta + '\n',
-    	'loAlpha: ' + data.loAlpha + '\n',
-    	'hiAlpha: ' + data.hiAlpha + '\n',
-    	'loBeta: ' + data.loBeta + '\n',
-    	'loGamma: ' + data.loGamma + '\n',
-    	'midGamma: ' + data.midGamma + '\n'),
     addShot(	data.delta,
     			data.theta,
     			data.loAlpha,
