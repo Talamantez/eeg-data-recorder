@@ -1,0 +1,17 @@
+{
+  "name": "cylon-mindwave-eeg-recorder",
+  "version": "0.0.0",
+  "description": "use mongoose to record cylon eeg data",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert Talamantez",
+  "license": "MIT",
+  "dependencies": {
+    "cylon": "^0.20.2",
+    "cylon-neurosky": "^0.7.0",
+    "mongodb": "^1.4.20",
+    "mongoose": "^3.8.19"
+  }
+}
