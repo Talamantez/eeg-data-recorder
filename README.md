@@ -34,10 +34,12 @@ db.eeg.aggregate(
    ]
 )
 ```
+Get the last 10 readings and average the data
+```
 db.eeg.aggregate(
    [
      { $sort : { timeStamp: -1 } },
-     { $limit: 1 },
+     { $limit: 10 },
 
      {
        $group:
