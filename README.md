@@ -34,3 +34,25 @@ db.eeg.aggregate(
    ]
 )
 ```
+db.eeg.aggregate(
+   [
+     { $sort : { timeStamp: -1 } },
+     { $limit: 1 },
+
+     {
+       $group:
+         {
+         	_id: "Average EEG Data",
+           	avgDelta: { $avg: "$delta" },
+           	avgTheta: { $avg: "$theta" },
+           	avgLoAlpha: { $avg: "$loAlpha" },
+           	avgHiAlpha: { $avg: "$hiAlpha" },
+           	avgLoBeta: { $avg: "$loBeta" },
+           	avgLoGamma: { $avg: "$loGamma" },
+           	avgMidGamma: { $avg: "$midGamma" }
+         }
+     }
+   ]
+)
+
+
