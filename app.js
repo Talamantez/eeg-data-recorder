@@ -25,7 +25,8 @@ Cylon.robot({
     			data.loBeta,
     			data.loGamma,
     			data.midGamma
-    		)
+    		),
+    avgLastTen()
 })})
 .start();
 
@@ -52,3 +53,47 @@ function addShot(delta, theta, loAlpha, hiAlpha, loBeta, loGamma, midGamma){
     console.log('saving shot to eeg database: ' + newShot);
     newShot.save(function (err) {if (err) console.log ('Error on save!')});
 }
+
+function avgLastTen(){
+    eegSnapshot.aggregate(
+   [
+     { $sort : { timeStamp: -1 } },
+     { $limit: 10 },
+
+     {
+       $group:
+         {
+            _id: "Average EEG Data",
+            avgDelta: { $avg: "$delta" },
+            avgTheta: { $avg: "$theta" },
+            avgLoAlpha: { $avg: "$loAlpha" },
+            avgHiAlpha: { $avg: "$hiAlpha" },
+            avgLoBeta: { $avg: "$loBeta" },
+            avgLoGamma: { $avg: "$loGamma" },
+            avgMidGamma: { $avg: "$midGamma" }
+         }
+     }
+   ], function(err, eegData){
+    console.log('eegData' + JSON.stringify(eegData));
+   }
+);
+}
+
+function findAll(){
+   eegSnapshot.find({}, function(err, eegData){
+        console.log('eegData' + eegData);
+    });
+
+}
+
+/*server.get('/usersList', function(req, res) {
+  User.find({}, function(err, users) {
+    var userMap = {};
+
+    users.forEach(function(user) {
+      userMap[user._id] = user;
+    });
+
+    res.send(userMap);  
+  });
+});*/
