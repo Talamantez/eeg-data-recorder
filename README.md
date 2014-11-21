@@ -3,58 +3,48 @@ eeg-data-recorder
 
 Record your EEG data using Cylon.js and Mongoose. Works with Neurosky Mindwave Mobile and Ubuntu. 
 
-I have modified it to record to a mongoDB database.
+This program must be used in conjunction with Gort, mongoDB, Node Version Manager, and Node, so install those first.  
 
+Open up a terminal, and use 3 windows:
+
+In Window 1) 
+Connect the Mindwave:
+
+Get your Mindwave MAC number:
+```
+gort scan bluetooth
+```
+Pair the device:
+```
+gort bluetooth pair [device Mac number] hci0
+```
+In Window 2)
+Run MongoDB:
+```
+mongod
+```
+In Window 3)
+
+Use NVM Node Version 0.10.33:
+If you don't have it yet, run:
+```
+nvm install 0.10.33
+```
+Use Node version 0.10.33
+```
+nvm use 0.10.33
+```
+Install dependencies:
+```
+npm install
+```
+Run the app:
+```
+node app.js
+```
+
+To see your brain data updating in realtime, open your browser to http://localhost:3000.
 
 TO DO:
 
-set up a filter 
-===============
-get the most recent 10 readings:
-```
-db.eeg.find().sort({ $natural: -1 }).limit(10)
-```
-average the readings:
-```
-db.eeg.aggregate(
-   [
-     {
-       $group:
-         {
-         	_id: "Average EEG Data",
-           	avgDelta: { $avg: "$delta" },
-           	avgTheta: { $avg: "$theta" },
-           	avgLoAlpha: { $avg: "$loAlpha" },
-           	avgHiAlpha: { $avg: "$hiAlpha" },
-           	avgLoBeta: { $avg: "$loBeta" },
-           	avgLoGamma: { $avg: "$loGamma" },
-           	avgMidGamma: { $avg: "$midGamma" }
-         }
-     }
-   ]
-)
-```
-Get the last 10 readings and average the data
-```
-db.eeg.aggregate(
-   [
-     { $sort : { timeStamp: -1 } },
-     { $limit: 10 },
-
-     {
-       $group:
-         {
-         	_id: "Average EEG Data",
-           	avgDelta: { $avg: "$delta" },
-           	avgTheta: { $avg: "$theta" },
-           	avgLoAlpha: { $avg: "$loAlpha" },
-           	avgHiAlpha: { $avg: "$hiAlpha" },
-           	avgLoBeta: { $avg: "$loBeta" },
-           	avgLoGamma: { $avg: "$loGamma" },
-           	avgMidGamma: { $avg: "$midGamma" }
-         }
-     }
-   ]
-)
-
-
+Implement charts

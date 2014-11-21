@@ -33,7 +33,7 @@ db.once('open',function callback(){
 });
 
 cylon.robot({
-  connection: { name: 'neurosky', adaptor: 'neurosky', port: '/dev/rfcomm1' },
+  connection: { name: 'neurosky', adaptor: 'neurosky', port: '/dev/rfcomm0' },
   device: { name: 'headset', driver: 'neurosky' }
 })
 .on('ready', function(robot) {
@@ -43,6 +43,7 @@ cylon.robot({
     			data.loAlpha,
     			data.hiAlpha,
     			data.loBeta,
+                data.highBeta,
     			data.loGamma,
     			data.midGamma
     		),
@@ -66,12 +67,13 @@ cylon.robot({
 
 function addShot(delta, theta, loAlpha, hiAlpha, loBeta, loGamma, midGamma){
 		   var newShot = new eegSnapshot({
-	    		delta: delta,
-	    		theta: theta,
-	    		loAlpha: loAlpha,
-	    		hiAlpha: hiAlpha,
-	    		loBeta: loBeta,
-	    		loGamma: loGamma,
+	    		delta:    delta,
+	    		theta:    theta,
+	    		loAlpha:  loAlpha,
+	    		hiAlpha:  hiAlpha,
+	    		loBeta:   loBeta,
+                hiBeta:   hiBeta,
+	    		loGamma:  loGamma,
 	    		midGamma: midGamma
     });
     console.log('Saving Shot to EEG Database: ' + '\n' + newShot + '\n');
@@ -92,6 +94,7 @@ function lastShot(){
             theta: { $avg: "$theta" },
             loAlpha: { $avg: "$loAlpha" },
             hiAlpha: { $avg: "$hiAlpha" },
+            hiBeta: { $avg: "$hiBeta"},
             loBeta: { $avg: "$loBeta" },
             loGamma: { $avg: "$loGamma" },
             midGamma: { $avg: "$midGamma" }
@@ -116,12 +119,13 @@ function avgLastTen(){
      {
        $group:
          {
-            _id: "Average EEG Data",
+            _id: "Average 10 EEG Data",
             avgDelta: { $avg: "$delta" },
             avgTheta: { $avg: "$theta" },
             avgLoAlpha: { $avg: "$loAlpha" },
             avgHiAlpha: { $avg: "$hiAlpha" },
             avgLoBeta: { $avg: "$loBeta" },
+            avgHiBeta: { $avg: "$hiBeta"},
             avgLoGamma: { $avg: "$loGamma" },
             avgMidGamma: { $avg: "$midGamma" }
          }
@@ -143,12 +147,14 @@ function avgLast1000(){
      {
        $group:
          {
-            _id: "Average EEG Data",
+
+            _id: "Average 1000 EEG Data",
             avgDelta: { $avg: "$delta" },
             avgTheta: { $avg: "$theta" },
             avgLoAlpha: { $avg: "$loAlpha" },
             avgHiAlpha: { $avg: "$hiAlpha" },
             avgLoBeta: { $avg: "$loBeta" },
+            avgHiBeta: { $avg: "$hiBeta"},            
             avgLoGamma: { $avg: "$loGamma" },
             avgMidGamma: { $avg: "$midGamma" }
          }
@@ -167,110 +173,8 @@ function findAll(){
     console.log('eegData' + eegData + '\n');
     });
 }
-
-function sendData(a,b,c){
-    var brainDataChunk = [a,b,c];
+function sendData(newData,avg10,avg1000){
+    var brainDataChunk = [newData,avg10,avg1000];
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
-
-/*server.get('/usersList', function(req, res) {
-  User.find({}, function(err, users) {
-    var userMap = {};
-
-    users.forEach(function(user) {
-      userMap[user._id] = user;
-    });
-
-    res.send(userMap);  
-  });
-});*/
-
-/*app.get('/', function(req,res){
-    res.send('<!doctype html>'+
-            '<html>'+
-            '<title>'+
-            'Neurosky - Cylon - Brian Data'+
-            '</title>'+
-            '<head>'+
-            '<style>'+
-            '.page-header{diplay:block;margin:0 auto 0 50px;color:#349948;width:100%;}'+
-            '.brain-data-container{margin:0 0 0 50px;display:inline-block;}'+
-            '.brain-data-heading{color:#266299;}'+
-            '.brain-data-row{ display:block;color:#123456;width:200px; padding:0 0 10px 0; border:0 0 1px 0; }'+
-            '.brain-data-category{ width: 100px; display:inline-block;}'+
-            '.brain-data-value{ color:#ff0000; display:inline-block;}'+ 
-            '</style>'+
-            '</head>'+
-            '<body>'+
-        '<div class="page-header"><h1>Brain Data</h1></div>'+
-        
-        '<div class="brain-data-container">'+
-        '<h3 class="brain-data-heading">New Reading</h3>' +
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">Delta: </div>' + 
-            '<div class="brain-data-value">' + newData["delta"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">Theta: </div>' + f
-            '<div class="brain-data-value">' + newData["theta"] + '</div>' +
-        '</div>' + 
-        '<div class="brain-data-row">'+   
-            '<div class="brain-data-category">Low Alpha: </div>' + 
-            '<div class="brain-data-value">' + newData["loAlpha"] + '</div>' +
-        '</div>' +     
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">High Alpha: </div>' + 
-            '<div class="brain-data-value">' + newData["hiAlpha"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Low Beta: </div>' + 
-            '<div class="brain-data-value">' + newData["loBeta"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Low Gamma: </div>' + 
-            '<div class="brain-data-value">' + newData["loGamma"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Mid Gamma: </div>' + 
-            '<div class="brain-data-value">' + newData["midGamma"] + '</div>' +
-        '</div>' +
-        '</div>' +
-
-        '<div class="brain-data-container">'+
-        '<h3 class="brain-data-heading">Average of Last 10 Readings</h3>' +
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">Delta: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgDelta"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">Theta: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgTheta"] + '</div>' +
-        '</div>' + 
-        '<div class="brain-data-row">'+   
-            '<div class="brain-data-category">Low Alpha: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgLoAlpha"] + '</div>' +
-        '</div>' +     
-        '<div class="brain-data-row">'+
-            '<div class="brain-data-category">High Alpha: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgHiAlpha"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Low Beta: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgLoBeta"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Low Gamma: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgLoGamma"] + '</div>' +
-        '</div>' +
-        '<div class="brain-data-row">'+    
-            '<div class="brain-data-category">Mid Gamma: </div>' + 
-            '<div class="brain-data-value">' + avgData["avgMidGamma"] + '</div>' +
-        '</div>' +
-        '</div>' +
-        '</body>'+
-        '<html>'
-
-        );   
-    });
-*/

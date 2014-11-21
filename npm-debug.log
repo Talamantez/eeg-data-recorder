@@ -1,0 +1,93 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/robert/.nvm/v0.10.33/bin/node',
+1 verbose cli   '/home/robert/.nvm/v0.10.33/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save-dev',
+1 verbose cli   'bower-install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 warn package.json cylon-mindwave-eeg-recorder@0.0.0 No repository field.
+5 warn package.json http@0.0.0 http is also the name of a node core module.
+6 warn package.json http@0.0.0 No description
+7 warn package.json http@0.0.0 No repository field.
+8 warn package.json http@0.0.0 No README data
+9 verbose readDependencies using package.json deps
+10 verbose cache add [ 'bower-install', null ]
+11 verbose cache add name=undefined spec="bower-install" args=["bower-install",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'bower-install',
+12 verbose parsed url   path: 'bower-install',
+12 verbose parsed url   href: 'bower-install' }
+13 silly lockFile a13a8413-bower-install bower-install
+14 verbose lock bower-install /home/robert/.npm/a13a8413-bower-install.lock
+15 silly lockFile a13a8413-bower-install bower-install
+16 silly lockFile a13a8413-bower-install bower-install
+17 verbose addNamed [ 'bower-install', '' ]
+18 verbose addNamed [ null, '*' ]
+19 silly lockFile 57f94bde-bower-install bower-install@
+20 verbose lock bower-install@ /home/robert/.npm/57f94bde-bower-install.lock
+21 silly addNameRange { name: 'bower-install', range: '*', hasData: false }
+22 verbose request where is /bower-install
+23 verbose request registry https://registry.npmjs.org/
+24 verbose request id 29da03a6b0a422af
+25 verbose url raw /bower-install
+26 verbose url resolving [ 'https://registry.npmjs.org/', './bower-install' ]
+27 verbose url resolved https://registry.npmjs.org/bower-install
+28 verbose request where is https://registry.npmjs.org/bower-install
+29 info trying registry request attempt 1 at 16:13:54
+30 http GET https://registry.npmjs.org/bower-install
+31 http 404 https://registry.npmjs.org/bower-install
+32 verbose headers { date: 'Fri, 21 Nov 2014 00:13:55 GMT',
+32 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+32 verbose headers   'content-type': 'application/json',
+32 verbose headers   'cache-control': 'max-age=0',
+32 verbose headers   'content-length': '52',
+32 verbose headers   'accept-ranges': 'bytes',
+32 verbose headers   via: '1.1 varnish',
+32 verbose headers   age: '0',
+32 verbose headers   'x-served-by': 'cache-lax1432-LAX',
+32 verbose headers   'x-cache': 'MISS',
+32 verbose headers   'x-cache-hits': '0',
+32 verbose headers   'x-timer': 'S1416528835.079031,VS0,VE177',
+32 verbose headers   'keep-alive': 'timeout=10, max=50',
+32 verbose headers   connection: 'Keep-Alive' }
+33 silly registry.get cb [ 404,
+33 silly registry.get   { date: 'Fri, 21 Nov 2014 00:13:55 GMT',
+33 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+33 silly registry.get     'content-type': 'application/json',
+33 silly registry.get     'cache-control': 'max-age=0',
+33 silly registry.get     'content-length': '52',
+33 silly registry.get     'accept-ranges': 'bytes',
+33 silly registry.get     via: '1.1 varnish',
+33 silly registry.get     age: '0',
+33 silly registry.get     'x-served-by': 'cache-lax1432-LAX',
+33 silly registry.get     'x-cache': 'MISS',
+33 silly registry.get     'x-cache-hits': '0',
+33 silly registry.get     'x-timer': 'S1416528835.079031,VS0,VE177',
+33 silly registry.get     'keep-alive': 'timeout=10, max=50',
+33 silly registry.get     connection: 'Keep-Alive' } ]
+34 silly lockFile 57f94bde-bower-install bower-install@
+35 silly lockFile 57f94bde-bower-install bower-install@
+36 error 404 404 Not Found: bower-install
+36 error 404
+36 error 404 'bower-install' is not in the npm registry.
+36 error 404 You should bug the author to publish it
+36 error 404 It was specified as a dependency of 'cylon-mindwave-eeg-recorder'
+36 error 404
+36 error 404 Note that you can also install from a
+36 error 404 tarball, folder, or http url, or git url.
+37 error System Linux 3.13.0-39-generic
+38 error command "/home/robert/.nvm/v0.10.33/bin/node" "/home/robert/.nvm/v0.10.33/bin/npm" "install" "--save-dev" "bower-install"
+39 error cwd /home/robert/Projects/eeg-data-recorder
+40 error node -v v0.10.33
+41 error npm -v 1.4.28
+42 error code E404
+43 verbose exit [ 1, true ]

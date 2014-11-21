@@ -4,7 +4,7 @@
   <head>
     <style>
             .page-header{diplay:block;margin:0 auto 0 50px;color:#349948;width:100%;}
-            .brain-data-container{margin:0 0 0 50px;display:inline-block;}
+            .brain-data-container{margin:0 0 0 50px;min-width: 200px;display:inline-block;}
             .brain-data-heading{color:#266299;}
             .brain-data-row{ display:block;color:#123456; padding:0 0 10px 0; border:0 0 1px 0; }
             .brain-data-category{ width: 100px; display:inline-block;}
@@ -13,12 +13,18 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
+    </script>
+
+    <script>
     $(function() {
+
       var newDeltaText     = $('#new-delta');
       var newThetaText     = $('#new-theta');
       var newLoAlphaText   = $('#new-lo-alpha');
       var newHiAlphaText   = $('#new-hi-alpha');
       var newLoBetaText    = $('#new-lo-beta');
+      var newHiBetaText    = $('#new-hi-beta');      
       var newLoGammaText   = $('#new-lo-gamma');
       var newMidGammaText  = $('#new-mid-gamma');
 
@@ -27,6 +33,7 @@
       var avgLoAlphaText   = $('#avg-lo-alpha');
       var avgHiAlphaText   = $('#avg-hi-alpha');
       var avgLoBetaText    = $('#avg-lo-beta');
+      var avgHiBetaText    = $('#avg-hi-beta');      
       var avgLoGammaText   = $('#avg-lo-gamma');
       var avgMidGammaText  = $('#avg-mid-gamma');
 
@@ -35,6 +42,7 @@
       var avg1000LoAlphaText    = $('#avg-1000-lo-alpha');
       var avg1000HiAlphaText    = $('#avg-1000-hi-alpha');
       var avg1000LoBetaText     = $('#avg-1000-lo-beta');
+      var avg1000HiBetaText     = $('#avg-1000-hi-beta');      
       var avg1000LoGammaText    = $('#avg-1000-lo-gamma');
       var avg1000MidGammaText   = $('#avg-1000-mid-gamma');
 
@@ -56,6 +64,7 @@
           newLoAlphaText.html(newBrainData["loAlpha"]);   
           newHiAlphaText.html(newBrainData["hiAlpha"]);
           newLoBetaText.html(newBrainData["loBeta"]);
+          newHiBetaText.html(newBrainData["hiBeta"]);          
           newLoGammaText.html(newBrainData["loGamma"]);
           newMidGammaText.html(newBrainData["midGamma"]);
 
@@ -64,6 +73,7 @@
           avgLoAlphaText.html(avgBrainData["avgLoAlpha"]);
           avgHiAlphaText.html(avgBrainData["avgHiAlpha"]);
           avgLoBetaText.html(avgBrainData["avgLoBeta"]);
+          avgHiBetaText.html(newBrainData["avgHiBeta"]);          
           avgLoGammaText.html(avgBrainData["avgLoGamma"]);
           avgMidGammaText.html(avgBrainData["avgMidGamma"]);
 
@@ -72,6 +82,7 @@
           avg1000LoAlphaText.html(avg1000BrainData["avgLoAlpha"]);
           avg1000HiAlphaText.html(avg1000BrainData["avgHiAlpha"]);
           avg1000LoBetaText.html(avg1000BrainData["avgLoBeta"]);
+          avgHiBetaText.html(newBrainData["avgHiBeta"]);           
           avg1000LoGammaText.html(avg1000BrainData["avgLoGamma"]);
           avg1000MidGammaText.html(avg1000BrainData["avgMidGamma"]);          
       });
@@ -105,6 +116,10 @@
                             <div class="brain-data-category">Low Beta: </div>
                             <div class="brain-data-value" id="new-lo-beta">newData["loBeta"]</div>
                         </div>
+                        <div class="brain-data-row">
+                            <div class="brain-data-category">High Beta: </div>
+                            <div class="brain-data-value" id="new-hi-beta">newData["hiBeta"]</div>
+                        </div>                        
                         <div class="brain-data-row"> 
                             <div class="brain-data-category">Low Gamma: </div>
                             <div class="brain-data-value" id="new-lo-gamma">newData["loGamma"]</div>
@@ -138,6 +153,10 @@
                           <div class="brain-data-category">Low Beta: </div>
                           <div class="brain-data-value" id="avg-lo-beta">avgData["avgLoBeta"]</div>
                       </div>
+                      <div class="brain-data-row"> 
+                          <div class="brain-data-category">High Beta: </div>
+                          <div class="brain-data-value" id="avg-hi-beta">avgData["avgHiBeta"]</div>
+                      </div>                      
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Low Gamma: </div>
                           <div class="brain-data-value" id="avg-lo-gamma">avgData["avgLoGamma"]</div>
@@ -170,6 +189,10 @@
                           <div class="brain-data-category">Low Beta: </div>
                           <div class="brain-data-value" id="avg-1000-lo-beta">avg1000Data["avgLoBeta"]</div>
                       </div>
+                      <div class="brain-data-row"> 
+                          <div class="brain-data-category">High Beta: </div>
+                          <div class="brain-data-value" id="avg-1000-hi-beta">avg1000Data["avgHiBeta"]</div>
+                      </div>                      
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Low Gamma: </div>
                           <div class="brain-data-value" id="avg-1000-lo-gamma">avg1000Data["avgLoGamma"]</div>
@@ -178,6 +201,7 @@
                           <div class="brain-data-category">Mid Gamma: </div>
                           <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["avgMidGamma"]</div>
                       </div>
-              </div>              
+              </div>     
+                      
      </body>
 <html>
