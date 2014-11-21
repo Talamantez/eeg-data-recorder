@@ -51,6 +51,7 @@ cylon.robot({
     avgLastTen(),
     avgLast1000(),
     sendData(lastShot(),avgLastTen(),avgLast1000())
+
 })})
 .start();
 
@@ -119,15 +120,15 @@ function avgLastTen(){
      {
        $group:
          {
-            _id: "Average 10 EEG Data",
-            avgDelta: { $avg: "$delta" },
-            avgTheta: { $avg: "$theta" },
-            avgLoAlpha: { $avg: "$loAlpha" },
-            avgHiAlpha: { $avg: "$hiAlpha" },
-            avgLoBeta: { $avg: "$loBeta" },
-            avgHiBeta: { $avg: "$hiBeta"},
-            avgLoGamma: { $avg: "$loGamma" },
-            avgMidGamma: { $avg: "$midGamma" }
+            _id: "Avg Last 10 EEG Data",
+            delta: { $avg: "$delta" },
+            theta: { $avg: "$theta" },
+            loAlpha: { $avg: "$loAlpha" },
+            hiAlpha: { $avg: "$hiAlpha" },
+            hiBeta: { $avg: "$hiBeta"},
+            loBeta: { $avg: "$loBeta" },
+            loGamma: { $avg: "$loGamma" },
+            midGamma: { $avg: "$midGamma" }
          }
      }
    ], function(err, eegData){
@@ -147,16 +148,15 @@ function avgLast1000(){
      {
        $group:
          {
-
-            _id: "Average 1000 EEG Data",
-            avgDelta: { $avg: "$delta" },
-            avgTheta: { $avg: "$theta" },
-            avgLoAlpha: { $avg: "$loAlpha" },
-            avgHiAlpha: { $avg: "$hiAlpha" },
-            avgLoBeta: { $avg: "$loBeta" },
-            avgHiBeta: { $avg: "$hiBeta"},            
-            avgLoGamma: { $avg: "$loGamma" },
-            avgMidGamma: { $avg: "$midGamma" }
+            _id: "Avg Last 1000 EEG Data",
+            delta: { $avg: "$delta" },
+            theta: { $avg: "$theta" },
+            loAlpha: { $avg: "$loAlpha" },
+            hiAlpha: { $avg: "$hiAlpha" },
+            hiBeta: { $avg: "$hiBeta"},
+            loBeta: { $avg: "$loBeta" },
+            loGamma: { $avg: "$loGamma" },
+            midGamma: { $avg: "$midGamma" }
          }
      }
    ], function(err, eegData){
@@ -166,7 +166,6 @@ function avgLast1000(){
 );
     return avg1000Data;
 }
-
 
 function findAll(){
     eegSnapshot.find({}, function(err, eegData){
@@ -178,3 +177,41 @@ function sendData(newData,avg10,avg1000){
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
+
+function mockData(){
+     return Math.round(Math.random()*100000);
+}
+
+function mockBrainData(){
+    // Make an object 
+
+    var fakeBrainData = {
+            _id: "Data",
+            delta: mockData(),
+            theta: mockData(),
+            loAlpha: mockData(),
+            hiAlpha: mockData(),
+            hiBeta: mockData(),
+            loBeta: mockData(),
+            loGamma: mockData(),
+            midGamma: mockData()
+         }
+    return fakeBrainData;
+};
+
+function mockHeadset(){
+    var mockNew = mockBrainData();
+    var mock10Avg = mockBrainData();
+    var mock1000Avg = mockBrainData();
+
+    console.log('mockNew' + mockNew);
+    console.log('mock10Avg' + mock10Avg);
+    console.log('mock1000Avg' + mock1000Avg);
+
+    sendData(mockNew,mock10Avg,mock1000Avg);
+}
+
+
+
+// Enable below function to mock brain data
+setInterval(mockHeadset,1000);

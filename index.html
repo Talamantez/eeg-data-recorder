@@ -12,10 +12,8 @@
     </style>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-        var app = angular.module("nvd3TestApp", ['nvd3ChartDirectives']);
-    </script>
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>    
+    
     <script>
     $(function() {
 
@@ -68,23 +66,23 @@
           newLoGammaText.html(newBrainData["loGamma"]);
           newMidGammaText.html(newBrainData["midGamma"]);
 
-          avgDeltaText.html(avgBrainData["avgDelta"]);
-          avgThetaText.html(avgBrainData["avgTheta"]);
-          avgLoAlphaText.html(avgBrainData["avgLoAlpha"]);
-          avgHiAlphaText.html(avgBrainData["avgHiAlpha"]);
-          avgLoBetaText.html(avgBrainData["avgLoBeta"]);
-          avgHiBetaText.html(newBrainData["avgHiBeta"]);          
-          avgLoGammaText.html(avgBrainData["avgLoGamma"]);
-          avgMidGammaText.html(avgBrainData["avgMidGamma"]);
+          avgDeltaText.html(avgBrainData["delta"]);
+          avgThetaText.html(avgBrainData["theta"]);
+          avgLoAlphaText.html(avgBrainData["loAlpha"]);
+          avgHiAlphaText.html(avgBrainData["hiAlpha"]);
+          avgLoBetaText.html(avgBrainData["loBeta"]);
+          avgHiBetaText.html(newBrainData["hiBeta"]);          
+          avgLoGammaText.html(avgBrainData["loGamma"]);
+          avgMidGammaText.html(avgBrainData["midGamma"]);
 
-          avg1000DeltaText.html(avg1000BrainData["avgDelta"]);
-          avg1000ThetaText.html(avg1000BrainData["avgTheta"]);
-          avg1000LoAlphaText.html(avg1000BrainData["avgLoAlpha"]);
-          avg1000HiAlphaText.html(avg1000BrainData["avgHiAlpha"]);
-          avg1000LoBetaText.html(avg1000BrainData["avgLoBeta"]);
-          avgHiBetaText.html(newBrainData["avgHiBeta"]);           
-          avg1000LoGammaText.html(avg1000BrainData["avgLoGamma"]);
-          avg1000MidGammaText.html(avg1000BrainData["avgMidGamma"]);          
+          avg1000DeltaText.html(avg1000BrainData["delta"]);
+          avg1000ThetaText.html(avg1000BrainData["theta"]);
+          avg1000LoAlphaText.html(avg1000BrainData["loAlpha"]);
+          avg1000HiAlphaText.html(avg1000BrainData["hiAlpha"]);
+          avg1000LoBetaText.html(avg1000BrainData["loBeta"]);
+          avgHiBetaText.html(newBrainData["hiBeta"]);           
+          avg1000LoGammaText.html(avg1000BrainData["loGamma"]);
+          avg1000MidGammaText.html(avg1000BrainData["midGamma"]);          
       });
     });
     </script>
@@ -135,35 +133,35 @@
               <h3 class="brain-data-heading">Average of Last 10 Readings</h3>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Delta: </div> 
-                          <div class="brain-data-value" id="avg-delta">avgData["avgDelta"]</div>
+                          <div class="brain-data-value" id="avg-delta">avgData["delta"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Theta: </div> 
-                          <div class="brain-data-value" id="avg-theta">avgData["avgTheta"]</div>
+                          <div class="brain-data-value" id="avg-theta">avgData["theta"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Low Alpha: </div>
-                          <div class="brain-data-value" id="avg-lo-alpha">avgData["avgLoAlpha"]</div>
+                          <div class="brain-data-value" id="avg-lo-alpha">avgData["loAlpha"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">High Alpha: </div>
-                          <div class="brain-data-value" id="avg-hi-alpha">avgData["avgHiAlpha"]</div>
+                          <div class="brain-data-value" id="avg-hi-alpha">avgData["hiAlpha"]</div>
                       </div>
                       <div class="brain-data-row"> 
                           <div class="brain-data-category">Low Beta: </div>
-                          <div class="brain-data-value" id="avg-lo-beta">avgData["avgLoBeta"]</div>
+                          <div class="brain-data-value" id="avg-lo-beta">avgData["loBeta"]</div>
                       </div>
                       <div class="brain-data-row"> 
                           <div class="brain-data-category">High Beta: </div>
-                          <div class="brain-data-value" id="avg-hi-beta">avgData["avgHiBeta"]</div>
+                          <div class="brain-data-value" id="avg-hi-beta">avgData["hiBeta"]</div>
                       </div>                      
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Low Gamma: </div>
-                          <div class="brain-data-value" id="avg-lo-gamma">avgData["avgLoGamma"]</div>
+                          <div class="brain-data-value" id="avg-lo-gamma">avgData["loGamma"]</div>
                       </div>
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Mid Gamma: </div>
-                          <div class="brain-data-value"  id="avg-mid-gamma">avgData["avgMidGamma"]</div>
+                          <div class="brain-data-value"  id="avg-mid-gamma">avgData["midGamma"]</div>
                       </div>
               </div>
 
@@ -171,37 +169,80 @@
               <h3 class="brain-data-heading">Average of Last 1000 Readings</h3>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Delta: </div> 
-                          <div class="brain-data-value" id="avg-1000-delta">avg1000Data["avgDelta"]</div>
+                          <div class="brain-data-value" id="avg-1000-delta">avg1000Data["delta"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Theta: </div> 
-                          <div class="brain-data-value" id="avg-1000-theta">avg1000Data["avgTheta"]</div>
+                          <div class="brain-data-value" id="avg-1000-theta">avg1000Data["theta"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">Low Alpha: </div>
-                          <div class="brain-data-value" id="avg-1000-lo-alpha">avg1000Data["avgLoAlpha"]</div>
+                          <div class="brain-data-value" id="avg-1000-lo-alpha">avg1000Data["loAlpha"]</div>
                       </div>
                       <div class="brain-data-row">
                           <div class="brain-data-category">High Alpha: </div>
-                          <div class="brain-data-value" id="avg-1000-hi-alpha">avg1000Data["avgHiAlpha"]</div>
+                          <div class="brain-data-value" id="avg-1000-hi-alpha">avg1000Data["hiAlpha"]</div>
                       </div>
                       <div class="brain-data-row"> 
                           <div class="brain-data-category">Low Beta: </div>
-                          <div class="brain-data-value" id="avg-1000-lo-beta">avg1000Data["avgLoBeta"]</div>
+                          <div class="brain-data-value" id="avg-1000-lo-beta">avg1000Data["loBeta"]</div>
                       </div>
                       <div class="brain-data-row"> 
                           <div class="brain-data-category">High Beta: </div>
-                          <div class="brain-data-value" id="avg-1000-hi-beta">avg1000Data["avgHiBeta"]</div>
+                          <div class="brain-data-value" id="avg-1000-hi-beta">avg1000Data["hiBeta"]</div>
                       </div>                      
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Low Gamma: </div>
-                          <div class="brain-data-value" id="avg-1000-lo-gamma">avg1000Data["avgLoGamma"]</div>
+                          <div class="brain-data-value" id="avg-1000-lo-gamma">avg1000Data["loGamma"]</div>
                       </div>
                       <div class="brain-data-row">   
                           <div class="brain-data-category">Mid Gamma: </div>
-                          <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["avgMidGamma"]</div>
+                          <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["midGamma"]</div>
                       </div>
               </div>     
-                      
+              <div style="width:30%">
+                <div>
+                  <canvas id="canvas" height="450" width="600"></canvas>
+                </div>
+              </div>       
      </body>
+     <script>
+    var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+    var mockBrainData = function(){return Math.round(Math.random()*100000)};
+    var lineChartData = {
+      labels : ["January","February","March","April","May","June","July"],
+      datasets : [
+        {
+          label: "My First dataset",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+        },
+        {
+          label: "My Second dataset",
+          fillColor : "rgba(151,187,205,0.2)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(151,187,205,1)",
+          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+        }
+      ]
+
+    }
+
+  window.onload = function(){
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = new Chart(ctx).Line(lineChartData, {
+      responsive: true
+    });
+  }
+
+
+  </script>
 <html>
