@@ -1,9 +1,9 @@
 eeg-data-recorder
 =================
 
-Record your EEG data using Cylon.js and Mongoose. Works with Neurosky Mindwave Mobile and Ubuntu. 
+Record your EEG data using Cylon.js and Mongoose. It works with Neurosky Mindwave Mobile and Ubuntu. 
 
-This program must be used in conjunction with Gort, mongoDB, Node Version Manager, and Node, so install those first.  
+This program is dependent on Gort (http://gort.io/), mongoDB (http://docs.mongodb.org/manual/installation/), Node Version Manager (https://github.com/creationix/nvm), so install those first.  
 
 Open up a terminal, and use 3 windows:
 
