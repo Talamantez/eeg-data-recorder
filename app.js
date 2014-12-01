@@ -6,7 +6,8 @@ var mongoose = require('mongoose');
 var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8000;
+var headsetPort = '/dev/rfcomm1';
 
 var newData;
 var avgData;
@@ -14,7 +15,7 @@ var avg1000Data;
 
 //app.listen(process.env.PORT || port);
 http.listen(port, function(){
-    console.log('listening on *:' + port);
+    console.log('\nListening on port:' + port + '\n');
 });
 
 app.get('/', function(req,res){
@@ -33,7 +34,7 @@ db.once('open',function callback(){
 });
 
 cylon.robot({
-  connection: { name: 'neurosky', adaptor: 'neurosky', port: '/dev/rfcomm0' },
+  connection: { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
   device: { name: 'headset', driver: 'neurosky' }
 })
 .on('ready', function(robot) {
@@ -43,7 +44,7 @@ cylon.robot({
     			data.loAlpha,
     			data.hiAlpha,
     			data.loBeta,
-                data.highBeta,
+                data.hiBeta,
     			data.loGamma,
     			data.midGamma
     		),
@@ -65,8 +66,7 @@ cylon.robot({
 
 */
 
-
-function addShot(delta, theta, loAlpha, hiAlpha, loBeta, loGamma, midGamma){
+function addShot(delta, theta, loAlpha, hiAlpha, loBeta, hiBeta,loGamma, midGamma){
 		   var newShot = new eegSnapshot({
 	    		delta:    delta,
 	    		theta:    theta,
@@ -91,6 +91,7 @@ function lastShot(){
        $group:
          {
             _id: "New EEG Data",
+            timeStamp: {$first: "$timeStamp" },
             delta: { $avg: "$delta" },
             theta: { $avg: "$theta" },
             loAlpha: { $avg: "$loAlpha" },
@@ -121,6 +122,8 @@ function avgLastTen(){
        $group:
          {
             _id: "Avg Last 10 EEG Data",
+            timeWindowStart: { $last: "$timeStamp" },
+            timeWindowEnd: { $first: "$timeStamp" },
             delta: { $avg: "$delta" },
             theta: { $avg: "$theta" },
             loAlpha: { $avg: "$loAlpha" },
@@ -149,6 +152,8 @@ function avgLast1000(){
        $group:
          {
             _id: "Avg Last 1000 EEG Data",
+            timeWindowStart: { $last: "$timeStamp" },
+            timeWindowEnd: { $first: "$timeStamp" },            
             delta: { $avg: "$delta" },
             theta: { $avg: "$theta" },
             loAlpha: { $avg: "$loAlpha" },
@@ -214,4 +219,4 @@ function mockHeadset(){
 
 
 // Enable below function to mock brain data
-setInterval(mockHeadset,1000);
+//setInterval(mockHeadset,1000);

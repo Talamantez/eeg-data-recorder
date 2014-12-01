@@ -48,3 +48,9 @@ To see your brain data updating in realtime, open your browser to http://localho
 TO DO:
 
 Implement charts
+
+Signal Analysis:
+- noise filtering
+- band pass/high pass/low pass
+
+Python initialization script

@@ -16,6 +16,19 @@
     
     <script>
     $(function() {
+    
+      var newTimeStamp;
+      var newDataPoint;
+      /*initialize 10 index array to store new timestamps for chart and 10 index arrays to store last 10 readings of each brain wave available*/
+      var last10TimeStampArray    = [0,0,0,0,0,0,0,0,0,0];
+      var last10DeltaArray        = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10ThetaArray        = [0,0,0,0,0,0,0,0,0,0];
+      var last10LoAlphaArray     = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiAlphaArray    = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10LoBetaArray      = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiBetaArray     = [0,0,0,0,0,0,0,0,0,0];
+      var last10LoGammaArray     = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10MidGammaArray     = [0,0,0,0,0,0,0,0,0,0];
 
       var newDeltaText     = $('#new-delta');
       var newThetaText     = $('#new-theta');
@@ -50,12 +63,179 @@
 
       var socket = io();
 
+      /*Set up your graph*/
+      var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+      var mockBrainData = function(){return Math.round(Math.random()*100000)};
+      var lineChartData = {
+      labels : [  last10TimeStampArray[0],
+                  last10TimeStampArray[1],
+                  last10TimeStampArray[2],
+                  last10TimeStampArray[3],
+                  last10TimeStampArray[4],
+                  last10TimeStampArray[5],
+                  last10TimeStampArray[6],
+                  last10TimeStampArray[7],
+                  last10TimeStampArray[8],
+                  last10TimeStampArray[9]
+                ],
+      datasets : [
+        {
+          label: "New Delta",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10DeltaArray
+        },
+        {
+          label: "New Theta",
+          fillColor : "rgba(151,187,205,0.2)",
+          strokeColor : "rgba(151,187,205,1)",
+          pointColor : "rgba(151,187,205,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(151,187,205,1)",
+          data : last10ThetaArray
+        },
+        {
+          label: "New Low Alpha",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10LoAlphaArray
+        },
+        {
+          label: "New Hi Alpha",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10HiAlphaArray
+        },
+        {
+          label: "New Low Beta",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10LoBetaArray
+        },
+        {
+          label: "New High Beta",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10HiBetaArray
+        },
+        {
+          label: "New Low Gamma",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10LoGammaArray
+        },
+        {
+          label: "New Mid Gamma",
+          fillColor : "rgba(220,220,220,0.2)",
+          strokeColor : "rgba(220,220,220,1)",
+          pointColor : "rgba(220,220,220,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(220,220,220,1)",
+          data : last10MidGammaArray
+        }                                              
+      ]
+    }; 
+
       socket.on('brain-data', function(brainData){
+          // Extract new reading data
           newBrainData = brainData[0];
+          // Extract avg last 10 readings
           avgBrainData = brainData[1];
+          // Extract avg last 1000 readings
           avg1000BrainData = brainData[2];
 
           console.dir(brainData);
+
+          // Extract timestamp from new reading
+          newTimeStamp = newBrainData["timeStamp"];
+          console.log('newTimeStamp: '+ newTimeStamp);
+          /*
+          push the new timestamp and shift off the oldest one
+          */
+          last10TimeStampArray.push(newTimeStamp);
+          console.log('last10TimeStampArray: '+ last10TimeStampArray);          
+          last10TimeStampArray.shift();
+          /*
+          push the new delta data and shift off the oldest reading
+          */
+          last10DeltaArray.push(newBrainData["delta"]);
+          last10DeltaArray.shift();
+          /*
+          push the new theta data and shift off the oldest reading
+          */
+          last10ThetaArray.push(newBrainData["theta"]);
+          last10ThetaArray.shift();          
+          /*
+          push the new loAlpha data and shift off the oldest reading
+          */
+          last10LoAlphaArray.push(newBrainData["loAlpha"]);
+          last10LoAlphaArray.shift();
+          /*
+          push the new hiAlpha data and shift off the oldest reading
+          */
+          last10HiAlphaArray.push(newBrainData["hiAlpha"]);
+          last10HiAlphaArray.shift();
+          /*
+          push the new loBeta data and shift off the oldest reading
+          */
+          last10LoBetaArray.push(newBrainData["loBeta"]);
+          last10LoBetaArray.shift();
+          /*
+          push the new hiBeta data and shift off the oldest reading
+          */
+          last10HiBetaArray.push(newBrainData["hiBeta"]);
+          last10HiBetaArray.shift();
+          /*
+          push the new loGamma data and shift off the oldest reading
+          */
+          last10LoGammaArray.push(newBrainData["loGamma"]);
+          last10LoGammaArray.shift();
+          /*
+          push the new loGamma data and shift off the oldest reading
+          */
+          last10MidGammaArray.push(newBrainData["midGamma"]);
+          last10MidGammaArray.shift();                                        
+          // Update line chart data labels
+          lineChartData.labels = [  last10TimeStampArray[0],
+                  last10TimeStampArray[1],
+                  last10TimeStampArray[2],
+                  last10TimeStampArray[3],
+                  last10TimeStampArray[4],
+                  last10TimeStampArray[5],
+                  last10TimeStampArray[6],
+                  last10TimeStampArray[7],
+                  last10TimeStampArray[8],
+                  last10TimeStampArray[9]
+                ],          
+          // Update line chart delta values
+          lineChartData.datasets["Delta"]
+          lineChartData.datasets["Theta"]
           
           newDeltaText.html(newBrainData["delta"]);   
           newThetaText.html(newBrainData["theta"]);     
@@ -80,11 +260,20 @@
           avg1000LoAlphaText.html(avg1000BrainData["loAlpha"]);
           avg1000HiAlphaText.html(avg1000BrainData["hiAlpha"]);
           avg1000LoBetaText.html(avg1000BrainData["loBeta"]);
-          avgHiBetaText.html(newBrainData["hiBeta"]);           
+          avg1000HiBetaText.html(avg1000BrainData["hiBeta"]);           
           avg1000LoGammaText.html(avg1000BrainData["loGamma"]);
-          avg1000MidGammaText.html(avg1000BrainData["midGamma"]);          
+          avg1000MidGammaText.html(avg1000BrainData["midGamma"]);       
+
+          window.myLine = new Chart(ctx).Line(lineChartData, {
+              responsive: true,
+              animation : false
+      });             
+          console.dir(last10TimeStampArray);
       });
+
+      var ctx = document.getElementById("canvas").getContext("2d");
     });
+
     </script>
   </head>
 
@@ -127,7 +316,6 @@
                             <div class="brain-data-value" id="new-mid-gamma">newData["midGamma"]</div>
                         </div>
               </div>
-
 
               <div class="brain-data-container">
               <h3 class="brain-data-heading">Average of Last 10 Readings</h3>
@@ -206,43 +394,4 @@
                 </div>
               </div>       
      </body>
-     <script>
-    var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
-    var mockBrainData = function(){return Math.round(Math.random()*100000)};
-    var lineChartData = {
-      labels : ["January","February","March","April","May","June","July"],
-      datasets : [
-        {
-          label: "My First dataset",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-        },
-        {
-          label: "My Second dataset",
-          fillColor : "rgba(151,187,205,0.2)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(151,187,205,1)",
-          data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-        }
-      ]
-
-    }
-
-  window.onload = function(){
-    var ctx = document.getElementById("canvas").getContext("2d");
-    window.myLine = new Chart(ctx).Line(lineChartData, {
-      responsive: true
-    });
-  }
-
-
-  </script>
 <html>
