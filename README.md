@@ -61,6 +61,11 @@ var activeDB = 'myDatabase'
 collection: 'myDatabase'  
 ```
 
+== Headset port debugging
+If the connection to the headset drops, it may move up one number on your computer's rfcomm list, if so, reconnect the headset, then check which rfcomm port is being used, then update line 12 in app.js to match:
+
+var headsetPort = '/dev/rfcomm0';
+
 TO DO:
 
 Implement charts

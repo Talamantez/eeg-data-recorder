@@ -14,7 +14,8 @@ var activeDB = 'eegSleep'; /*use 'eeg'  for general testing',
                         'eegNap'   for napping,
                         'eegSleep' for sleeping,
                         'eegAwake' for wake recording
-                      !!! Be sure to change in models/eegSnapshot also!  
+                        Be sure this matches db in models/eegSnapshot
+                        and to switch mongo  to this db                          
                         */ 
 
 var newData;
