@@ -9,7 +9,7 @@ var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8000;
-var headsetPort = '/dev/rfcomm0';
+var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
 var activeDB = 'eegSleep'; /*use 'eeg'  for general testing', 
                         'eegNap'   for napping,
                         'eegSleep' for sleeping,

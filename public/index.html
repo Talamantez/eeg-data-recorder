@@ -8,23 +8,66 @@
   html{
     background-color: #adc689;
   }
+  body{
+    margin: 0 0 0 50px;
+  }
+  h1{
+    background-color: #fff;
+   -webkit-border-radius: 10px;
+   -moz-border-radius: 10px;
+   border-radius: 10px;
+   padding: 10px;  
+   width: 475px;
+  }
   .page-header {
   margin : 0 auto 0 50px;
   color : #349948;
   width : 100%;
+  transform: translate(-40px);
 }
 .brain-data-container {
-  margin : 0 0 0 50px;
+  margin : 10px 10px 10px 10px;
   min-width : 200px;
   display : inline-block;
+  background-color: #ffffff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 0 5px 5px 5px;
 }
-.brain-data-heading {
-  color : #266299;
+.brain-data-heading{
+  background-color: #266299;
+  color : #ffffff;
+  transform: translate(-10px);
 }
 .brain-data-row {
   display : block;
   color : #123456;
   padding : 0 0 10px 0;
+}
+.delta{
+  color : rgb(19,207,187);
+}
+.theta{
+  color : rgb(18,212,115);
+}
+.loAlpha{
+  color : rgb(17,218,37);
+}
+.hiAlpha{
+  color : rgb(76,223,16);
+}
+.loBeta{
+  color : rgb(161,228,15);
+}
+.hiBeta{
+  color : rgb(233,215,13);
+}
+.loGamma{
+  color : rgb(238,130,12);
+}
+.midGamma{
+  color : rgb(244,40,10);
 }
 .brain-data-category {
   width : 100px;
@@ -250,20 +293,17 @@
           last10MidGammaArray.shift();                                        
           // Update line chart data labels
           lineChartData.labels = [  last10TimeStampArray[0],
-                  last10TimeStampArray[1],
-                  last10TimeStampArray[2],
-                  last10TimeStampArray[3],
-                  last10TimeStampArray[4],
-                  last10TimeStampArray[5],
-                  last10TimeStampArray[6],
-                  last10TimeStampArray[7],
-                  last10TimeStampArray[8],
-                  last10TimeStampArray[9]
-                ],          
-          // Update line chart delta values
-          lineChartData.datasets["Delta"]
-          lineChartData.datasets["Theta"]
-          
+                                    last10TimeStampArray[1],
+                                    last10TimeStampArray[2],
+                                    last10TimeStampArray[3],
+                                    last10TimeStampArray[4],
+                                    last10TimeStampArray[5],
+                                    last10TimeStampArray[6],
+                                    last10TimeStampArray[7],
+                                    last10TimeStampArray[8],
+                                    last10TimeStampArray[9]
+                ];          
+
           newDeltaText.html(newBrainData["delta"]);   
           newThetaText.html(newBrainData["theta"]);     
           newLoAlphaText.html(newBrainData["loAlpha"]);   
@@ -306,39 +346,39 @@
 
       <body>
               <div class="page-header">
-                <h1>Brain Data</h1>
+                <h1>Neurosky - Cylon - Brain Data</h1>
               </div>
               <div class="brain-data-container">
                     <h3 class="brain-data-heading">New Reading</h3>
-                        <div class="brain-data-row">
+                        <div class="brain-data-row delta">
                            <div class="brain-data-category">Delta: </div>
                            <div class="brain-data-value" id="new-delta">newData["delta"]</div>
                         </div>
-                        <div class="brain-data-row">
+                        <div class="brain-data-row theta">
                           <div class="brain-data-category">Theta: </div>
                           <div class="brain-data-value" id="new-theta">newData["theta"]</div>
                         </div>
-                        <div class="brain-data-row">   
+                        <div class="brain-data-row loAlpha">   
                             <div class="brain-data-category">Low Alpha: </div> 
                             <div class="brain-data-value" id="new-lo-alpha">newData["loAlpha"]</div>
                         </div>    
-                        <div class="brain-data-row">
+                        <div class="brain-data-row hiAlpha">
                             <div class="brain-data-category">High Alpha: </div> 
                             <div class="brain-data-value" id="new-hi-alpha">newData["hiAlpha"]</div>
                         </div>
-                        <div class="brain-data-row">
+                        <div class="brain-data-row loBeta">
                             <div class="brain-data-category">Low Beta: </div>
                             <div class="brain-data-value" id="new-lo-beta">newData["loBeta"]</div>
                         </div>
-                        <div class="brain-data-row">
+                        <div class="brain-data-row hiBeta">
                             <div class="brain-data-category">High Beta: </div>
                             <div class="brain-data-value" id="new-hi-beta">newData["hiBeta"]</div>
                         </div>                        
-                        <div class="brain-data-row"> 
+                        <div class="brain-data-row loGamma"> 
                             <div class="brain-data-category">Low Gamma: </div>
                             <div class="brain-data-value" id="new-lo-gamma">newData["loGamma"]</div>
                         </div>
-                        <div class="brain-data-row">  
+                        <div class="brain-data-row midGamma">  
                             <div class="brain-data-category">Mid Gamma: </div>
                             <div class="brain-data-value" id="new-mid-gamma">newData["midGamma"]</div>
                         </div>
@@ -346,35 +386,35 @@
 
               <div class="brain-data-container">
               <h3 class="brain-data-heading">Average of Last 10 Readings</h3>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row delta">
                           <div class="brain-data-category">Delta: </div> 
                           <div class="brain-data-value" id="avg-delta">avgData["delta"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row theta">
                           <div class="brain-data-category">Theta: </div> 
                           <div class="brain-data-value" id="avg-theta">avgData["theta"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row loAlpha">
                           <div class="brain-data-category">Low Alpha: </div>
                           <div class="brain-data-value" id="avg-lo-alpha">avgData["loAlpha"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row hiAlpha">
                           <div class="brain-data-category">High Alpha: </div>
                           <div class="brain-data-value" id="avg-hi-alpha">avgData["hiAlpha"]</div>
                       </div>
-                      <div class="brain-data-row"> 
+                      <div class="brain-data-row loBeta"> 
                           <div class="brain-data-category">Low Beta: </div>
                           <div class="brain-data-value" id="avg-lo-beta">avgData["loBeta"]</div>
                       </div>
-                      <div class="brain-data-row"> 
+                      <div class="brain-data-row hiBeta"> 
                           <div class="brain-data-category">High Beta: </div>
                           <div class="brain-data-value" id="avg-hi-beta">avgData["hiBeta"]</div>
                       </div>                      
-                      <div class="brain-data-row">   
+                      <div class="brain-data-row loGamma">   
                           <div class="brain-data-category">Low Gamma: </div>
                           <div class="brain-data-value" id="avg-lo-gamma">avgData["loGamma"]</div>
                       </div>
-                      <div class="brain-data-row">   
+                      <div class="brain-data-row midGamma">   
                           <div class="brain-data-category">Mid Gamma: </div>
                           <div class="brain-data-value"  id="avg-mid-gamma">avgData["midGamma"]</div>
                       </div>
@@ -382,35 +422,35 @@
 
               <div class="brain-data-container">
               <h3 class="brain-data-heading">Average of Last 1000 Readings</h3>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row delta">
                           <div class="brain-data-category">Delta: </div> 
                           <div class="brain-data-value" id="avg-1000-delta">avg1000Data["delta"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row theta">
                           <div class="brain-data-category">Theta: </div> 
                           <div class="brain-data-value" id="avg-1000-theta">avg1000Data["theta"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row loAlpha">
                           <div class="brain-data-category">Low Alpha: </div>
                           <div class="brain-data-value" id="avg-1000-lo-alpha">avg1000Data["loAlpha"]</div>
                       </div>
-                      <div class="brain-data-row">
+                      <div class="brain-data-row hiAlpha">
                           <div class="brain-data-category">High Alpha: </div>
                           <div class="brain-data-value" id="avg-1000-hi-alpha">avg1000Data["hiAlpha"]</div>
                       </div>
-                      <div class="brain-data-row"> 
+                      <div class="brain-data-row loBeta"> 
                           <div class="brain-data-category">Low Beta: </div>
                           <div class="brain-data-value" id="avg-1000-lo-beta">avg1000Data["loBeta"]</div>
                       </div>
-                      <div class="brain-data-row"> 
+                      <div class="brain-data-row hiBeta"> 
                           <div class="brain-data-category">High Beta: </div>
                           <div class="brain-data-value" id="avg-1000-hi-beta">avg1000Data["hiBeta"]</div>
                       </div>                      
-                      <div class="brain-data-row">   
+                      <div class="brain-data-row loGamma">   
                           <div class="brain-data-category">Low Gamma: </div>
                           <div class="brain-data-value" id="avg-1000-lo-gamma">avg1000Data["loGamma"]</div>
                       </div>
-                      <div class="brain-data-row">   
+                      <div class="brain-data-row midGamma">   
                           <div class="brain-data-category">Mid Gamma: </div>
                           <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["midGamma"]</div>
                       </div>
