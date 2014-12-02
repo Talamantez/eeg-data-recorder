@@ -29,7 +29,10 @@
   margin : 10px 10px 10px 10px;
   min-width : 200px;
   display : inline-block;
-  background-color: #ffffff;
+  background-image:
+    linear-gradient(
+      red, #222, #123456,#65432f, #aaa222
+    );
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -39,11 +42,24 @@
   background-color: #266299;
   color : #ffffff;
   transform: translate(-10px);
+  padding: 0 10px 0 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 .brain-data-row {
   display : block;
   color : #123456;
   padding : 0 0 10px 0;
+}
+.brain-data-value{
+  background-color: #fff;
+  width: 90px;
+  padding: 0 10px 0 10px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+
 }
 .delta{
   color : rgb(19,207,187);
@@ -77,6 +93,7 @@
   color : #ff0000;
   display : inline-block;
 }
+
 </style>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
