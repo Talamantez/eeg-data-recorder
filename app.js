@@ -9,7 +9,7 @@ var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8000;
-var headsetPort = '/dev/rfcomm1';
+var headsetPort = '/dev/rfcomm0';
 
 var newData;
 var avgData;
@@ -94,15 +94,15 @@ function lastShot(){
        $group:
          {
             _id: "New EEG Data",
-            timeStamp: {$first: "$timeStamp" },
-            delta: { $avg: "$delta" },
-            theta: { $avg: "$theta" },
-            loAlpha: { $avg: "$loAlpha" },
-            hiAlpha: { $avg: "$hiAlpha" },
-            hiBeta: { $avg: "$hiBeta"},
-            loBeta: { $avg: "$loBeta" },
-            loGamma: { $avg: "$loGamma" },
-            midGamma: { $avg: "$midGamma" }
+            timeStamp:          {$first: "$timeStamp" },
+            delta:              { $avg: "$delta" },
+            theta:              { $avg: "$theta" },
+            loAlpha:            { $avg: "$loAlpha" },
+            hiAlpha:            { $avg: "$hiAlpha" },
+            hiBeta:             { $avg: "$hiBeta"},
+            loBeta:             { $avg: "$loBeta" },
+            loGamma:            { $avg: "$loGamma" },
+            midGamma:           { $avg: "$midGamma" }
          }
      }
    ], function(err, eegData){
@@ -125,16 +125,16 @@ function avgLastTen(){
        $group:
          {
             _id: "Avg Last 10 EEG Data",
-            timeWindowStart: { $last: "$timeStamp" },
-            timeWindowEnd: { $first: "$timeStamp" },
-            delta: { $avg: "$delta" },
-            theta: { $avg: "$theta" },
-            loAlpha: { $avg: "$loAlpha" },
-            hiAlpha: { $avg: "$hiAlpha" },
-            hiBeta: { $avg: "$hiBeta"},
-            loBeta: { $avg: "$loBeta" },
-            loGamma: { $avg: "$loGamma" },
-            midGamma: { $avg: "$midGamma" }
+            timeWindowStart:    { $last: "$timeStamp" },
+            timeWindowEnd:      { $first: "$timeStamp" },
+            delta:              { $avg: "$delta" },
+            theta:              { $avg: "$theta" },
+            loAlpha:            { $avg: "$loAlpha" },
+            hiAlpha:            { $avg: "$hiAlpha" },
+            hiBeta:             { $avg: "$hiBeta"},
+            loBeta:             { $avg: "$loBeta" },
+            loGamma:            { $avg: "$loGamma" },
+            midGamma:           { $avg: "$midGamma" }
          }
      }
    ], function(err, eegData){
@@ -155,16 +155,16 @@ function avgLast1000(){
        $group:
          {
             _id: "Avg Last 1000 EEG Data",
-            timeWindowStart: { $last: "$timeStamp" },
-            timeWindowEnd: { $first: "$timeStamp" },            
-            delta: { $avg: "$delta" },
-            theta: { $avg: "$theta" },
-            loAlpha: { $avg: "$loAlpha" },
-            hiAlpha: { $avg: "$hiAlpha" },
-            hiBeta: { $avg: "$hiBeta"},
-            loBeta: { $avg: "$loBeta" },
-            loGamma: { $avg: "$loGamma" },
-            midGamma: { $avg: "$midGamma" }
+            timeWindowStart:    { $last: "$timeStamp" },
+            timeWindowEnd:      { $first: "$timeStamp" },            
+            delta:              { $avg: "$delta" },
+            theta:              { $avg: "$theta" },
+            loAlpha:            { $avg: "$loAlpha" },
+            hiAlpha:            { $avg: "$hiAlpha" },
+            hiBeta:             { $avg: "$hiBeta"},
+            loBeta:             { $avg: "$loBeta" },
+            loGamma:            { $avg: "$loGamma" },
+            midGamma:           { $avg: "$midGamma" }
          }
      }
    ], function(err, eegData){
