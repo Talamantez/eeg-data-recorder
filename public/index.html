@@ -1,15 +1,40 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
 <html>
-  <title>Neurosky - Cylon - Brian Data</title>
+  <title>Neurosky - Cylon - Brain Data</title>
   <head>
-    <style>
-            .page-header{diplay:block;margin:0 auto 0 50px;color:#349948;width:100%;}
-            .brain-data-container{margin:0 0 0 50px;min-width: 200px;display:inline-block;}
-            .brain-data-heading{color:#266299;}
-            .brain-data-row{ display:block;color:#123456; padding:0 0 10px 0; border:0 0 1px 0; }
-            .brain-data-category{ width: 100px; display:inline-block;}
-            .brain-data-value{ color:#ff0000; display:inline-block;}
-    </style>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<style type="text/css">
+  .page-header {
+  margin : 0 auto 0 50px;
+  color : #349948;
+  width : 100%;
+}
+.brain-data-container {
+  margin : 0 0 0 50px;
+  min-width : 200px;
+  display : inline-block;
+}
+.brain-data-heading {
+  color : #266299;
+}
+.brain-data-row {
+  display : block;
+  color : #123456;
+  padding : 0 0 10px 0;
+}
+.brain-data-category {
+  width : 100px;
+  display : inline-block;
+}
+.brain-data-value {
+  color : #ff0000;
+  display : inline-block;
+}
+canvas {
+  display : inline-block;
+}
+</style>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.js"></script>    
@@ -19,15 +44,16 @@
     
       var newTimeStamp;
       var newDataPoint;
+      var initialData;
       /*initialize 10 index array to store new timestamps for chart and 10 index arrays to store last 10 readings of each brain wave available*/
       var last10TimeStampArray    = [0,0,0,0,0,0,0,0,0,0];
       var last10DeltaArray        = [0,0,0,0,0,0,0,0,0,0]; 
       var last10ThetaArray        = [0,0,0,0,0,0,0,0,0,0];
-      var last10LoAlphaArray     = [0,0,0,0,0,0,0,0,0,0];
-      var last10HiAlphaArray    = [0,0,0,0,0,0,0,0,0,0]; 
-      var last10LoBetaArray      = [0,0,0,0,0,0,0,0,0,0];
-      var last10HiBetaArray     = [0,0,0,0,0,0,0,0,0,0];
-      var last10LoGammaArray     = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10LoAlphaArray      = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiAlphaArray      = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10LoBetaArray       = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiBetaArray       = [0,0,0,0,0,0,0,0,0,0];
+      var last10LoGammaArray      = [0,0,0,0,0,0,0,0,0,0]; 
       var last10MidGammaArray     = [0,0,0,0,0,0,0,0,0,0];
 
       var newDeltaText     = $('#new-delta');
@@ -80,85 +106,86 @@
                 ],
       datasets : [
         {
-          label: "New Delta",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
+          label: "New Mid Gamma",
+          fillColor : "rgba(244,40,10,0.2)",
+          strokeColor : "rgba(244,40,10,1)",
+          pointColor : "rgba(244,40,10,1)",
           pointStrokeColor : "#fff",
           pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10DeltaArray
-        },
-        {
-          label: "New Theta",
-          fillColor : "rgba(151,187,205,0.2)",
-          strokeColor : "rgba(151,187,205,1)",
-          pointColor : "rgba(151,187,205,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(151,187,205,1)",
-          data : last10ThetaArray
-        },
-        {
-          label: "New Low Alpha",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10LoAlphaArray
-        },
-        {
-          label: "New Hi Alpha",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10HiAlphaArray
-        },
-        {
-          label: "New Low Beta",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10LoBetaArray
-        },
-        {
-          label: "New High Beta",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
-          pointStrokeColor : "#fff",
-          pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10HiBetaArray
+          pointHighlightStroke : "rgba(244,40,10,1)",
+          data : last10MidGammaArray
         },
         {
           label: "New Low Gamma",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
+          fillColor : "rgba(238,130,12,0.2)",
+          strokeColor : "rgba(238,130,12,1)",
+          pointColor : "rgba(238,130,12,1)",
           pointStrokeColor : "#fff",
           pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
+          pointHighlightStroke : "rgba(238,130,12,1)",
           data : last10LoGammaArray
         },
         {
-          label: "New Mid Gamma",
-          fillColor : "rgba(220,220,220,0.2)",
-          strokeColor : "rgba(220,220,220,1)",
-          pointColor : "rgba(220,220,220,1)",
+          label: "New High Beta",
+          fillColor : "rgba(233,215,13,0.2)",
+          strokeColor : "rgba(233,215,13,1)",
+          pointColor : "rgba(233,215,13,1)",
           pointStrokeColor : "#fff",
           pointHighlightFill : "#fff",
-          pointHighlightStroke : "rgba(220,220,220,1)",
-          data : last10MidGammaArray
-        }                                              
+          pointHighlightStroke : "rgba(233,215,13,1)",
+          data : last10HiBetaArray
+        },                                                             
+        {
+          label: "New Low Beta",
+          fillColor : "rgba(161,228,15,0.2)",
+          strokeColor : "rgba(161,228,15,1)",
+          pointColor : "rgba(161,228,15,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(161,228,15,1)",
+          data : last10LoBetaArray
+        },
+        {
+          label: "New Hi Alpha",
+          fillColor : "rgba(76,223,16,0.2)",
+          strokeColor : "rgba(76,223,16,1)",
+          pointColor : "rgba(76,223,16,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(76,223,16,1)",
+          data : last10HiAlphaArray
+        },
+        {
+          label: "New Low Alpha",
+          fillColor : "rgba(17,218,37,0.2)",
+          strokeColor : "rgba(17,218,37,1)",
+          pointColor : "rgba(17,218,37,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(17,218,37,1)",
+          data : last10LoAlphaArray
+        },
+        {
+          label: "New Theta",
+          fillColor : "rgba(18,212,115,0.2)",
+          strokeColor : "rgba(18,212,115,1)",
+          pointColor : "rgba(18,212,115,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(18,212,115,1)",
+          data : last10ThetaArray
+        },
+        {
+          label: "New Delta",
+          fillColor : "rgba(19,207,187,0.2)",
+          strokeColor : "rgba(19,207,187,1)",
+          pointColor : "rgba(19,207,187,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(19,207,187,1)",
+          data : last10DeltaArray
+        }
+
       ]
     }; 
 
@@ -394,4 +421,14 @@
                 </div>
               </div>       
      </body>
+<footer>
+  <p>
+    <a href="http://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Valid CSS!" />
+    </a>
+</p>
+            
+</footer>
 <html>

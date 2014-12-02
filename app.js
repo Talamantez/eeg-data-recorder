@@ -1,3 +1,5 @@
+'use strict'
+
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -19,7 +21,8 @@ http.listen(port, function(){
 });
 
 app.get('/', function(req,res){
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/public/index.html');
+    //res.sendFile(__dirname + '/public/style.css');
 });
 
 io.on('connection', function(socket){

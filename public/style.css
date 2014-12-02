@@ -1,0 +1,29 @@
+.page-header {
+	margin : 0 auto 0 50px;
+	color : #349948;
+	width : 100%;
+}
+.brain-data-container {
+	margin : 0 0 0 50px;
+	min-width : 200px;
+	display : inline-block;
+}
+.brain-data-heading {
+	color : #266299;
+}
+.brain-data-row {
+	display : block;
+	color : #123456;
+	padding : 0 0 10px 0;
+}
+.brain-data-category {
+	width : 100px;
+	display : inline-block;
+}
+.brain-data-value {
+	color : #ff0000;
+	display : inline-block;
+}
+canvas {
+	display : inline-block;
+}
