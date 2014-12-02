@@ -11,7 +11,12 @@ var eegSchema = new mongoose.Schema({
   loGamma: Number,
   midGamma: Number
 },{
-	collection: 'eeg'
+	collection: 'eegSleep'     /*use 'eeg'  for general testing', 
+                        'eegNap'   for napping,
+                        'eegSleep' for sleeping,
+                        'eegAwake' for wake recording
+                        Be sure this matches db in app.js  
+                        */
 });
 
 var eegSnapshot = mongoose.model('eegSnapshot', eegSchema);

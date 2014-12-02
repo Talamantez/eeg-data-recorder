@@ -10,6 +10,12 @@ var db = mongoose.connection;
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8000;
 var headsetPort = '/dev/rfcomm0';
+var activeDB = 'eegSleep'; /*use 'eeg'  for general testing', 
+                        'eegNap'   for napping,
+                        'eegSleep' for sleeping,
+                        'eegAwake' for wake recording
+                      !!! Be sure to change in models/eegSnapshot also!  
+                        */ 
 
 var newData;
 var avgData;
@@ -29,11 +35,11 @@ io.on('connection', function(socket){
     console.log('a user connected');
 });
 
-mongoose.connect('mongodb://localhost/eeg');
-
+// mongoose.connect('mongodb://localhost/eeg');
+mongoose.connect('mongodb://localhost/' + activeDB);
 db.on('error', console.error);
 db.once('open',function callback(){
-	console.log('db eeg ready');
+	console.log('db '+ activeDB + ' ready');
 });
 
 cylon.robot({
@@ -94,15 +100,15 @@ function lastShot(){
        $group:
          {
             _id: "New EEG Data",
-            timeStamp:          {$first: "$timeStamp" },
-            delta:              { $avg: "$delta" },
-            theta:              { $avg: "$theta" },
-            loAlpha:            { $avg: "$loAlpha" },
-            hiAlpha:            { $avg: "$hiAlpha" },
-            hiBeta:             { $avg: "$hiBeta"},
-            loBeta:             { $avg: "$loBeta" },
-            loGamma:            { $avg: "$loGamma" },
-            midGamma:           { $avg: "$midGamma" }
+            timeStamp:          { $first: "$timeStamp" },
+            delta:              { $avg:   "$delta"     },
+            theta:              { $avg:   "$theta"     },
+            loAlpha:            { $avg:   "$loAlpha"   },
+            hiAlpha:            { $avg:   "$hiAlpha"   },
+            hiBeta:             { $avg:   "$hiBeta"    },
+            loBeta:             { $avg:   "$loBeta"    },
+            loGamma:            { $avg:   "$loGamma"   },
+            midGamma:           { $avg:   "$midGamma"  }
          }
      }
    ], function(err, eegData){
@@ -125,16 +131,16 @@ function avgLastTen(){
        $group:
          {
             _id: "Avg Last 10 EEG Data",
-            timeWindowStart:    { $last: "$timeStamp" },
+            timeWindowStart:    { $last:  "$timeStamp" },
             timeWindowEnd:      { $first: "$timeStamp" },
-            delta:              { $avg: "$delta" },
-            theta:              { $avg: "$theta" },
-            loAlpha:            { $avg: "$loAlpha" },
-            hiAlpha:            { $avg: "$hiAlpha" },
-            hiBeta:             { $avg: "$hiBeta"},
-            loBeta:             { $avg: "$loBeta" },
-            loGamma:            { $avg: "$loGamma" },
-            midGamma:           { $avg: "$midGamma" }
+            delta:              { $avg:   "$delta"     },
+            theta:              { $avg:   "$theta"     },
+            loAlpha:            { $avg:   "$loAlpha"   },
+            hiAlpha:            { $avg:   "$hiAlpha"   },
+            hiBeta:             { $avg:   "$hiBeta"    },
+            loBeta:             { $avg:   "$loBeta"    },
+            loGamma:            { $avg:   "$loGamma"   },
+            midGamma:           { $avg:   "$midGamma"  }
          }
      }
    ], function(err, eegData){
@@ -155,16 +161,16 @@ function avgLast1000(){
        $group:
          {
             _id: "Avg Last 1000 EEG Data",
-            timeWindowStart:    { $last: "$timeStamp" },
-            timeWindowEnd:      { $first: "$timeStamp" },            
-            delta:              { $avg: "$delta" },
-            theta:              { $avg: "$theta" },
-            loAlpha:            { $avg: "$loAlpha" },
-            hiAlpha:            { $avg: "$hiAlpha" },
-            hiBeta:             { $avg: "$hiBeta"},
-            loBeta:             { $avg: "$loBeta" },
-            loGamma:            { $avg: "$loGamma" },
-            midGamma:           { $avg: "$midGamma" }
+            timeWindowStart:    { $last:  "$timeStamp"  },
+            timeWindowEnd:      { $first: "$timeStamp"  },            
+            delta:              { $avg:   "$delta"      },
+            theta:              { $avg:   "$theta"      },
+            loAlpha:            { $avg:   "$loAlpha"    },
+            hiAlpha:            { $avg:   "$hiAlpha"    },
+            hiBeta:             { $avg:   "$hiBeta"     },
+            loBeta:             { $avg:   "$loBeta"     },
+            loGamma:            { $avg:   "$loGamma"    },
+            midGamma:           { $avg:   "$midGamma"   }
          }
      }
    ], function(err, eegData){
@@ -218,8 +224,6 @@ function mockHeadset(){
 
     sendData(mockNew,mock10Avg,mock1000Avg);
 }
-
-
 
 // Enable below function to mock brain data
 //setInterval(mockHeadset,1000);

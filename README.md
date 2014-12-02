@@ -45,6 +45,22 @@ node app.js
 
 To see your brain data updating in realtime, open your browser to http://localhost:3000.
 
+== Database Configuration
+If you want to have multiple databases for testing, for instance, one for collecting sleep data, one for waking data, etc, make the following adjustments:
+
+1) In your shell, make sure mongod is running, then open a new terminal and type:
+```
+use myDatabase
+```
+2) On line 13 of app.js, update the active database variable to match the db above:
+```
+var activeDB = 'myDatabase'
+```
+3) On line 14 of models/eegSnapshot.js, update the active database variable to match the db above:
+```
+collection: 'myDatabase'  
+```
+
 TO DO:
 
 Implement charts
@@ -54,3 +70,4 @@ Signal Analysis:
 - band pass/high pass/low pass
 
 Python initialization script
+
