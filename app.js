@@ -9,7 +9,7 @@ var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8000;
-var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
+var headsetPort = '/dev/rfcomm1'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
 var activeDB = 'eegControl'; /*use 'eeg'  for general testing', 
                         'eegNap'   for napping,
                         'eegSleep' for sleeping,
@@ -39,7 +39,7 @@ io.on('connection', function(socket){
 });
 
 // mongoose.connect('mongodb://localhost/eeg');
-mongoose.connect(mongoose.connect(uristring););
+mongoose.connect(uristring);
 db.on('error', console.error);
 db.once('open',function callback(){
 	console.log('db '+ activeDB + ' ready');
