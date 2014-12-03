@@ -9,16 +9,19 @@ var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
 var port = process.env.PORT || 8000;
+
 var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
-var activeDB = 'eegControl'; /*use 'eeg'  for general testing', 
+var activeDB = 'eegMock'; /*use 'eeg'  for general testing', 
                         'eegNap'   for napping,
                         'eegSleep' for sleeping,
-                        'eegAwake' for wake recording
+                        'eegAwake' for wake recording,
+                        'eegMock'  for mock data
                         Be sure this matches db in models/eegSnapshot
                         and to switch mongo  to this db,
                         'eegControl' for control data                          
                         */ 
 
+var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 var newData;
 var avgData;
 var avg1000Data;
@@ -38,7 +41,7 @@ io.on('connection', function(socket){
 });
 
 // mongoose.connect('mongodb://localhost/eeg');
-mongoose.connect('mongodb://localhost/' + activeDB);
+mongoose.connect(uristring);
 db.on('error', console.error);
 db.once('open',function callback(){
 	console.log('db '+ activeDB + ' ready');
@@ -228,4 +231,4 @@ function mockHeadset(){
 }
 
 // Enable below function to mock brain data
-//setInterval(mockHeadset,1000);
+setInterval(mockHeadset,1000);

@@ -18,6 +18,7 @@ var activeDB = 'eegControl'; /*use 'eeg'  for general testing',
                         and to switch mongo  to this db,
                         'eegControl' for control data                          
                         */ 
+var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 
 var newData;
 var avgData;
@@ -38,7 +39,7 @@ io.on('connection', function(socket){
 });
 
 // mongoose.connect('mongodb://localhost/eeg');
-mongoose.connect('mongodb://localhost/' + activeDB);
+mongoose.connect(mongoose.connect(uristring););
 db.on('error', console.error);
 db.once('open',function callback(){
 	console.log('db '+ activeDB + ' ready');
