@@ -11,11 +11,13 @@ var eegSchema = new mongoose.Schema({
   loGamma: Number,
   midGamma: Number
 },{
-	collection: 'eegSleep'     /*
+	collection: 'eegMock'     /*
                               use 'eeg'  for general testing', 
                              'eegNap'   for napping,
                              'eegSleep' for sleeping,
-                             'eegAwake' for wake recording
+                             'eegAwake' for wake recording,
+                             'eegControl' for control data,
+                             'eegMock' for mock data.
                               Be sure this matches db in app.js
                               and to switch mongo  to this db
                               */

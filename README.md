@@ -76,3 +76,11 @@ Signal Analysis:
 
 Python initialization script
 
+rgb(244,40,10)
+rgb(238,130,12)
+rgb(233,215,13)
+rgb(161,228,15)
+rgb(76,223,16)
+rgb(17,218,37)
+rgb(18,212,115)
+rgb(19,207,187)
