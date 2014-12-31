@@ -68,13 +68,16 @@ var headsetPort = '/dev/rfcomm0';
 
 TO DO:
 
-Implement charts
-
 Signal Analysis:
 - noise filtering
 - band pass/high pass/low pass
 
-Python initialization script
+Python initialization script:
+
+	-gort scan bluetooth <reg ex for 'Mindwave Mobile'> 
+	-gort bluetooth unpair <mac num>
+	-gort bluetooth connect <mac num>
+	-if connected, run app, else err
 
 rgb(244,40,10)
 rgb(238,130,12)
@@ -84,3 +87,4 @@ rgb(76,223,16)
 rgb(17,218,37)
 rgb(18,212,115)
 rgb(19,207,187)
+

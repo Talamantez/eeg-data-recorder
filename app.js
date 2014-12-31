@@ -8,8 +8,15 @@ var mongoose = require('mongoose');
 var eegSnapshot = require('./models/eegSnapshot.js');
 var db = mongoose.connection;
 var io = require('socket.io')(http);
-var port = process.env.PORT || 8000;
-var headsetPort = '/dev/rfcomm1'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
+
+var port = process.env.PORT || 3000 ;
+
+/*var thinkcopter = 'http://www.thinkcopter.com';
+var thinkcopterApp = express();
+var thinkcopterHttp = require('http').Server(thinkcopterApp);
+var thinkcopterIo = require('socket.io-client');*/
+
+var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
 var activeDB = 'eegControl'; /*use 'eeg'  for general testing', 
                         'eegNap'   for napping,
                         'eegSleep' for sleeping,
@@ -17,7 +24,9 @@ var activeDB = 'eegControl'; /*use 'eeg'  for general testing',
                         Be sure this matches db in models/eegSnapshot
                         and to switch mongo  to this db,
                         'eegControl' for control data                          
+                        and 'eegMock' for mock data
                         */ 
+
 var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 
 var newData;
@@ -51,6 +60,7 @@ cylon.robot({
 })
 .on('ready', function(robot) {
   robot.headset.on('eeg', function(data) {
+    /*sendDataThinkcopter(data),*/
     addShot(	data.delta,
     			data.theta,
     			data.loAlpha,
@@ -194,6 +204,9 @@ function sendData(newData,avg10,avg1000){
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
+/*function sendThinkcopterData(socket, data){
+    thinkcopterIo.socket.emit('brainData', data);
+}*/
 
 function mockData(){
      return Math.round(Math.random()*100000);
@@ -212,7 +225,9 @@ function mockBrainData(){
             loBeta: mockData(),
             loGamma: mockData(),
             midGamma: mockData()
-         }
+         };
+    console.log(fakeBrainData);
+
     return fakeBrainData;
 };
 
@@ -230,3 +245,13 @@ function mockHeadset(){
 
 // Enable below function to mock brain data
 //setInterval(mockHeadset,1000);
+
+// Enable below function to mock thinkcopter data
+/*function mockThinkcopterTransmission(server){
+    // var socket = thinkcopterIo.connect(server);
+    // console.dir(socket);
+    setInterval(sendThinkcopterData(thinkcopterIo.connect(server), 
+        ), 1000);
+}
+
+mockThinkcopterTransmission('http://www.thinkcopter.com');*/

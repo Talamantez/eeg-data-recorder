@@ -15,7 +15,8 @@
     "grunt": "^0.4.5",
     "mongodb": "^1.4.20",
     "mongoose": "^3.8.19",
-    "socket.io": "^1.2.0"
+    "socket.io": "^1.2.0",
+    "socket.io-client": "^1.2.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

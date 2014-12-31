@@ -3,7 +3,7 @@
 <html>
   <title>Neurosky - Cylon - Brain Data</title>
   <head>
-<!-- <link rel="stylesheet" type="text/css" href="./public/style.css"> -->
+<!-- z<link rel="stylesheet" type="text/css" href="./public/style.css"> -->
 <style type="text/css">
   html{
     background-color: #adc689;
@@ -93,7 +93,9 @@
   color : #ff0000;
   display : inline-block;
 }
-
+,cleared-data-value{
+  color: #000000;
+}
 </style>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -486,6 +488,21 @@
             alt="Valid CSS!" />
     </a>
 </p>
+
+<script>
+  
+  $('.brain-data-category').click(function(e){
+
+      console.log('clicked');
+      console.dir(e);
+
+      var banana = $('.delta');
+      console.log(banana);
+      banana.
+     // this.color:#ffffff;
+     this.css({"-webkit-transform":"translate(100px,100px)"});​
+  });
+</script>
             
 </footer>
 <html>
