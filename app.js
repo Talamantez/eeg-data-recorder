@@ -12,10 +12,6 @@ var io = require('socket.io')(http);
 var port = process.env.PORT || 3000 ;
 
 app.use(express.static(__dirname + '/dist'));
-/*var thinkcopter = 'http://www.thinkcopter.com';
-var thinkcopterApp = express();
-var thinkcopterHttp = require('http').Server(thinkcopterApp);
-var thinkcopterIo = require('socket.io-client');*/
 
 var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
 var activeDB = 'eegControl'; /*use 'eeg'  for general testing', 
@@ -34,21 +30,14 @@ var newData;
 var avgData;
 var avg1000Data;
 
-//app.listen(process.env.PORT || port);
 http.listen(port, function(){
     console.log('\nListening on port:' + port + '\n');
 });
-
-/*app.get('/', function(req,res){
-    res.sendFile(__dirname + '/public/index.html');
-    //res.sendFile(__dirname + '/public/style.css');
-});*/
 
 io.on('connection', function(socket){
     console.log('a user connected');
 });
 
-// mongoose.connect('mongodb://localhost/eeg');
 mongoose.connect(uristring);
 db.on('error', console.error);
 db.once('open',function callback(){
@@ -61,7 +50,6 @@ cylon.robot({
 })
 .on('ready', function(robot) {
   robot.headset.on('eeg', function(data) {
-    /*sendDataThinkcopter(data),*/
     addShot(	data.delta,
     			data.theta,
     			data.loAlpha,
@@ -79,13 +67,17 @@ cylon.robot({
 })})
 .start();
 
-/* Test for the addShot function
+/* 
 
- setInterval(function(){ addShot(1,2,3,4,5,6,7); },1000);
+Test for the addShot function:
+
+setInterval(function(){ addShot(1,2,3,4,5,6,7); },1000);
 
 */
 
-/*  Save a record to the database
+/*      
+
+ Save a record to the database with addShot()
 
 */
 
@@ -127,7 +119,6 @@ function lastShot(){
      }
    ], function(err, eegData){
     newData = eegData[0];
-   // console.dir(newData);
    }
 
  );
@@ -159,7 +150,6 @@ function avgLastTen(){
      }
    ], function(err, eegData){
     avgData = eegData[0];
-   // console.dir(avgData);
    }
 );
     return avgData;
@@ -189,7 +179,6 @@ function avgLast1000(){
      }
    ], function(err, eegData){
     avg1000Data = eegData[0];
-   // console.dir(avgData);
    }
 );
     return avg1000Data;
@@ -205,16 +194,12 @@ function sendData(newData,avg10,avg1000){
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
-/*function sendThinkcopterData(socket, data){
-    thinkcopterIo.socket.emit('brainData', data);
-}*/
 
 function mockData(){
      return Math.round(Math.random()*100000);
 }
 
 function mockBrainData(){
-    // Make an object 
 
     var fakeBrainData = {
             _id: "Data",
@@ -243,16 +228,3 @@ function mockHeadset(){
 
     sendData(mockNew,mock10Avg,mock1000Avg);
 }
-
-// Enable below function to mock brain data
-//setInterval(mockHeadset,1000);
-
-// Enable below function to mock thinkcopter data
-/*function mockThinkcopterTransmission(server){
-    // var socket = thinkcopterIo.connect(server);
-    // console.dir(socket);
-    setInterval(sendThinkcopterData(thinkcopterIo.connect(server), 
-        ), 1000);
-}
-
-mockThinkcopterTransmission('http://www.thinkcopter.com');*/

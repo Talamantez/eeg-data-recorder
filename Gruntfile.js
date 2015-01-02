@@ -16,15 +16,27 @@ module.exports = function(grunt) {
     bower_concat: {
       all: {
         dest: 'dist/bower.js'
-  }
-}
+    },
+    uglify: {
+       bower: {
+        options: {
+          mangle: true,
+          compress: true
+        },
+        files: {
+          'js/bower.min.js': 'js/bower.js'
+        }
+      }
+    }
+    }
   });
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-bower-concat');  
+  require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', ['jshint']);
-  grunt.registerTask('concat', ['bower_concat']);  
+  grunt.registerTask('concat', ['bower_concat']);
+  grunt.registerTask('buildbower', [
+    'bower_concat',
+    'uglify:bower'
+    ]);
 
 };
