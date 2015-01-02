@@ -23,9 +23,10 @@ module.exports = function(grunt) {
           mangle: true,
           compress: true
         },
-        files: {
-          'js/bower.min.js': 'js/bower.js'
-        }
+          files: {
+            'js/bower.min.js': 'js/bower.js'
+          }
+        
       }
     }
     }
