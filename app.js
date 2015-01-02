@@ -11,6 +11,7 @@ var io = require('socket.io')(http);
 
 var port = process.env.PORT || 3000 ;
 
+app.use(express.static(__dirname + '/dist'));
 /*var thinkcopter = 'http://www.thinkcopter.com';
 var thinkcopterApp = express();
 var thinkcopterHttp = require('http').Server(thinkcopterApp);
@@ -38,10 +39,10 @@ http.listen(port, function(){
     console.log('\nListening on port:' + port + '\n');
 });
 
-app.get('/', function(req,res){
+/*app.get('/', function(req,res){
     res.sendFile(__dirname + '/public/index.html');
     //res.sendFile(__dirname + '/public/style.css');
-});
+});*/
 
 io.on('connection', function(socket){
     console.log('a user connected');

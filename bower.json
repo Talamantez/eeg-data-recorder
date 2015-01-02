@@ -1,0 +1,23 @@
+{
+  "name": "eeg-data-recorder",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Talamantez/eeg-data-recorder",
+  "authors": [
+    "Talamantez <robert.talamantez2@gmail.com>"
+  ],
+  "description": "record eeg data",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chartjs": "~0.2.0",
+    "jquery": "~2.1.3",
+    "socket.io-client": "~1.2.1"
+  }
+}
