@@ -16,7 +16,8 @@ module.exports = function(grunt) {
     bower_concat: {
       all: {
         dest: 'dist/bower.js'
-    },
+    }
+  },
     uglify: {
        bower: {
         options: {
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
         
       }
     }
-    }
+    
   });
   require('load-grunt-tasks')(grunt);
 
