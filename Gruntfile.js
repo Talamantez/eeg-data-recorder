@@ -14,10 +14,10 @@ module.exports = function(grunt) {
       tasks: ['jshint']
     },
     bower_concat: {
-      all: {
-        dest: 'dist/bower.js'
-    }
-  },
+        all: {
+          dest: 'src/js/bower.js'
+      }
+    },
     uglify: {
        bower: {
         options: {
@@ -25,20 +25,41 @@ module.exports = function(grunt) {
           compress: true
         },
           files: {
-            'js/bower.min.js': 'js/bower.js'
-          }
-        
+            'dist/js/bower.min.js': 'src/js/bower.js'
+          } 
       }
+    },
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'src/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dist/css',
+          ext: '.min.css'
+        }]
+      },
+    htmlbuild: {
+      dist: {
+        src: 'src/html/index.html',
+        dest: 'dist/index.html'
+      }
+    }
     }
     
   });
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'buildbower','buildcss']);
   grunt.registerTask('concat', ['bower_concat']);
   grunt.registerTask('buildbower', [
     'bower_concat',
     'uglify:bower'
     ]);
-
+  grunt.registerTask('buildcss',[
+    'cssmin'
+    ]);
+  grunt.registerTask('buildhtml',[
+    'htmlbuild'
+    ]);
 };
