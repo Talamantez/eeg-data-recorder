@@ -1,6 +1,31 @@
 eeg-data-recorder
 =================
 
+To use this eeg recorder, you need to have a MindWave Mobile headset and the following installed:
+
+- Ubuntu
+- Gort cli
+- node version 0.10.33 (node-serialport is dependent on this)
+- python 2.7
+- grunt
+- bower
+
+Clone the repo, then install dependencies with:
+'npm install && bower install'
+
+Then build the project with:
+'grunt --force' (jshint is being finicky, but it's okay to use --force in this case)
+
+Then, put the Headset into discoverable mode and type:
+'python connect-and-run.py'
+
+After the headset has connected and data starts reading out in the terminal, 
+open your browser to localhost:3000 to see average data and a time-series readout.
+
+
+
+// BELOW ARE LEGACY INSTRUCTIONS
+
 Record your EEG data using Cylon.js and Mongoose. It works with Neurosky Mindwave Mobile and Ubuntu. 
 
 This program is dependent on Gort (http://gort.io/), mongoDB (http://docs.mongodb.org/manual/installation/), Node Version Manager (https://github.com/creationix/nvm), so install those first.  
