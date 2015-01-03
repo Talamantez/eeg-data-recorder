@@ -38,13 +38,7 @@ module.exports = function(grunt) {
           dest: 'dist/css',
           ext: '.min.css'
         }]
-      },
-    htmlbuild: {
-      dist: {
-        src: 'src/html/index.html',
-        dest: 'dist/index.html'
       }
-    }
     }
     
   });
@@ -58,8 +52,5 @@ module.exports = function(grunt) {
     ]);
   grunt.registerTask('buildcss',[
     'cssmin'
-    ]);
-  grunt.registerTask('buildhtml',[
-    'htmlbuild'
     ]);
 };
