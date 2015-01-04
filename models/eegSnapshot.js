@@ -19,7 +19,7 @@ var eegSchema = new mongoose.Schema({
                              'eegControl' for control data,
                              'eegMock' for mock data.
                               Be sure this matches db in app.js
-                              and to switch mongo  to this db
+                              and to switch mongo to this db
                               */
 });
 

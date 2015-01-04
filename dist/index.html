@@ -157,22 +157,22 @@
 
       socket.on('brain-data', function(brainData){
           // Extract new reading data
-          newBrainData = brainData[0];
+          newBrainData = brainData[0][0];
           // Extract avg last 10 readings
-          avgBrainData = brainData[1];
+          avgBrainData = brainData[1][0];
           // Extract avg last 1000 readings
-          avg1000BrainData = brainData[2];
+          avg1000BrainData = brainData[2][0];
 
-          console.dir(brainData);
+          //console.dir(brainData);
 
           // Extract timestamp from new reading
           newTimeStamp = newBrainData["timeStamp"];
-          console.log('newTimeStamp: '+ newTimeStamp);
+          //console.log('newTimeStamp: '+ newTimeStamp);
           /*
           push the new timestamp and shift off the oldest one
           */
           last10TimeStampArray.push(newTimeStamp);
-          console.log('last10TimeStampArray: '+ last10TimeStampArray);          
+          //console.log('last10TimeStampArray: '+ last10TimeStampArray);          
           last10TimeStampArray.shift();
           /*
           push the new delta data and shift off the oldest reading
@@ -258,7 +258,7 @@
               responsive: true,
               animation : false
       });             
-          console.dir(last10TimeStampArray);
+          //console.dir(last10TimeStampArray);
       });
 
       var ctx = document.getElementById("canvas").getContext("2d");

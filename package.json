@@ -4,7 +4,8 @@
   "description": "use mongoose to record cylon eeg data",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-app" : "node app.js",
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Robert Talamantez",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "socket.io-client": "^1.2.1"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
     "grunt": "^0.4.5",
     "grunt-bower-concat": "^0.4.0",
     "grunt-bower-install": "^1.6.0",
@@ -26,6 +28,9 @@
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
-    "load-grunt-tasks": "^2.0.0"
+    "load-grunt-tasks": "^2.0.0",
+    "mocha": "^2.1.0",
+    "supertest": "^0.15.0",
+    "supervisor": "^0.6.0"
   }
 }
