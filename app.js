@@ -34,15 +34,35 @@ http.listen(port, function(){
     console.log('\nListening on port:' + port + '\n');
 });
 
+/*
+
+Send a signal when a user connects to the website
+
+*/
+
 io.on('connection', function(socket){
     console.log('a user connected');
 });
 
+
+/*
+
+Connect to MongoDB
+
+*/
+
 mongoose.connect(uristring);
-db.on('error', console.error);
-db.once('open',function callback(){
-	console.log('db '+ activeDB + ' ready');
+    db.on('error', console.error);
+    db.once('open',function callback(){
+    	console.log('db '+ activeDB + ' ready');
 });
+
+
+/*
+
+Initialize the Cylon robot, grab data from MongoDB and emit it to website
+
+*/
 
 cylon.robot({
   connection: { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
@@ -73,12 +93,21 @@ cylon.robot({
 })})
 .start();
 
+
+/* 
+
+Helper Functions
+
+*/
+
+// Send data to website using socket.io
 function sendData(newData,avg10,avg1000){
     var brainDataChunk = [newData,avg10,avg1000];
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
 
+// Send simulated brain data using socket.io
 function mockHeadset(){
     var mockNew = eeg.mockBrainData();
     var mock10Avg = eeg.mockBrainData();

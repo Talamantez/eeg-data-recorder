@@ -15,7 +15,7 @@ module.exports = {
         console.log('Saving Shot to EEG Database: ' + '\n' + newShot + '\n');
         newShot.save(function (err) {
             if (err){
-                console.log ('Error on save');
+                throw new Error('Shot did not save to database');
             } else {
                 console.log ('Save successful');
             }
