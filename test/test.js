@@ -1,6 +1,7 @@
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 var eeg = require('../eegFunctions');
+var mongoose = require('mongoose');
 
 suite("mockEegData", function(){
 
@@ -108,8 +109,11 @@ suite("mockEegData", function(){
 
 suite("eeg_db_Functions", function(){
 
+	test("addShot() should not throw an error");
 
-});
+	test("findAll() should be an object");
+
+});	
 
 /*    mockData: function(){
         return Math.round(Math.random()*100000);

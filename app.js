@@ -60,7 +60,9 @@ mongoose.connect(uristring);
 
 /*
 
-Initialize the Cylon robot, grab data from MongoDB and emit it to website
+    Initialize the Cylon robot,
+    save the new data to mongodb,
+    grab data from MongoDB and emit it to website
 
 */
 
