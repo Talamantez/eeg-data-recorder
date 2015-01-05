@@ -5,7 +5,6 @@ var app = express();
 var http = require('http').Server(app);
 var cylon = require('cylon');
 var mongoose = require('mongoose');
-var db = mongoose.connection;
 var io = require('socket.io')(http);
 var eeg = require('./eegFunctions');
 
@@ -26,9 +25,11 @@ var activeDB = 'eegControl'; /*use 'eeg'  for general testing',
 
 var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 
-var newData;
-var avgData;
-var avg1000Data;
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open',function callback(){
+        console.log('db '+ activeDB + ' ready');
+});
 
 http.listen(port, function(){
     console.log('\nListening on port:' + port + '\n');
@@ -36,14 +37,13 @@ http.listen(port, function(){
 
 /*
 
-Send a signal when a user connects to the website
+Log out a message when a user connects to the website
 
 */
 
 io.on('connection', function(socket){
     console.log('a user connected');
 });
-
 
 /*
 
@@ -52,12 +52,6 @@ Connect to MongoDB
 */
 
 mongoose.connect(uristring);
-    db.on('error', console.error);
-    db.once('open',function callback(){
-    	console.log('db '+ activeDB + ' ready');
-});
-
-
 /*
 
     Initialize the Cylon robot,
@@ -71,6 +65,9 @@ cylon.robot({
   device: { name: 'headset', driver: 'neurosky' }
 })
 .on('ready', function(robot) {
+  var newData;
+  var avg10Data;
+  var avg1000Data;  
   robot.headset.on('eeg', function(data) {
     eeg.addShot(	data.delta,
         			data.theta,
@@ -81,18 +78,18 @@ cylon.robot({
         			data.loGamma,
         			data.midGamma
     		),
+
     eeg.lastShot(function(data){
         newData = data;
-        console.log('newData from app: ');
-        console.dir(newData );
     }),
+
     eeg.avgLastTen(function(data){
-        avgData = data;
+        avg10Data = data;
     }),
     eeg.avgLast1000(function(data){
         avg1000Data = data;
     }),
-    sendData(newData,avgData,avg1000Data);
+    sendData(newData,avg10Data,avg1000Data);
 
 })})
 .start();

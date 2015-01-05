@@ -21,9 +21,11 @@ module.exports = {
             }
         });
     },
+    
     mockData: function(){
         return Math.round(Math.random()*100000);
     },
+
     mockBrainData: function(){
         var fakeBrainData = {
                 _id: "Data",
@@ -40,12 +42,14 @@ module.exports = {
 
             return fakeBrainData;
     },
+
     findAll: function(){
         eegSnapshot.find({}, function(err, eegData){
-            console.log('eegData' + eegData + '\n');            
-            return(eegData);
+            console.log('eegData' + eegData + '\n');
          });        
     },
+
+
     lastShot: function(callback){
                 eegSnapshot.aggregate(
                 [
@@ -68,9 +72,12 @@ module.exports = {
                  }
                ], function(err, eegData){
                     return callback(eegData);
-               }
-             );
+             }
+        );
+
+               
     },
+
     avgLastTen: function(callback){
                  eegSnapshot.aggregate(
                [

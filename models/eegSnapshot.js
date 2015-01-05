@@ -11,7 +11,7 @@ var eegSchema = new mongoose.Schema({
   loGamma: Number,
   midGamma: Number
 },{
-	collection: 'eegMock'     /*
+	collection: 'eegControl'     /*
 
                              'eegNap'   for napping,
                              'eegSleep' for sleeping,

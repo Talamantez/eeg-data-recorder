@@ -1,7 +1,15 @@
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 var eeg = require('../eegFunctions');
+var chai = require("chai");
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
 var mongoose = require('mongoose');
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function callback(){console.log('db ready');});
+mongoose.connect('mongodb://localhost/eegControl');
+
 
 suite("mockEegData", function(){
 
@@ -96,7 +104,7 @@ suite("mockEegData", function(){
 			expect(eeg.mockBrainData()['hiBeta']).to.be.a('number');
 	});
 
-	test("mockBrainData() 'loGamma' field should be a number", function(){
+	test("mockBrainData() 'loGamma+' field should be a number", function(){
 			expect(eeg.mockBrainData()['loGamma']).to.be.a('number');
 	});
 
@@ -112,6 +120,36 @@ suite("eeg_db_Functions", function(){
 	test("addShot() should not throw an error");
 
 	test("findAll() should be an object");
+
+	test("lastShot() should be an array", function(done){  // Note the "done" argument
+
+    	var data;
+    	eeg.lastShot(function(eegData){
+        	data = eegData;
+
+         // do your assertions in here, when the async action executes the callback...
+       		 expect(data).to.be.an('array');
+
+       		 done(); // tell Mocha we're done with async actions
+   		 });
+
+   		 // (no need to return anything)
+	});
+
+	test("lastShot()[0] should be an object", function(done){
+
+		var data;
+		eeg.lastShot(function(eegData){
+			data = eegData;
+			expect(data[0]).to.be.an('object');
+			done();
+		});
+
+	});
+
+	test("avgLastTen() should return an object");
+
+	test("avgLast1000() should return an object");
 
 });	
 

@@ -39,12 +39,13 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       }
-    }
+   
+  }
     
   });
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['jshint', 'buildbower','buildcss']);
+  grunt.registerTask('default', ['jshint', 'buildbower','buildcss','test']);
   grunt.registerTask('concat', ['bower_concat']);
   grunt.registerTask('buildbower', [
     'bower_concat',
@@ -53,4 +54,11 @@ module.exports = function(grunt) {
   grunt.registerTask('buildcss',[
     'cssmin'
     ]);
+   grunt.registerTask('test', 'run tests', function () {
+    var done = this.async();
+    require('child_process').exec('npm test', function (err, stdout) {
+      grunt.log.write(stdout);
+      done(err);
+    });
+  });
 };
