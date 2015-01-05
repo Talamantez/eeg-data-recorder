@@ -31,8 +31,8 @@ module.exports = {
                 theta: this.mockData(),
                 loAlpha: this.mockData(),
                 hiAlpha: this.mockData(),
-                hiBeta: this.mockData(),
                 loBeta: this.mockData(),
+                hiBeta: this.mockData(),                
                 loGamma: this.mockData(),
                 midGamma: this.mockData()
              };
@@ -42,7 +42,8 @@ module.exports = {
     },
     findAll: function(){
         eegSnapshot.find({}, function(err, eegData){
-            console.log('eegData' + eegData + '\n');
+            console.log('eegData' + eegData + '\n');            
+            return(eegData);
          });        
     },
     lastShot: function(callback){

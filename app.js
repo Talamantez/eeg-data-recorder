@@ -81,6 +81,8 @@ cylon.robot({
     		),
     eeg.lastShot(function(data){
         newData = data;
+        console.log('newData from app: ');
+        console.dir(newData );
     }),
     eeg.avgLastTen(function(data){
         avgData = data;
@@ -92,7 +94,6 @@ cylon.robot({
 
 })})
 .start();
-
 
 /* 
 
