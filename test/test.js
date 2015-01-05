@@ -2,8 +2,6 @@ var assert = require('chai').assert;
 var expect = require('chai').expect;
 var eeg = require('../eegFunctions');
 var chai = require("chai");
-var chaiAsPromised = require("chai-as-promised");
-chai.use(chaiAsPromised);
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 db.on('error', console.error);
@@ -116,63 +114,136 @@ suite("mockEegData", function(){
 
 
 suite("eeg_db_Functions", function(){
-
-	test("addShot() should not throw an error");
-
+/*
+	test("addShot() should not throw an error if it accepts 8 numbers as input", function(done){
+		expect(eeg.mockBrainData).to.not.throw(Error);
+		done();
+	});*/
+	// expect(goodFn).to.not.throw(Error);
 	test("findAll() should be an object");
 
-	test("lastShot() should be an array", function(done){  // Note the "done" argument
-
-    	var data;
-    	eeg.lastShot(function(eegData){
-        	data = eegData;
-
-         // do your assertions in here, when the async action executes the callback...
-       		 expect(data).to.be.an('array');
-
-       		 done(); // tell Mocha we're done with async actions
-   		 });
-
-   		 // (no need to return anything)
-	});
-
-	test("lastShot()[0] should be an object", function(done){
-
-		var data;
+	test("lastShot() should be an object", function(done){
 		eeg.lastShot(function(eegData){
-			data = eegData;
-			expect(data[0]).to.be.an('object');
+			expect(eegData).to.be.an('object');
 			done();
 		});
 
 	});
 
-	test("avgLastTen() should return an object");
+	test("lastShot() should have 9 keys", function(done){
+		eeg.lastShot(function(eegData){		
+			expect(Object.keys(eegData).length).to.equal(10);
+			done();
+		})
+	})
 
-	test("avgLast1000() should return an object");
+	test("lastShot() should have these keys", function(done){
+		eeg.lastShot(function(eegData){
+			console.log('eegData: ');
+			console.dir(eegData);
+			expect(eegData).to.have.keys(['_id',
+											'timeStamp',
+											'delta',
+											'theta',
+											'loAlpha',
+											'hiAlpha',
+											'loBeta',
+											'hiBeta',
+											'loGamma',
+											'midGamma'
+												]);
+			done();
+		});
+			
+	});
+
+	test("lastShot() '_id' field should be the string 'New EEG Data' ", function(done){
+			eeg.lastShot(function(eegData){		
+			expect(eegData['_id']).to.equal('New EEG Data');
+			done();
+		})
+	});
+
+
+	test("avgLastTen() should be an object", function(done){
+		eeg.avgLastTen(function(eegData){
+			expect(eegData).to.be.an('object');
+			done();
+		});
+	});
+	test("avgLastTen() should have 9 keys", function(done){
+		eeg.avgLastTen(function(eegData){		
+			expect(Object.keys(eegData).length).to.equal(11);
+			done();
+		})
+	})
+
+	test("avgLastTen() should have these keys", function(done){
+		eeg.avgLastTen(function(eegData){
+			console.log('eegData: ');
+			console.dir(eegData);
+			expect(eegData).to.have.keys([  '_id',
+											'timeWindowStart',
+											'timeWindowEnd',
+											'delta',
+											'theta',
+											'loAlpha',
+											'hiAlpha',
+											'loBeta',
+											'hiBeta',
+											'loGamma',
+											'midGamma'
+												]);
+			done();
+		});
+			
+	});
+
+	test("avgLastTen() '_id' field should be the string 'Avg Last 10 EEG Data' ", function(done){
+			eeg.avgLastTen(function(eegData){		
+			expect(eegData['_id']).to.equal('Avg Last 10 EEG Data');
+			done();
+		})
+	});
+
+	test("avgLast1000() should be an object", function(done){
+		eeg.avgLast1000(function(eegData){
+			expect(eegData).to.be.an('object');
+			done();
+		})
+	});
 
 });	
+	test("avgLast1000() should have 9 keys", function(done){
+		eeg.avgLast1000(function(eegData){		
+			expect(Object.keys(eegData).length).to.equal(11);
+			done();
+		})
+	})
 
-/*    mockData: function(){
-        return Math.round(Math.random()*100000);
-    },*/
-/*
-    eeg.lastShot(function(data){
-        newData = data;
-        console.log('newData from app: ')
-        console.dir(newData );
-    })
-
-
-[ { _id: 'New EEG Data',
-    timeStamp: Sun Jan 04 2015 14:40:15 GMT-0800 (PST),
-    delta: 1574912,
-    theta: 2097152,
-    loAlpha: 4128768,
-    hiAlpha: 12451840,
-    hiBeta: 15990784,
-    loBeta: 15401472,
-    loGamma: 2752512,
-    midGamma: 3735580 } ]
-
-*/
+	test("avgLast1000() should have these keys", function(done){
+		eeg.avgLast1000(function(eegData){
+			console.log('eegData: ');
+			console.dir(eegData);
+			expect(eegData).to.have.keys([  '_id',
+											'timeWindowStart',
+											'timeWindowEnd',
+											'delta',
+											'theta',
+											'loAlpha',
+											'hiAlpha',
+											'loBeta',
+											'hiBeta',
+											'loGamma',
+											'midGamma'
+												]);
+			done();
+		});
+			
+	});
+	test("avgLast1000() '_id' field should be the string 'Avg Last 1000 EEG Data' ", function(done){
+			eeg.avgLast1000(function(eegData){		
+			expect(eegData['_id']).to.equal('Avg Last 1000 EEG Data');
+			done();
+		})
+	});

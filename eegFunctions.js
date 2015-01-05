@@ -21,7 +21,7 @@ module.exports = {
             }
         });
     },
-    
+
     mockData: function(){
         return Math.round(Math.random()*100000);
     },
@@ -71,7 +71,7 @@ module.exports = {
                      }
                  }
                ], function(err, eegData){
-                    return callback(eegData);
+                    return callback(eegData[0]);
              }
         );
 
@@ -100,7 +100,7 @@ module.exports = {
                      }
                  }
                ], function(err, eegData){
-                    return callback(eegData);
+                    return callback(eegData[0]);
                }
             );
     },
@@ -127,7 +127,7 @@ module.exports = {
                      }
                  }
                ], function(err, eegData){
-                return callback(eegData);
+                return callback(eegData[0]);
                }
             );
         }
