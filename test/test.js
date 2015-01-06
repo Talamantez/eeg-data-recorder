@@ -159,11 +159,58 @@ suite("eeg_db_Functions", function(){
 
 	test("lastShot() '_id' field should be the string 'New EEG Data' ", function(done){
 			eeg.lastShot(function(eegData){		
-			expect(eegData['_id']).to.equal('New EEG Data');
+				expect(eegData['_id']).to.equal('New EEG Data');
 			done();
 		})
 	});
-
+	test("lastShot() 'delta' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['delta']).to.be.a('number');
+			});
+			done();
+	});
+	test("lastShot() 'theta' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['theta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("lastShot() 'loAlpha' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['loAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("lastShot() 'hiAlpha' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['hiAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("lastShot() 'loBeta' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['loBeta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("lastShot() 'hiBeta' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['hiBeta']).to.be.a('number');
+			});
+			done();
+	});
+	test("lastShot() 'loGamma' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['loGamma']).to.be.a('number');
+			});
+			done();
+	});
+	test("lastShot() 'midGamma' field should be a number", function(done){
+			eeg.lastShot(function(eegData){
+				expect(eegData['midGamma']).to.be.a('number');
+			});
+			done();
+	});
 
 	test("avgLastTen() should be an object", function(done){
 		eeg.avgLastTen(function(eegData){
@@ -204,6 +251,54 @@ suite("eeg_db_Functions", function(){
 			expect(eegData['_id']).to.equal('Avg Last 10 EEG Data');
 			done();
 		})
+	});
+	test("avgLastTen() 'delta' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['delta']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLastTen() 'theta' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['theta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("avgLastTen() 'loAlpha' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['loAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLastTen() 'hiAlpha' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['hiAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLastTen() 'loBeta' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['loBeta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("avgLastTen() 'hiBeta' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['hiBeta']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLastTen() 'loGamma' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['loGamma']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLastTen() 'midGamma' field should be a number", function(done){
+			eeg.avgLastTen(function(eegData){
+				expect(eegData['midGamma']).to.be.a('number');
+			});
+			done();
 	});
 
 	test("avgLast1000() should be an object", function(done){
@@ -246,4 +341,52 @@ suite("eeg_db_Functions", function(){
 			expect(eegData['_id']).to.equal('Avg Last 1000 EEG Data');
 			done();
 		})
+	});
+	test("avgLast1000() 'delta' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['delta']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLast1000() 'theta' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['theta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("avgLast1000() 'loAlpha' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['loAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLast1000() 'hiAlpha' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['hiAlpha']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLast1000() 'loBeta' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['loBeta']).to.be.a('number');
+			});
+			done();
+	});	
+	test("avgLast1000() 'hiBeta' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['hiBeta']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLast1000() 'loGamma' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['loGamma']).to.be.a('number');
+			});
+			done();
+	});
+	test("avgLast1000() 'midGamma' field should be a number", function(done){
+			eeg.avgLast1000(function(eegData){
+				expect(eegData['midGamma']).to.be.a('number');
+			});
+			done();
 	});

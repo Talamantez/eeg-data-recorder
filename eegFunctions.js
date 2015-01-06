@@ -64,8 +64,8 @@ module.exports = {
                         theta:              { $avg:   "$theta"     },
                         loAlpha:            { $avg:   "$loAlpha"   },
                         hiAlpha:            { $avg:   "$hiAlpha"   },
-                        hiBeta:             { $avg:   "$hiBeta"    },
                         loBeta:             { $avg:   "$loBeta"    },
+                        hiBeta:             { $avg:   "$hiBeta"    },                        
                         loGamma:            { $avg:   "$loGamma"   },
                         midGamma:           { $avg:   "$midGamma"  }
                      }
@@ -93,8 +93,8 @@ module.exports = {
                         theta:              { $avg:   "$theta"     },
                         loAlpha:            { $avg:   "$loAlpha"   },
                         hiAlpha:            { $avg:   "$hiAlpha"   },
-                        hiBeta:             { $avg:   "$hiBeta"    },
                         loBeta:             { $avg:   "$loBeta"    },
+                        hiBeta:             { $avg:   "$hiBeta"    },
                         loGamma:            { $avg:   "$loGamma"   },
                         midGamma:           { $avg:   "$midGamma"  }
                      }
@@ -120,8 +120,8 @@ module.exports = {
                         theta:              { $avg:   "$theta"      },
                         loAlpha:            { $avg:   "$loAlpha"    },
                         hiAlpha:            { $avg:   "$hiAlpha"    },
-                        hiBeta:             { $avg:   "$hiBeta"     },
                         loBeta:             { $avg:   "$loBeta"     },
+                        hiBeta:             { $avg:   "$hiBeta"     },
                         loGamma:            { $avg:   "$loGamma"    },
                         midGamma:           { $avg:   "$midGamma"   }
                      }
