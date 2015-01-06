@@ -118,4 +118,4 @@ function mockHeadset(){
     console.log('mock1000Avg' + mock1000Avg);
 
     sendData(mockNew,mock10Avg,mock1000Avg);
-};
+}

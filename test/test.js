@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connection;
 db.on('error', console.error);
 db.once('open', function callback(){console.log('db ready');});
-mongoose.connect('mongodb://localhost/eegControl');
+mongoose.connect('mongodb://localhost/eegTest');
 
 
 suite("mockEegData", function(){
