@@ -39,13 +39,13 @@ module.exports = {
                 midGamma: this.mockData()
              };
             console.log(fakeBrainData);
-
             return fakeBrainData;
     },
 
-    findAll: function(){
+    findAll: function(callback){
         eegSnapshot.find({}, function(err, eegData){
-            console.log('eegData' + eegData + '\n');
+/*            console.log('eegData' + eegData + '\n');*/
+            return callback(eegData);
          });        
     },
 
@@ -73,9 +73,7 @@ module.exports = {
                ], function(err, eegData){
                     return callback(eegData[0]);
              }
-        );
-
-               
+        );     
     },
 
     avgLastTen: function(callback){

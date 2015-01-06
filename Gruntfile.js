@@ -54,11 +54,12 @@ module.exports = function(grunt) {
   grunt.registerTask('buildcss',[
     'cssmin'
     ]);
-   grunt.registerTask('test', 'run tests', function () {
+  grunt.registerTask('test', 'run tests', function () {
     var done = this.async();
     require('child_process').exec('npm test', function (err, stdout) {
       grunt.log.write(stdout);
       done(err);
     });
   });
+
 };

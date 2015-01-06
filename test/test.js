@@ -102,25 +102,52 @@ suite("mockEegData", function(){
 			expect(eeg.mockBrainData()['hiBeta']).to.be.a('number');
 	});
 
-	test("mockBrainData() 'loGamma+' field should be a number", function(){
+	test("mockBrainData() 'loGamma' field should be a number", function(){
 			expect(eeg.mockBrainData()['loGamma']).to.be.a('number');
 	});
 
 	test("mockBrainData() 'midGamma' field should be a number", function(){
 			expect(eeg.mockBrainData()['midGamma']).to.be.a('number');
-	});
+	});	
 
 });	
 
 
 suite("eeg_db_Functions", function(){
-/*
-	test("addShot() should not throw an error if it accepts 8 numbers as input", function(done){
-		expect(eeg.mockBrainData).to.not.throw(Error);
+
+	test("addShot() should not throw an error 8 numbers are submitted as input", function(done){
+		expect(function(){eeg.addShot(
+								eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			                    eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData()
+        			);}).to.not.throw(Error);
 		done();
-	});*/
-	// expect(goodFn).to.not.throw(Error);
-	test("findAll() should be an object");
+	});
+	test("addShot() should throw an error if a string is submitted as input", function(done){
+		expect(function(){eeg.addShot(
+								'bananas',
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData(),
+			                    eeg.mockData(),
+			        			eeg.mockData(),
+			        			eeg.mockData()
+        			);}).to.throw(Error);
+		done();
+	});
+
+	test("findAll() should be an object", function(done){
+		eeg.findAll(function(eegData){
+			expect(eegData).to.be.an('array');
+		});
+		done();
+	});
 
 	test("lastShot() should be an object", function(done){
 		eeg.lastShot(function(eegData){
@@ -259,7 +286,7 @@ suite("eeg_db_Functions", function(){
 			done();
 	});
 	test("avgLastTen() 'theta' field should be a number", function(done){
-			eeg.avgLastTen(function(eegData){
+			eeg.avgLastTen(function(eegData){	
 				expect(eegData['theta']).to.be.a('number');
 			});
 			done();

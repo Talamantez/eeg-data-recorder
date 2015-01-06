@@ -157,11 +157,11 @@
 
       socket.on('brain-data', function(brainData){
           // Extract new reading data
-          newBrainData = brainData[0][0];
+          newBrainData = brainData[0];
           // Extract avg last 10 readings
-          avgBrainData = brainData[1][0];
+          avgBrainData = brainData[1];
           // Extract avg last 1000 readings
-          avg1000BrainData = brainData[2][0];
+          avg1000BrainData = brainData[2];
 
           //console.dir(brainData);
 
