@@ -3,7 +3,7 @@ eeg-data-recorder
 ### Have the following installed
 
 - Ubuntu
-- Gort cli
+- Gort cli (http://gort.io/)
 - node version 0.10.33 (node-serialport is dependent on this)
 - python 2.7
 - grunt
