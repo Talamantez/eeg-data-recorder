@@ -1,5 +1,5 @@
 @import reset
-
+@import calc-em
 =border-radius($radius)
 	-webkit-border-radius: $radius
 	-moz-border-radius:    $radius
@@ -7,7 +7,7 @@
 	border-radius:         $radius
 %box
 	background-color: #133133
-	padding: 10px 10px 10px 10px
+	padding: calc-em(10px,60px)
 	margin: 0 0 20px 0
 .page
 	@extend %box
@@ -34,7 +34,8 @@
 	max-width : 100%
 	display : inline-block
 	+border-radius(5px)
-
+	&:hover
+		text-decoration: underline
 .brain-data-heading
 	background-color: #266299
 	color : #ffffff

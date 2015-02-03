@@ -7,7 +7,7 @@ ol {
 
 .page, .graph, .brain-page-heading, .brain-data-container {
   background-color: #133133;
-  padding: 10px 10px 10px 10px;
+  padding: 0.16667em;
   margin: 0 0 20px 0; }
 
 .page {
@@ -39,6 +39,8 @@ ol {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
+  .brain-data-container:hover {
+    text-decoration: underline; }
 
 .brain-data-heading {
   background-color: #266299;
