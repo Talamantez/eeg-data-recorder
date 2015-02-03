@@ -128,5 +128,11 @@ module.exports = {
                 return callback(eegData[0]);
                }
             );
-        }
+        },
+    delta_midgamma: function(callback){
+        eegSnapshot.aggregate([
+                { $sort : { timeStamp: -1 } },
+                { $limit: 1000 }
+            ])
+    }
 }

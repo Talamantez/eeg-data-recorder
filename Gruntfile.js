@@ -9,9 +9,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    sass: {
+      dist: {
+        files: {
+          'src/css/app.css': 'sass/app.sass',
+          'src/css/other-app.css': 'sass/app.scss'
+        }
+      }
+    },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint']
+      options:{
+        livereload: true,
+      },
+      js: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['jshint']
+      },
+      sass: {
+        files: ['sass/**/*.sass', 'sass/**/*.scss'],
+        tasks: ['sass']
+      } 
     },
     bower_concat: {
         all: {
@@ -44,8 +61,9 @@ module.exports = function(grunt) {
     
   });
   require('load-grunt-tasks')(grunt);
+  grunt.registerTask('sassy', ['sass']);
 
-  grunt.registerTask('default', ['jshint', 'buildbower','buildcss','test']);
+  grunt.registerTask('default', ['jshint','sassy','buildbower','buildcss','test']);
   grunt.registerTask('concat', ['bower_concat']);
   grunt.registerTask('buildbower', [
     'bower_concat',
@@ -61,5 +79,4 @@ module.exports = function(grunt) {
       done(err);
     });
   });
-
 };

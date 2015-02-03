@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Neurosky - Cylon - Brain Data</title>
+    <!-- build:css -->
+      <link href="bower_modules/components-bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="./css/style.min.css">
+    <!-- endbuild -->
+    <!-- build:js -->
+      <script src="app/require.config.js"></script>
+      <script data-main="app/startup" src="bower_modules/requirejs/require.js"></script>
+    <!-- endbuild -->	
+    <!-- css -->
+<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/nivo-lightbox.css" rel="stylesheet" />
+	<link href="css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
+	<link href="css/animations.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet">
+	<link href="color/default.css" rel="stylesheet"> -->
+<script src = "./js/bower.min.js"></script>
+    <script>
+    $(function() {
+    
+      var newTimeStamp;
+      var newDataPoint;
+      var initialData;
+      /*initialize 10 index array to store new timestamps for chart and 10 index arrays to store last 10 readings of each brain wave available*/
+      var last10TimeStampArray    = [0,0,0,0,0,0,0,0,0,0];
+      var last10DeltaArray        = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10ThetaArray        = [0,0,0,0,0,0,0,0,0,0];
+      var last10LoAlphaArray      = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiAlphaArray      = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10LoBetaArray       = [0,0,0,0,0,0,0,0,0,0];
+      var last10HiBetaArray       = [0,0,0,0,0,0,0,0,0,0];
+      var last10LoGammaArray      = [0,0,0,0,0,0,0,0,0,0]; 
+      var last10MidGammaArray     = [0,0,0,0,0,0,0,0,0,0];
+
+      var newDeltaText            = $('#new-delta');
+      var newThetaText            = $('#new-theta');
+      var newLoAlphaText          = $('#new-lo-alpha');
+      var newHiAlphaText          = $('#new-hi-alpha');
+      var newLoBetaText           = $('#new-lo-beta');
+      var newHiBetaText           = $('#new-hi-beta');      
+      var newLoGammaText          = $('#new-lo-gamma');
+      var newMidGammaText         = $('#new-mid-gamma');
+
+      var avgDeltaText            = $('#avg-delta');
+      var avgThetaText            = $('#avg-theta');
+      var avgLoAlphaText          = $('#avg-lo-alpha');
+      var avgHiAlphaText          = $('#avg-hi-alpha');
+      var avgLoBetaText           = $('#avg-lo-beta');
+      var avgHiBetaText           = $('#avg-hi-beta');      
+      var avgLoGammaText          = $('#avg-lo-gamma');
+      var avgMidGammaText         = $('#avg-mid-gamma');
+
+      var avg1000DeltaText      = $('#avg-1000-delta');  
+      var avg1000ThetaText      = $('#avg-1000-theta');
+      var avg1000LoAlphaText    = $('#avg-1000-lo-alpha');
+      var avg1000HiAlphaText    = $('#avg-1000-hi-alpha');
+      var avg1000LoBetaText     = $('#avg-1000-lo-beta');
+      var avg1000HiBetaText     = $('#avg-1000-hi-beta');      
+      var avg1000LoGammaText    = $('#avg-1000-lo-gamma');
+      var avg1000MidGammaText   = $('#avg-1000-mid-gamma');
+
+      var newBrainData;
+      var avgBrainData;
+      var avg1000BrainData;
+
+      var socket = io();
+
+      /*Set up your graph*/
+      var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
+      var mockBrainData = function(){return Math.round(Math.random()*100000)};
+      var lineChartData = {
+      labels : [  last10TimeStampArray[0],
+                  last10TimeStampArray[1],
+                  last10TimeStampArray[2],
+                  last10TimeStampArray[3],
+                  last10TimeStampArray[4],
+                  last10TimeStampArray[5],
+                  last10TimeStampArray[6],
+                  last10TimeStampArray[7],
+                  last10TimeStampArray[8],
+                  last10TimeStampArray[9]
+                ],
+      datasets : [
+        {
+          label: "New Mid Gamma",
+          fillColor : "rgba(244,40,10,0.2)",
+          strokeColor : "rgba(244,40,10,1)",
+          pointColor : "rgba(244,40,10,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(244,40,10,1)",
+          data : last10MidGammaArray
+        },
+        {
+          label: "New Low Gamma",
+          fillColor : "rgba(238,130,12,0.2)",
+          strokeColor : "rgba(238,130,12,1)",
+          pointColor : "rgba(238,130,12,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(238,130,12,1)",
+          data : last10LoGammaArray
+        },
+        {
+          label: "New High Beta",
+          fillColor : "rgba(233,215,13,0.2)",
+          strokeColor : "rgba(233,215,13,1)",
+          pointColor : "rgba(233,215,13,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(233,215,13,1)",
+          data : last10HiBetaArray
+        },                                                             
+        {
+          label: "New Low Beta",
+          fillColor : "rgba(161,228,15,0.2)",
+          strokeColor : "rgba(161,228,15,1)",
+          pointColor : "rgba(161,228,15,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(161,228,15,1)",
+          data : last10LoBetaArray
+        },
+        {
+          label: "New Hi Alpha",
+          fillColor : "rgba(76,223,16,0.2)",
+          strokeColor : "rgba(76,223,16,1)",
+          pointColor : "rgba(76,223,16,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(76,223,16,1)",
+          data : last10HiAlphaArray
+        },
+        {
+          label: "New Low Alpha",
+          fillColor : "rgba(17,218,37,0.2)",
+          strokeColor : "rgba(17,218,37,1)",
+          pointColor : "rgba(17,218,37,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(17,218,37,1)",
+          data : last10LoAlphaArray
+        },
+        {
+          label: "New Theta",
+          fillColor : "rgba(18,212,115,0.2)",
+          strokeColor : "rgba(18,212,115,1)",
+          pointColor : "rgba(18,212,115,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(18,212,115,1)",
+          data : last10ThetaArray
+        },
+        {
+          label: "New Delta",
+          fillColor : "rgba(19,207,187,0.2)",
+          strokeColor : "rgba(19,207,187,1)",
+          pointColor : "rgba(19,207,187,1)",
+          pointStrokeColor : "#fff",
+          pointHighlightFill : "#fff",
+          pointHighlightStroke : "rgba(19,207,187,1)",
+          data : last10DeltaArray
+        }
+
+      ]
+    }; 
+
+      socket.on('brain-data', function(brainData){
+          // Extract new reading data
+          newBrainData = brainData[0];
+          // Extract avg last 10 readings
+          avgBrainData = brainData[1];
+          // Extract avg last 1000 readings
+          avg1000BrainData = brainData[2];
+
+          //console.dir(brainData);
+
+          // Extract timestamp from new reading
+          newTimeStamp = newBrainData["timeStamp"];
+          //console.log('newTimeStamp: '+ newTimeStamp);
+          /*
+          push the new timestamp and shift off the oldest one
+          */
+          last10TimeStampArray.push(newTimeStamp);
+          //console.log('last10TimeStampArray: '+ last10TimeStampArray);          
+          last10TimeStampArray.shift();
+          /*
+          push the new delta data and shift off the oldest reading
+          */
+          last10DeltaArray.push(newBrainData["delta"]);
+          last10DeltaArray.shift();
+          /*
+          push the new theta data and shift off the oldest reading
+          */
+          last10ThetaArray.push(newBrainData["theta"]);
+          last10ThetaArray.shift();          
+          /*
+          push the new loAlpha data and shift off the oldest reading
+          */
+          last10LoAlphaArray.push(newBrainData["loAlpha"]);
+          last10LoAlphaArray.shift();
+          /*
+          push the new hiAlpha data and shift off the oldest reading
+          */
+          last10HiAlphaArray.push(newBrainData["hiAlpha"]);
+          last10HiAlphaArray.shift();
+          /*
+          push the new loBeta data and shift off the oldest reading
+          */
+          last10LoBetaArray.push(newBrainData["loBeta"]);
+          last10LoBetaArray.shift();
+          /*
+          push the new hiBeta data and shift off the oldest reading
+          */
+          last10HiBetaArray.push(newBrainData["hiBeta"]);
+          last10HiBetaArray.shift();
+          /*
+          push the new loGamma data and shift off the oldest reading
+          */
+          last10LoGammaArray.push(newBrainData["loGamma"]);
+          last10LoGammaArray.shift();
+          /*
+          push the new loGamma data and shift off the oldest reading
+          */
+          last10MidGammaArray.push(newBrainData["midGamma"]);
+          last10MidGammaArray.shift();                                        
+          // Update line chart data labels
+          lineChartData.labels = [  last10TimeStampArray[0],
+                                    last10TimeStampArray[1],
+                                    last10TimeStampArray[2],
+                                    last10TimeStampArray[3],
+                                    last10TimeStampArray[4],
+                                    last10TimeStampArray[5],
+                                    last10TimeStampArray[6],
+                                    last10TimeStampArray[7],
+                                    last10TimeStampArray[8],
+                                    last10TimeStampArray[9]
+                ];          
+
+          newDeltaText.html(newBrainData["delta"]);   
+          newThetaText.html(newBrainData["theta"]);     
+          newLoAlphaText.html(newBrainData["loAlpha"]);   
+          newHiAlphaText.html(newBrainData["hiAlpha"]);
+          newLoBetaText.html(newBrainData["loBeta"]);
+          newHiBetaText.html(newBrainData["hiBeta"]);          
+          newLoGammaText.html(newBrainData["loGamma"]);
+          newMidGammaText.html(newBrainData["midGamma"]);
+
+          avgDeltaText.html(avgBrainData["delta"]);
+          avgThetaText.html(avgBrainData["theta"]);
+          avgLoAlphaText.html(avgBrainData["loAlpha"]);
+          avgHiAlphaText.html(avgBrainData["hiAlpha"]);
+          avgLoBetaText.html(avgBrainData["loBeta"]);
+          avgHiBetaText.html(newBrainData["hiBeta"]);          
+          avgLoGammaText.html(avgBrainData["loGamma"]);
+          avgMidGammaText.html(avgBrainData["midGamma"]);
+
+          avg1000DeltaText.html(avg1000BrainData["delta"]);
+          avg1000ThetaText.html(avg1000BrainData["theta"]);
+          avg1000LoAlphaText.html(avg1000BrainData["loAlpha"]);
+          avg1000HiAlphaText.html(avg1000BrainData["hiAlpha"]);
+          avg1000LoBetaText.html(avg1000BrainData["loBeta"]);
+          avg1000HiBetaText.html(avg1000BrainData["hiBeta"]);           
+          avg1000LoGammaText.html(avg1000BrainData["loGamma"]);
+          avg1000MidGammaText.html(avg1000BrainData["midGamma"]);       
+
+          window.myLine = new Chart(ctx).Line(lineChartData, {
+              responsive: true,
+              animation : false
+      });             
+          //console.dir(last10TimeStampArray);
+      });
+
+      var ctx = document.getElementById("canvas").getContext("2d");
+    });
+
+    </script>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+	
+	<section class="hero" id="intro">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 text-right navicon">
+                  <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center inner">
+					<div class="animatedParent">
+						<h1 class="animated fadeInDown">MUSIM BOCOR</h1>
+						<p class="animated fadeInUp">Udah dari dulu tahu kalo bocor kenapa nggak ditambal tong</p>
+					</div>
+			   </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+				<div style="width:30%">
+                <div>
+                  <canvas id="canvas" height="450" width="600"></canvas>
+                </div>
+              </div>   
+                  <a href="#about" class="learn-more-btn btn-scroll">Learn more</a>
+                </div>
+              </div>
+            </div>
+    </section>
+	
+	
+    <!-- Navigation -->
+    <div id="navigation">
+        <nav class="navbar navbar-custom" role="navigation">
+                              <div class="container">
+                                    <div class="row">
+                                          <div class="col-md-2">
+                                                   <div class="site-logo">
+                                                            <a href="index.html" class="brand">Bocor</a>
+                                                    </div>
+                                          </div>
+                                          
+
+                                          <div class="col-md-10">
+                         
+                                                      <!-- Brand and toggle get grouped for better mobile display -->
+                                          <div class="navbar-header">
+                                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                                                <i class="fa fa-bars"></i>
+                                                </button>
+                                          </div>
+                                                      <!-- Collect the nav links, forms, and other content for toggling -->
+                                                      <div class="collapse navbar-collapse" id="menu">
+                                                            <ul class="nav navbar-nav navbar-right">
+                                                                  <li class="active"><a href="#intro">Home</a></li>
+                                                                  <li><a href="#about">About Us</a></li>
+																   <li><a href="#service">Services</a></li>
+                                                                  <li><a href="#works">Works</a></li>				                                                                  
+                                                                  
+                                                                  <li><a href="#contact">Contact</a></li>
+                                                            </ul>
+                                                      </div>
+                                                      <!-- /.Navbar-collapse -->
+                             
+                                          </div>
+                                    </div>
+                              </div>
+                              <!-- /.container -->
+                        </nav>
+    </div> 
+    <!-- /Navigation -->  
+
+	<!-- Section: about -->
+    <section id="about" class="home-section color-dark bg-white">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="animatedParent">
+					<div class="section-heading text-center animated bounceInDown">
+					<h2 class="h-bold">About our bocor team</h2>
+					<div class="divider-header"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container">
+
+		
+        <div class="row">
+		
+		
+            <div class="col-lg-8 col-lg-offset-2 animatedParent">		
+				<div class="text-center">
+					<p>
+					Lorem ipsum dolor sit amet, vis tale malis tacimates et, graece doctus omnesque ne est, deserunt pertinacia ne nam. Pro eu simul affert referrentur, natum mutat erroribus te his
+					</p>
+					<p>
+					Ne mundi fabulas corrumpit vim, nulla vivendum conceptam eu nam. Ius ex principes complectitur, ex quo duis suscipit. Ius fastidii reprimique no. Sadipscing appellantur pri ad. Oratio moderatius definitiones cum ex, mea ne brute vivendum percipitur. 
+					</p>
+					<a href="#service" class="btn btn-skin btn-scroll">What we do</a>
+				</div>
+            </div>
+		
+
+        </div>		
+		</div>
+
+	</section>
+	<!-- /Section: about -->
+	
+	
+	<!-- Section: services -->
+    <section id="service" class="home-section color-dark bg-gray">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div>
+					<div class="section-heading text-center">
+					<h2 class="h-bold">What we can do for you</h2>
+					<div class="divider-header"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="text-center">
+		<div class="container">
+
+        <div class="row animatedParent">
+            <div class="col-xs-6 col-sm-4 col-md-4">
+				<div class="animated rotateInDownLeft">
+                <div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-laptop fa-2x"></span> 
+					</div>
+					<div class="service-desc">						
+						<h5>Web Design</h5>
+						<div class="divider-header"></div>
+						<p>
+						Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
+						</p>
+						<a href="#" class="btn btn-skin">Learn more</a>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-4 col-md-4">
+				<div class="animated rotateInDownLeft slow">
+                <div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-camera fa-2x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5>Photography</h5>
+						<div class="divider-header"></div>
+						<p>
+						Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
+						</p>
+						<a href="#" class="btn btn-skin">Learn more</a>
+					</div>
+                </div>
+				</div>
+            </div>
+			<div class="col-xs-6 col-sm-4 col-md-4">
+				<div class="animated rotateInDownLeft slower">
+                <div class="service-box">
+					<div class="service-icon">
+						<span class="fa fa-code fa-2x"></span> 
+					</div>
+					<div class="service-desc">
+						<h5>Graphic design</h5>
+						<div class="divider-header"></div>
+						<p>
+						Ad denique euripidis signiferumque vim, iusto admodum quo cu. No tritani neglegentur mediocritatem duo.
+						</p>
+						<a href="#" class="btn btn-skin">Learn more</a>
+					</div>
+                </div>
+				</div>
+            </div>
+
+        </div>		
+		</div>
+		</div>
+	</section>
+	<!-- /Section: services -->
+	
+
+	<!-- Section: works -->
+    <section id="works" class="home-section color-dark text-center bg-white">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div>
+					<div class="animatedParent">
+					<div class="section-heading text-center">
+					<h2 class="h-bold animated bounceInDown">What we have done</h2>
+					<div class="divider-header"></div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container">
+
+            <div class="row animatedParent">
+                <div class="col-sm-12 col-md-12 col-lg-12" >
+
+                    <div class="row gallery-item">
+                        <div class="col-md-3 animated fadeInUp">
+							<a href="img/works/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+								<img src="img/works/1.jpg" class="img-responsive" alt="img">
+							</a>
+						</div>
+						<div class="col-md-3 animated fadeInUp slow">
+							<a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+								<img src="img/works/2.jpg" class="img-responsive" alt="img">
+							</a>
+						</div>
+						<div class="col-md-3 animated fadeInUp slower">
+							<a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+								<img src="img/works/3.jpg" class="img-responsive" alt="img">
+							</a>
+						</div>
+						<div class="col-md-3 animated fadeInUp">
+							<a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
+								<img src="img/works/4.jpg" class="img-responsive" alt="img">
+							</a>
+						</div>
+					</div>
+	
+                </div>
+            </div>	
+		</div>
+
+	</section>
+	<!-- /Section: works -->
+
+	<!-- Section: contact -->
+    <section id="contact" class="home-section nopadd-bot color-dark bg-gray text-center">
+		<div class="container marginbot-50">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+					<div class="animatedParent">
+					<div class="section-heading text-center">
+					<h2 class="h-bold animated bounceInDown">Get in touch with us</h2>
+					<div class="divider-header"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<div class="container">
+
+			<div class="row marginbot-80">
+				<div class="col-md-8 col-md-offset-2">
+						<form id="contact-form">
+						<div class="row marginbot-20">
+							<div class="col-md-6 xs-marginbot-20">
+								<input type="text" class="form-control input-lg" id="name" placeholder="Enter name" required="required" />
+							</div>
+							<div class="col-md-6">
+								<input type="email" class="form-control input-lg" id="email" placeholder="Enter email" required="required" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+										<input type="text" class="form-control input-lg" id="subject" placeholder="Subject" required="required" />
+								</div>
+								<div class="form-group">
+									<textarea name="message" id="message" class="form-control" rows="4" cols="25" required="required"
+										placeholder="Message"></textarea>
+								</div>						
+								<button type="submit" class="btn btn-skin btn-lg btn-block" id="btnContactUs">
+									Send Message</button>
+							</div>
+						</div>
+						</form>
+				</div>
+			</div>	
+
+
+		</div>
+	</section>
+	<!-- /Section: contact -->
+
+
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<ul class="footer-menu">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Press release</a></li>
+					</ul>
+				</div>
+				<div class="col-md-6 text-right">
+					<p>&copy;Copyright 2014 - Bocor. Designed by <a href="http://bootstraptaste.com">Bootstraptaste</a></p>
+				</div>
+			</div>	
+		</div>
+	</footer>
+
+    <!-- Core JavaScript Files -->
+    <script src="js/jquery.min.js"></script>	 
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+    <script src="js/jquery.easing.min.js"></script>	
+	<script src="js/jquery.scrollTo.js"></script>
+	<script src="js/jquery.appear.js"></script>
+	<script src="js/stellar.js"></script>
+	<script src="js/nivo-lightbox.min.js"></script>
+	
+    <script src="js/custom.js"></script>
+	<script src="js/css3-animate-it.js"></script>
+
+</body>
+
+</html>
