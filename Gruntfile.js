@@ -1,6 +1,9 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    clean: 
+      ["dist/", "src/css/*"]
+    ,
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
       options: {
@@ -12,8 +15,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'src/css/app.css': 'sass/app.sass',
-          'src/css/other-app.css': 'sass/app.scss'
+          'src/css/style.css': 'sass/style.sass'
         }
       }
     },
@@ -56,14 +58,29 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       }
-   
-  }
-    
+    },
+    copy: {
+          main: {
+            files: [
+              // includes files within path
+/*              {expand: false, src: ['src/html/*'], dest: 'dist', filter: 'isFile'}
+
+              // includes files within path and its sub-directories
+              {expand: true, src: ['path/**'], dest: 'dest/'},
+
+              // makes all src relative to cwd
+              {expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'},
+
+*/              // flattens results to a single level
+              {expand: true, flatten: true, src: ['src/html/**'], dest: 'dist/', filter: 'isFile'},
+            ]
+         }
+      }    
   });
   require('load-grunt-tasks')(grunt);
+  grunt.registerTask('clear-dist', 'clean')
   grunt.registerTask('sassy', ['sass']);
-
-  grunt.registerTask('default', ['jshint','sassy','buildbower','buildcss','test']);
+  grunt.registerTask('default', ['clear-dist','jshint','sassy','buildbower','buildcss','copy','test']);
   grunt.registerTask('concat', ['bower_concat']);
   grunt.registerTask('buildbower', [
     'bower_concat',
