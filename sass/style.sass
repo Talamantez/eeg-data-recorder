@@ -1,22 +1,32 @@
 @import reset
+
 @import calc-em
+
 =border-radius($radius)
 	-webkit-border-radius: $radius
 	-moz-border-radius:    $radius
 	-ms-border-radius:     $radius
 	border-radius:         $radius
+
 %box
 	background-color: #133133
 	padding: calc-em(10px,60px)
 	margin: 0 0 20px 0
+	width: 100%
+
+img
+	max-width: 100%
+
 .page
 	@extend %box
 	background-color: #334455	
 	font: 100% Helvetica, sans-serif
+
 .graph
 	@extend %box
-	height: 450px
 	width: 600px
+	height: 400px
+
 .brain-page-heading
 	@extend %box
 	color: #fdffdf
@@ -30,12 +40,14 @@
 
 .brain-data-container 
 	@extend %box
-	min-width : 200px
-	max-width : 100%
 	display : inline-block
 	+border-radius(5px)
 	&:hover
 		text-decoration: underline
+	@media (min-width: 700px)
+		width: 30%
+		float: left
+
 .brain-data-heading
 	background-color: #266299
 	color : #ffffff
