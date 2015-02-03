@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 
 <html>
-  <title>Neurosky - Cylon - Brain Data</title>
+  <title class="brain-page-heading">8 Channel EEG Output</title>
   <head>
   <link rel="stylesheet" type="text/css" href="./css/style.min.css">
   <script src = "./js/bower.min.js"></script>
@@ -267,9 +267,9 @@
     </script>
   </head>
 
-      <body>
+      <body><div class="page">
               <div class="page-header">
-                <h1>Neurosky - Cylon - Brain Data</h1>
+                <h1 class="brain-page-heading">8 Channel EEG Output</h1>
               </div>
               <div class="brain-data-container">
                     <h3 class="brain-data-heading">New Reading</h3>
@@ -380,18 +380,12 @@
               </div>     
               <div style="width:30%">
                 <div>
-                  <canvas id="canvas" height="450" width="600"></canvas>
+                  <canvas class="graph" id="canvas" height= '450'
+  width= '600'></canvas>
                 </div>
               </div>       
+            </div>
      </body>
-<footer>
-  <p>
-    <a href="http://jigsaw.w3.org/css-validator/check/referer">
-        <img style="border:0;width:88px;height:31px"
-            src="http://jigsaw.w3.org/css-validator/images/vcss"
-            alt="Valid CSS!" />
-    </a>
-</p>
-            
+<footer>   
 </footer>
 <html>

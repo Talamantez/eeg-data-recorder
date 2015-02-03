@@ -1,16 +1,26 @@
-html
-	background-color: #adc689
+@import reset
 
-body
-	margin: 0 0 0 50px
-
-h1
-	background-color: #fff
-	-webkit-border-radius: 10px
-	-moz-border-radius: 10px
-	border-radius: 10px
-	padding: 10px  
-	width: 475px
+=border-radius($radius)
+	-webkit-border-radius: $radius
+	-moz-border-radius:    $radius
+	-ms-border-radius:     $radius
+	border-radius:         $radius
+%box
+	background-color: #133133
+	padding: 10px 10px 10px 10px
+	margin: 0 0 20px 0
+.page
+	@extend %box
+	background-color: #334455	
+	font: 100% Helvetica, sans-serif
+.graph
+	@extend %box
+	height: 450px
+	width: 600px
+.brain-page-heading
+	@extend %box
+	color: #fdffdf
+	+border-radius(10px)
   
 .page-header 
 	margin : 0 auto 0 50px
@@ -19,23 +29,18 @@ h1
 	transform: translate(-40px)
 
 .brain-data-container 
-	margin : 10px 10px 10px 10px
+	@extend %box
 	min-width : 200px
+	max-width : 100%
 	display : inline-block
-	background-color: #133133
-	-webkit-border-radius: 10px
-	-moz-border-radius: 10px
-	border-radius: 10px
-	padding: 0 5px 5px 5px
+	+border-radius(5px)
 
 .brain-data-heading
 	background-color: #266299
 	color : #ffffff
 	transform: translate(-10px)
 	padding: 0 10px 0 10px
-	-webkit-border-radius: 10px
-	-moz-border-radius: 10px
-	border-radius: 10px
+	+border-radius(10px)
 
 .brain-data-row 
 	display : block
@@ -46,9 +51,7 @@ h1
 	background-color: #fff
 	width: 100px
 	padding: 0 10px 0 10px
-	-webkit-border-radius: 3px
-	-moz-border-radius: 3px
-	border-radius: 3px
+	+border-radius(10px)
 
 .delta
 	color : rgb(19,207,187)
@@ -79,8 +82,8 @@ h1
 	display : inline-block
 
 .brain-data-value 
+	@extend .brain-data-category
 	color : #ff0000
-	display : inline-block
 
 .cleared-data-value
 	color: #000000
