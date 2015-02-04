@@ -14,6 +14,9 @@ module.exports = function(grunt) {
     },
     sass: {
       dist: {
+        options:{
+	  loadPath: require('node-bourbon').includePaths,
+            },
         files: {
           'src/css/style.css': 'sass/style.sass'
         }

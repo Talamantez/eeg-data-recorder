@@ -1,14 +1,11 @@
-@import reset
+@import 'bourbon'
+@import 'reset/reset'
+@import 'functions/functions'
+@import 'ui/ui'
 
-@import 'functions/calc-em'
-@import 'functions/border-radius'
 
-
-%box
-	background-color: #133133
-	padding: calc-em(10px,60px)
-	margin: 0 0 20px 0
-	width: 100%
+.bourbonTestButton
+	+button($base-color: green)
 
 img
 	max-width: 100%
@@ -60,30 +57,6 @@ img
 	width: 100px
 	padding: 0 10px 0 10px
 	+border-radius(10px)
-
-.delta
-	color : rgb(19,207,187)
-
-.theta
-	color : rgb(18,212,115)
-
-.loAlpha
-	color : rgb(17,218,37)
-
-.hiAlpha
-	color : rgb(76,223,16)
-
-.loBeta
-	color : rgb(161,228,15)
-
-.hiBeta
-	color : rgb(233,215,13)
-
-.loGamma
-	color : rgb(238,130,12)
-
-.midGamma
-	color : rgb(244,40,10)
 
 .brain-data-category 
 	width : 100px
