@@ -94,6 +94,15 @@ cylon.robot({
 })})
 .start();
 
+/*
+
+Uncomment the line below to output mock brain data
+once per second
+
+*/
+
+setInterval(mockHeadset,1000);
+
 /* 
 
 Helper Functions

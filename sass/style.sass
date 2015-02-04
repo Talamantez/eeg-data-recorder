@@ -1,70 +1,16 @@
 @import 'bourbon'
+@import 'neat'
 @import 'reset/reset'
 @import 'functions/functions'
 @import 'ui/ui'
 
+.button-red
+	+button($base-color: red)
 
-.bourbonTestButton
+.button-green
 	+button($base-color: green)
 
-img
-	max-width: 100%
-.page
-	@extend %box
-	background-color: #334455	
-	font: 100% Helvetica, sans-serif
+.button-blue
+	+button($base-color: blue)
 
-.graph
-	@extend %box
-	width: 600px
-	height: 400px
 
-.brain-page-heading
-	@extend %box
-	color: #fdffdf
-	+border-radius(10px)
-  
-.page-header 
-	margin : 0 auto 0 50px
-	color : #349948
-	width : 100%
-	transform: translate(-40px)
-
-.brain-data-container 
-	@extend %box
-	display : inline-block
-	+border-radius(5px)
-	&:hover
-		text-decoration: underline
-	@media (min-width: 600px)
-		width: 30%
-		float: left
-
-.brain-data-heading
-	background-color: #266299
-	color : #ffffff
-	transform: translate(-10px)
-	padding: 0 10px 0 10px
-	+border-radius(10px)
-
-.brain-data-row
-	display : block
-	color : #123456
-	padding : 0 0 10px 0
-
-.brain-data-value
-	background-color: #fff
-	width: 100px
-	padding: 0 10px 0 10px
-	+border-radius(10px)
-
-.brain-data-category 
-	width : 100px
-	display : inline-block
-
-.brain-data-value 
-	@extend .brain-data-category
-	color : #ff0000
-
-.cleared-data-value
-	color: #000000

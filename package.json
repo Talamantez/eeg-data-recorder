@@ -38,6 +38,7 @@
     "load-grunt-tasks": "^2.0.0",
     "mocha": "^2.1.0",
     "mocha-phantomjs": "^3.5.2",
+    "node-neat": "^1.4.2",
     "phantomjs": "^1.9.13",
     "supertest": "^0.15.0",
     "supervisor": "^0.6.0"

@@ -1,3 +1,17 @@
+/* Neat 1.7.0
+ * http://neat.bourbon.io
+ * Copyright 2012-2014 thoughtbot, inc.
+ * MIT License */
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit; }
+
 html,
 body,
 ul,
@@ -5,73 +19,87 @@ ol {
   margin: 0 0 0 0;
   padding: 0 0 0 0; }
 
-.page, .graph, .brain-page-heading, .brain-data-container {
+.page {
+  background-color: #133133;
+  padding: 0.16667em;
+  margin: 0 0 20px 0;
+  width: 100%;
+  font: 100% Helvetica, sans-serif;
+  background-color: #334455;
+  font: 100% Helvetica, sans-serif; }
+
+.page-header {
   background-color: #133133;
   padding: 0.16667em;
   margin: 0 0 20px 0;
   width: 100%;
   font: 100% Helvetica, sans-serif; }
 
-.bourbonTestButton {
-  border: 1px solid #003900;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 0 0 #08c408;
-  color: white;
-  display: inline-block;
-  font-size: 11px;
-  font-weight: bold;
-  background-color: green;
-  background-image: -webkit-linear-gradient(green, #004800);
-  background-image: linear-gradient(green, #004800);
-  padding: 7px 18px;
-  text-decoration: none;
-  text-shadow: 0 1px 0 #002400;
-  background-clip: padding-box; }
-  .bourbonTestButton:hover:not(:disabled) {
-    box-shadow: inset 0 1px 0 0 #059405;
-    cursor: pointer;
-    background-color: #026402;
-    background-image: -webkit-linear-gradient(#026402, #003900);
-    background-image: linear-gradient(#026402, #003900); }
-  .bourbonTestButton:active:not(:disabled) {
-    border: 1px solid #003900;
-    box-shadow: inset 0 0 8px 4px #002900, inset 0 0 8px 4px #002900, 0 1px 1px 0 #eee; }
-  .bourbonTestButton:disabled {
-    opacity: 0.5;
-    cursor: not-allowed; }
-
 img {
   max-width: 100%; }
 
-.page {
-  background-color: #334455;
-  font: 100% Helvetica, sans-serif; }
-
 .graph {
+  background-color: #133133;
+  padding: 0.16667em;
+  margin: 0 0 20px 0;
+  width: 100%;
+  font: 100% Helvetica, sans-serif;
   width: 600px;
   height: 400px; }
 
 .brain-page-heading {
-  color: #fdffdf;
+  padding: 0.16667em;
+  margin: 0 0 20px 0;
+  width: 100%;
+  font: Helvetica, sans-serif;
+  display: inline-block;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
-  border-radius: 10px; }
+  border-radius: 10px;
+  color: #fdffdf; }
 
-.page-header {
-  margin: 0 auto 0 50px;
-  color: #349948;
-  width: 100%;
-  transform: translate(-40px); }
+.delta {
+  color: #13cfbb; }
+
+.theta {
+  color: #12d473; }
+
+.loAlpha {
+  color: #11da25; }
+
+.hiAlpha {
+  color: #4cdf10; }
+
+.loBeta {
+  color: #a1e40f; }
+
+.hiBeta {
+  color: #e9d70d; }
+
+.loGamma {
+  color: #ee820c; }
+
+.midGamma {
+  color: #f4280a; }
+
+.brain-data-category {
+  width: 100px;
+  display: inline-block; }
 
 .brain-data-container {
+  background-color: #133133;
+  padding: 0.16667em;
+  margin: 0 0 20px 0;
+  width: 100%;
+  font: 100% Helvetica, sans-serif;
   display: inline-block;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px; }
   .brain-data-container:hover {
-    text-decoration: underline; }
+    font-weight: bold; }
   @media (min-width: 600px) {
     .brain-data-container {
       width: 30%;
@@ -89,26 +117,98 @@ img {
 
 .brain-data-row {
   display: block;
-  color: #123456;
   padding: 0 0 10px 0; }
 
 .brain-data-value {
-  background-color: #fff;
   width: 100px;
-  padding: 0 10px 0 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  border-radius: 10px; }
-
-.brain-data-category, .brain-data-value {
-  width: 100px;
-  display: inline-block; }
-
-.brain-data-value {
+  display: inline-block;
   color: #ff0000; }
 
 .cleared-data-value {
   color: #000000; }
+
+.button-red {
+  border: 1px solid #b80000;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #f85454;
+  color: white;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: red;
+  background-image: -webkit-linear-gradient(red, #c70000);
+  background-image: linear-gradient(red, #c70000);
+  padding: 7px 18px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #a30000;
+  background-clip: padding-box; }
+  .button-red:hover:not(:disabled) {
+    box-shadow: inset 0 1px 0 0 #f72222;
+    cursor: pointer;
+    background-color: #e10505;
+    background-image: -webkit-linear-gradient(#e10505, #b80000);
+    background-image: linear-gradient(#e10505, #b80000); }
+  .button-red:active:not(:disabled) {
+    border: 1px solid #b80000;
+    box-shadow: inset 0 0 8px 4px #a80000, inset 0 0 8px 4px #a80000, 0 1px 1px 0 #eee; }
+  .button-red:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; }
+
+.button-green {
+  border: 1px solid #003900;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #08c408;
+  color: white;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: green;
+  background-image: -webkit-linear-gradient(green, #004800);
+  background-image: linear-gradient(green, #004800);
+  padding: 7px 18px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #002400;
+  background-clip: padding-box; }
+  .button-green:hover:not(:disabled) {
+    box-shadow: inset 0 1px 0 0 #059405;
+    cursor: pointer;
+    background-color: #026402;
+    background-image: -webkit-linear-gradient(#026402, #003900);
+    background-image: linear-gradient(#026402, #003900); }
+  .button-green:active:not(:disabled) {
+    border: 1px solid #003900;
+    box-shadow: inset 0 0 8px 4px #002900, inset 0 0 8px 4px #002900, 0 1px 1px 0 #eee; }
+  .button-green:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; }
+
+.button-blue {
+  border: 1px solid #0000b8;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 0 0 #5454f8;
+  color: white;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  background-color: blue;
+  background-image: -webkit-linear-gradient(blue, #0000c7);
+  background-image: linear-gradient(blue, #0000c7);
+  padding: 7px 18px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #0000a3;
+  background-clip: padding-box; }
+  .button-blue:hover:not(:disabled) {
+    box-shadow: inset 0 1px 0 0 #2222f7;
+    cursor: pointer;
+    background-color: #0505e1;
+    background-image: -webkit-linear-gradient(#0505e1, #0000b8);
+    background-image: linear-gradient(#0505e1, #0000b8); }
+  .button-blue:active:not(:disabled) {
+    border: 1px solid #0000b8;
+    box-shadow: inset 0 0 8px 4px #0000a8, inset 0 0 8px 4px #0000a8, 0 1px 1px 0 #eee; }
+  .button-blue:disabled {
+    opacity: 0.5;
+    cursor: not-allowed; }
 
 /*# sourceMappingURL=style.css.map */
