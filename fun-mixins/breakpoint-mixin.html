@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!-- saved from url=(0023)http://sassmeister.com/ -->
+<html class=" js no-touch localstorage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript" async="" src="./breakpoint-mixin_files/ga.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-3.newrelic.com","errorBeacon":"bam.nr-data.net","licenseKey":"85efbc3dc4","applicationID":"1542250","transactionName":"dw4PFhFdDQ5URRhiUFoAFRACHTIDQkR6VFBHFQQQIkIRTXZyYxE=","queueTime":0,"applicationTime":5,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-515.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(n,t,e){function r(e){if(!t[e]){var o=t[e]={exports:{}};n[e][0].call(o.exports,function(t){var o=n[e][1][t];return r(o?o:t)},o,o.exports)}return t[e].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<e.length;o++)r(e[o]);return r}({QJf3ax:[function(n,t){function e(n){function t(t,e,a){n&&n(t,e,a),a||(a={});for(var u=c(t),f=u.length,s=i(a,o,r),p=0;f>p;p++)u[p].apply(s,e);return s}function a(n,t){f[n]=c(n).concat(t)}function c(n){return f[n]||[]}function u(){return e(t)}var f={};return{on:a,emit:t,create:u,listeners:c,_events:f}}function r(){return{}}var o="nr@context",i=n("gos");t.exports=e()},{gos:"7eSDFh"}],ee:[function(n,t){t.exports=n("QJf3ax")},{}],gos:[function(n,t){t.exports=n("7eSDFh")},{}],"7eSDFh":[function(n,t){function e(n,t,e){if(r.call(n,t))return n[t];var o=e();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(n,t,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return n[t]=o,o}var r=Object.prototype.hasOwnProperty;t.exports=e},{}],D5DuLP:[function(n,t){function e(n,t,e){return r.listeners(n).length?r.emit(n,t,e):(o[n]||(o[n]=[]),void o[n].push(t))}var r=n("ee").create(),o={};t.exports=e,e.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(n,t){t.exports=n("D5DuLP")},{}],XL7HBI:[function(n,t){function e(n){var t=typeof n;return!n||"object"!==t&&"function"!==t?-1:n===window?0:i(n,o,function(){return r++})}var r=1,o="nr@id",i=n("gos");t.exports=e},{gos:"7eSDFh"}],id:[function(n,t){t.exports=n("XL7HBI")},{}],loader:[function(n,t){t.exports=n("G9z0Bl")},{}],G9z0Bl:[function(n,t){function e(){var n=v.info=NREUM.info;if(n&&n.licenseKey&&n.applicationID&&f&&f.body){c(d,function(t,e){t in n||(n[t]=e)}),v.proto="https"===l.split(":")[0]||n.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var t=f.createElement("script");t.src=v.proto+n.agent,f.body.appendChild(t)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=n("handle"),c=n(1),u=window,f=u.document,s="addEventListener",p="attachEvent",l=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-515.min.js"},v=t.exports={offset:i(),origin:l,features:{}};f[s]?(f[s]("DOMContentLoaded",o,!1),u[s]("load",e,!1)):(f[p]("onreadystatechange",r),u[p]("onload",e)),a("mark",["firstbyte",i()])},{1:11,handle:"D5DuLP"}],11:[function(n,t){function e(n,t){var e=[],o="",i=0;for(o in n)r.call(n,o)&&(e[i]=t(o,n[o]),i+=1);return e}var r=Object.prototype.hasOwnProperty;t.exports=e},{}]},{},["G9z0Bl"]);</script>
+
+  <title>SassMeister | The Sass Playground!</title>
+
+  <meta http-equiv="Content-Language" content="en-us">
+  <meta name="description" content="SassMeister is a playground for Sass. Add some Sass and SassMeister will show you the rendered CSS.">
+  <meta name="author" content="Jed Foster and Dale Sande">
+
+  <!--  Mobile Viewport Fix, use at own risk -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
+
+  <link rel="stylesheet" href="http://sassmeister.com/css/style-ed409c4c13e521e1.css">
+
+  <script src="./breakpoint-mixin_files/modernizr-7577839b16ac44b1.js"></script>
+  <script>document.domain = 'sassmeister.com';</script>
+</head>
+
+<body class="app">
+  <header class="site_header">
+
+  <a href="http://sassmeister.com/about" class="logo" title="The sassiest way to play with Sass, Compass, &amp; LibSass!"><span class="alt">SassMeister</span></a>
+
+  <nav>
+    <a id="toggle_css" data-state="hide"><span class="alt">CSS</span></a>
+
+    <a id="toggle_html" data-state="hide" class="show"><span class="alt">HTML</span></a>
+
+
+    <div id="share_actions" class="hide">
+      <span class="jump-icon"><span class="alt">Share</span></span>
+      <ul>
+        <li>
+          <label>Embed code:</label>
+            <textarea onclick="this.focus();this.select();" readonly="readonly"></textarea>
+        </li>
+      </ul>
+    </div>
+
+
+    <div>
+      <span class="cloud-icon"><span class="alt">Save</span></span>
+      <ul id="cloud_actions">
+        <li><a id="save-gist" data-action="create" class="create-gist"><span>Save Gist</span></a></li>
+        <li><a class="reset-icon" id="reset"><span>Reset</span></a></li>
+      </ul>
+    </div>
+
+
+    <a id="open-controls" class="control-icon" title="Open control panel"><span class="alt">Control panel</span></a>
+
+
+    <a href="javascript:(function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.createElement('script');c.type='text/javascript';c.src='http://ajax.googleapis.com/ajax/libs/jquery/'+g+'/jquery.min.js';c.onload=c.onreadystatechange=function(){if(!b&&(!(d=this.readyState)||d=='loaded'||d=='complete')){h((f=e.jQuery).noConflict(1),b=1);f(c).remove()}};a.documentElement.childNodes[0].appendChild(c)}})(window,document,'1.4.2',function($,L){var gist_re=/^https?\:\/\/gist\.github\.com\/(\d*)/i,rel_re=/^\/?(\d+)$/,on_gist=gist_re.test(location.href);if(on_gist){location.href='http://sassmeister.com/gist'+location.pathname;}else{$('a').each(function(){var b=$(this).attr('href')||'',a=b.match(gist_re);if(on_gist&&!(a&&a[1])){a=b.match(rel_re)}if(a&&a[1]){$(this).after(' <a href="http://sassmeister.com/gist/'+a[1]+'">[sassmeister.com/gist]</a>')}});}});" class="bookmark-icon" title="I am a bookmarklet, drag me into your bookmark bar and click me when you&#39;re on a Gist page with Sass. It will be awesome!"><span class="alt">SassMeister Bookmarklet</span></a>
+
+    <div><span><img src="./breakpoint-mixin_files/1758171" alt="" height="40"></span>      <ul id="account_actions">        <li class="checkmark-icon">Logged in as Talamantez</li>        <li class="off-icon"><a href="http://sassmeister.com/logout"><span>Logout</span></a></li>      </ul>    </div>
+  </nav>
+</header>
+
+
+  <div id="control-column">
+  <a class="control-icon"></a>
+
+  <div class="control-container promo">
+    <fieldset>
+      <h2>Sass</h2>
+
+      <fieldset data-event-name="SassVersion">
+        <h3 class="version">Compiler</h3>
+
+        <div class="fancy_dropdown"><span style="z-index: 14;">3.4.11</span><input type="hidden" name="version"><div style="top: 31px; left: -9000px; width: 100%;"><ul><li data-value="lib"><span>LibSass 3.1.0-beta</span></li><li data-value="3.4" style="transform: none;"><span>3.4.11</span></li><li data-value="3.3" style="transform: none;"><span>3.3.14</span></li><li data-value="3.2" style="transform: none;"><span>3.2.19</span></li></ul></div></div>
+
+
+      </fieldset>
+
+      <h3 class="syntax">Syntax</h3>
+
+      <fieldset class="syntax-toggle-group" data-event-name="SassSyntax">
+        <input type="radio" name="syntax" value="scss" id="syntax-scss">
+        <label for="syntax-scss" data-toggle-input="sass">SCSS</label>
+
+        <input type="radio" name="syntax" value="sass" id="syntax-sass">
+        <label for="syntax-sass" data-toggle-input="sass">Sass</label>
+
+        <span></span>
+      </fieldset>
+
+      <div id="extension_list">
+        <h3 class="selected">Extensions <i>(Inserted at cursor)</i></h3>
+
+        <ol><li><a data-import="ark/ark">Ark</a>&nbsp;&nbsp;(v0.2.0)</li><li><a data-import="base.sass/+">Base.Sass</a>&nbsp;&nbsp;(v1.6.0)</li><li><a data-import="bourbon/bourbon,neat/neat,bitters/bitters">Bitters</a>&nbsp;&nbsp;(v0.10.0)</li><li><a data-import="blend-modes">Blend Modes</a>&nbsp;&nbsp;(v0.0.2)</li><li><a data-import="bootstrap">Bootstrap Sass</a>&nbsp;&nbsp;(v3.3.3)</li><li><a data-import="bourbon/bourbon">Bourbon</a>&nbsp;&nbsp;(v4.1.1)</li><li><a data-import="breakpoint">Breakpoint</a>&nbsp;&nbsp;(v2.5.0)</li><li><a data-import="breakpoint-slicer">Breakpoint Slicer</a>&nbsp;&nbsp;(v1.3.6)</li><li><a data-import="breakup">Breakup</a>&nbsp;&nbsp;(v1.0.2)</li><li><a data-import="csshake">CSShake</a>&nbsp;&nbsp;(v0223e62c4f)</li><li><a data-import="ceaser-easing">Ceasar Easing</a>&nbsp;&nbsp;(v0.7)</li><li><a data-import="color-hacker">Color Hacker</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="color-schemer">Color Schemer</a>&nbsp;&nbsp;(v0.2.8)</li><li><a data-import="compass">Compass</a>&nbsp;&nbsp;(v1.0.3)</li><li><a data-import="compass-inuit">Compass Inuit</a>&nbsp;&nbsp;(v5.0.2)</li><li><a data-import="compass,compass-placeholders">Compass Placeholders</a>&nbsp;&nbsp;(v1.1.1)</li><li><a data-import="compass,css-slideshow">Compass Slideshow</a>&nbsp;&nbsp;(v0.2.0)</li><li><a data-import="fancy-buttons">Fancy Buttons</a>&nbsp;&nbsp;(v1.2.0)</li><li><a data-import="fittext">Fittext</a>&nbsp;&nbsp;(v0.0.5)</li><li><a data-import="flint">Flint</a>&nbsp;&nbsp;(v2.1.2)</li><li><a data-import="foundation">Foundation</a>&nbsp;&nbsp;(v5.5.1)</li><li><a data-import="garnish">Garnish</a>&nbsp;&nbsp;(v0.2.1)</li><li><a data-import="grid-coordinates">Grid Coordinates</a>&nbsp;&nbsp;(v1.2.0)</li><li><a data-import="guff">Guff</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="harsh">Harsh</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="jacket">Jacket</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="math">MathSass</a>&nbsp;&nbsp;(v0.9.5)</li><li><a data-import="modular-scale">Modular Scale</a>&nbsp;&nbsp;(v2.0.5)</li><li><a data-import="bourbon/bourbon,neat/neat">Neat</a>&nbsp;&nbsp;(v1.6.0)</li><li><a data-import="normalize-scss">Normalize SCSS</a>&nbsp;&nbsp;(v3.0.2)</li><li><a data-import="photoshop-drop-shadow">Photoshop Drop Shadow</a>&nbsp;&nbsp;(v0.0.1)</li><li><a data-import="position">Position</a>&nbsp;&nbsp;(v0.2.14)</li><li><a data-import="quotation-marks">Quotation Marks</a>&nbsp;&nbsp;(v0.1.1)</li><li><a data-import="rwdcalc">Responsive Calculator</a>&nbsp;&nbsp;(v0.0.2)</li><li><a data-import="modular-scale,responsive-modular-scale">Responsive Modular Scale</a>&nbsp;&nbsp;(v0.2.1)</li><li><a data-import="responsive-sass">Responsive Sass</a>&nbsp;&nbsp;(v0.1.1)</li><li><a data-import="salsa">Salsa</a>&nbsp;&nbsp;(v0.0.1)</li><li><a data-import="a11y">Sass A11Y</a>&nbsp;&nbsp;(v0.1.0)</li><li><a data-import="color-helpers">Sass Color Helpers</a>&nbsp;&nbsp;(v2.0.0)</li><li><a data-import="Sassifaction">Sassifaction</a>&nbsp;&nbsp;(v0.0.4)</li><li><a data-import="sassy-buttons">Sassy Buttons</a>&nbsp;&nbsp;(v0.2.6)</li><li><a data-import="sassy-maps">Sassy Maps</a>&nbsp;&nbsp;(v0.4.0)</li><li><a data-import="compass,sassy-text-shadow">Sassy Text Shadow</a>&nbsp;&nbsp;(v0.0.4)</li><li><a data-import="sassy-gridlover">Sassy-Gridlover</a>&nbsp;&nbsp;(v1.1.0)</li><li><a data-import="sassy-math">Sassy-Math</a>&nbsp;&nbsp;(v1.5.1)</li><li><a data-import="SassyBitwise">SassyBitwise</a>&nbsp;&nbsp;(v1.1.2)</li><li><a data-import="SassyCast">SassyCast</a>&nbsp;&nbsp;(v1.1.1)</li><li><a data-import="SassyJSON">SassyJSON</a>&nbsp;&nbsp;(v1.1.8)</li><li><a data-import="SassyLists">SassyLists</a>&nbsp;&nbsp;(v2.2.1)</li><li><a data-import="matrix">SassyMatrix</a>&nbsp;&nbsp;(v1.0.1)</li><li><a data-import="SassySort">SassySort</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="SassyString">SassyStrings</a>&nbsp;&nbsp;(v1.1.4)</li><li><a data-import="scut">Scut</a>&nbsp;&nbsp;(v1.1.0)</li><li><a data-import="singularitygs,singularity-extras">Singularity Extras</a>&nbsp;&nbsp;(v1.0.0)</li><li><a data-import="singularitygs,singularity-quick-spanner,breakpoint-slicer">Singularity Quick Spanner</a>&nbsp;&nbsp;(v0.1.3)</li><li><a data-import="singularitygs">Singularity.gs</a>&nbsp;&nbsp;(v1.5.1)</li><li><a data-import="stipe/manifest,stipe/grid/extends">Stipe</a>&nbsp;&nbsp;(v0.0.6.4)</li><li><a data-import="stitch">Stitch</a>&nbsp;&nbsp;(v0.1.4)</li><li><a data-import="sunglass">Sunglass</a>&nbsp;&nbsp;(v3.0.5)</li><li><a data-import="susy">Susy</a>&nbsp;&nbsp;(v2.2.2)</li><li><a data-import="toolkit">Toolkit</a>&nbsp;&nbsp;(v2.7.0)</li><li><a data-import="true">True</a>&nbsp;&nbsp;(v1.0.1)</li><li><a data-import="typecsset">Typecsset</a>&nbsp;&nbsp;(v0.3.0)</li><li><a data-import="typesettings">Typesettings</a>&nbsp;&nbsp;(v2.3.1)</li><li><a data-import="utility-belt">UtilityBelt</a>&nbsp;&nbsp;(v1.1.0)</li><li><a data-import="yiq-color-contrast">YIQ Color Contrast</a>&nbsp;&nbsp;(v1.1.1)</li><li><a data-import="zen">Zen Grids</a>&nbsp;&nbsp;(v1.4)</li></ol>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <h2>CSS</h2>
+
+      <fieldset class="output-toggle-group" data-event-name="CSSOutput">
+        <input type="radio" name="output-style" value="expanded" id="expanded-output">
+        <label for="expanded-output" data-toggle-input="css">expanded</label>
+
+        <input type="radio" name="output-style" value="nested" id="nested-output">
+        <label for="nested-output" data-toggle-input="css">nested</label>
+
+        <input type="radio" name="output-style" value="compact" id="compact-output">
+        <label for="compact-output" data-toggle-input="css">compact</label>
+
+        <input type="radio" name="output-style" value="compressed" id="compressed-output">
+        <label for="compressed-output" data-toggle-input="css">compressed</label>
+
+        <span></span>
+      </fieldset>
+
+      <p class="libsass-output-note">Note: LibSass currently only supports <code>nested</code> and <code>compressed</code> output. See <a href="https://github.com/hcatlin/libsass/issues/233" target="_blank">this issue</a> for details.</p>
+    </fieldset>
+
+    <fieldset>
+      <h2>HTML</h2>
+
+      <fieldset class="html-toggle-group" data-event-name="HTMLSyntax">
+        <input type="radio" name="html-syntax" value="HTML" id="html-html">
+        <label for="html-html" data-toggle-input="html">HTML</label>
+
+        <input type="radio" name="html-syntax" value="Haml" id="html-haml">
+        <label for="html-haml" data-toggle-input="html">Haml</label>
+
+        <input type="radio" name="html-syntax" value="Markdown" id="html-mkdn">
+        <label for="html-mkdn" data-toggle-input="html">Markdown</label>
+
+        <input type="radio" name="html-syntax" value="Textile" id="html-txtl">
+        <label for="html-txtl" data-toggle-input="html">Textile</label>
+
+        <input type="radio" name="html-syntax" value="Jade" id="html-jade">
+        <label for="html-jade" data-toggle-input="html">Jade</label>
+
+        <span></span>
+      </fieldset>
+    </fieldset>
+
+    <fieldset class="edit-prefs">
+      <h2>Editor</h2>
+
+      <fieldset>
+        <h3 class="theme">Theme</h3>
+        <p>
+          <div class="fancy_dropdown"><span style="z-index: 19;">Tomorrow</span><input type="hidden" name="theme"><div style="top: 31px; left: -9000px; width: 100%;"><ul><li data-value="tomorrow"><span>Tomorrow</span></li><li data-value="dawn"><span>Dawn</span></li><li data-value="github"><span>GitHub</span></li><li data-value="kuroir"><span>Kuroir</span></li><li data-value="solarized-light"><span>Solarized Light</span></li><li data-value="merbivore-soft"><span>Merbivore Soft</span></li><li data-value="monokai" style="transform: none;"><span>Monokai</span></li><li data-value="solarized-dark" style="transform: none;"><span>Solarized Dark</span></li><li data-value="tomorrow-night-eighties" style="transform: none;"><span>Tomorrow Night Eighties</span></li></ul></div></div>
+        </p>
+        <p>
+          <input type="checkbox" name="emmet" id="enable-emmet" value="true">
+          <label for="enable-emmet">Enable Emmet support</label>
+        </p>
+        <p>
+          <input type="checkbox" name="vim" id="enable-vim" value="true">
+          <label for="enable-vim">Use Vim keybindings</label>
+        </p>
+        <p>
+          <input type="checkbox" name="scrollPastEnd" id="enable-scrollPastEnd" value="true">
+          <label for="enable-scrollPastEnd">Scroll Past End</label>
+        </p>
+      </fieldset>
+    </fieldset>
+  </div>
+
+  <div id="promo">
+    <section class="swag-promo">
+      <a href="http://devswag.com/products/sassmeister-stickers-4" class="swag-promo" target="_blank">
+        <h1>SassMeister Stickers</h1>
+        <p><img src="./breakpoint-mixin_files/sassmeister-detail-v02_medium.jpg"> Get sweet, sassy stickers &amp; help support SassMeister.</p>
+      </a>
+    </section>
+  </div>
+</div>
+
+<div id="control-column-bg"></div>
+
+
+  <section class="main_body">
+  <div class="editor-header" id="mobile-tabs">
+  <h2 class="sass-syntax-display" data-tab="sass">SCSS</h2>
+  <h2 data-tab="css">CSS</h2>
+  
+    <h2 class="html-syntax-display" data-tab="html">HTML</h2>
+    <h2 data-tab="rendered">Result</h2>
+  
+</div>
+
+<div id="casement">
+  <div id="source" style="position: absolute; top: 0%; right: 0px; bottom: 0%; left: 0px;">
+    <div class="panel" data-name="sass" style="position: absolute; top: 0px; right: 50%; bottom: 0px; left: 0%;">
+      <div class="edit_container">
+  <div class="editor-header">
+    <h2 class="sass-syntax-display">SCSS</h2>
+  </div>
+
+  <div class="editor-mask">
+    <div class="editor-wrapper">
+      <div class="editor ace_editor ace-tomorrow ace_focus" id="sass"><textarea class="ace_text-input" wrap="off" spellcheck="false" style="bottom: 284px; height: 21px; width: 8px; right: 518px;"></textarea><div class="ace_gutter"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="margin-top: 0px; height: 536px; width: 49px;"><div class="ace_gutter-cell" style="height: 21px;">1<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">2<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">3</div><div class="ace_gutter-cell" style="height: 21px;">4</div><div class="ace_gutter-cell" style="height: 21px;">5</div><div class="ace_gutter-cell" style="height: 21px;">6</div><div class="ace_gutter-cell" style="height: 21px;">7<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">8</div><div class="ace_gutter-cell" style="height: 21px;">9<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">10</div><div class="ace_gutter-cell" style="height: 21px;">11</div><div class="ace_gutter-cell" style="height: 21px;">12</div></div><div class="ace_gutter-active-line" style="top: 189px; height: 21px;"></div></div><div class="ace_scroller" style="left: 49px; right: 0px; bottom: 0px;"><div class="ace_content" style="margin-top: 0px; width: 634px; height: 536px; margin-left: 0px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 644px; visibility: visible;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_active-line" style="height:21px;top:189px;left:0;right:0;"></div></div><div class="ace_layer ace_text-layer" style="padding: 0px 4px;"><div class="ace_line" style="height:21px"><span class="ace_keyword">@mixin</span>&nbsp;breakpoint<span class="ace_paren ace_lparen">(</span><span class="ace_variable">$arg</span><span class="ace_paren ace_rparen">)</span><span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px"><span class="ace_indent-guide">&nbsp;&nbsp;</span>&nbsp;&nbsp;<span class="ace_keyword">@media</span>&nbsp;only&nbsp;screen&nbsp;<span class="ace_keyword">and</span>&nbsp;<span class="ace_paren ace_lparen">(</span>max-device-width:&nbsp;<span class="ace_variable">$arg</span><span class="ace_paren ace_rparen">)</span><span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px"><span class="ace_indent-guide">&nbsp;&nbsp;</span><span class="ace_indent-guide">&nbsp;&nbsp;</span>&nbsp;&nbsp;@content;</div><div class="ace_line" style="height:21px"><span class="ace_indent-guide">&nbsp;&nbsp;</span>&nbsp;&nbsp;<span class="ace_paren ace_rparen">}</span></div><div class="ace_line" style="height:21px">&nbsp;&nbsp;<span class="ace_paren ace_rparen">}</span></div><div class="ace_line" style="height:21px">&nbsp;&nbsp;</div><div class="ace_line" style="height:21px"><span class="ace_variable ace_language">.block</span><span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px">&nbsp;&nbsp;bart:&nbsp;smells;</div><div class="ace_line" style="height:21px">&nbsp;&nbsp;<span class="ace_keyword">@include</span>&nbsp;breakpoint<span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">500px</span><span class="ace_paren ace_rparen">)</span><span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px"><span class="ace_indent-guide">&nbsp;&nbsp;</span>&nbsp;&nbsp;foo:&nbsp;bar;</div><div class="ace_line" style="height:21px">&nbsp;&nbsp;<span class="ace_paren ace_rparen">}</span></div><div class="ace_line" style="height:21px"><span class="ace_paren ace_rparen">}</span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer"><div class="ace_cursor" style="left: 108px; top: 189px; width: 8px; height: 21px; opacity: 0;"></div></div></div></div><div style="height: auto; width: auto; top: -100px; left: -100px; visibility: hidden; position: fixed; overflow: visible; white-space: nowrap;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="ace_scrollbar" style="width: 20px; display: none; overflow-y: scroll; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 252px;"></div></div><div class="ace_scrollbar-h" style="height: 20px; display: none; overflow-x: scroll; left: 49px; right: 0px;"><div class="ace_scrollbar-inner" style="height: 20px; width: 634px;"></div></div><div class="ace_gutter-tooltip" style="display: none;"></div></div>
+    </div>
+  </div>
+</div>
+
+    </div><div class="vertical sash" id="sash-y1-0" style="left: 50%;"></div>
+    <div class="panel" data-name="css" style="position: absolute; top: 0px; right: 0%; bottom: 0px; left: 50%;">
+      <div class="edit_container">
+  <div class="editor-header">
+    <h2>CSS</h2>
+    <span id="sass-compiling" class="hide"><span class="timer"></span> Compiling</span>
+    <span id="compile-time" class="fade">Compiled in 0.01s</span></div>
+
+  <div class="editor-mask">
+    <div class="editor-wrapper">
+      <div class="editor ace_editor ace-tomorrow" id="css"><textarea class="ace_text-input" wrap="off" spellcheck="false" style="bottom: 473px; height: 21px; width: 8px; right: 630px;"></textarea><div class="ace_gutter"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="margin-top: 0px; height: 536px; width: 41px;"><div class="ace_gutter-cell" style="height: 21px;">1<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">2</div><div class="ace_gutter-cell" style="height: 21px;">3</div><div class="ace_gutter-cell" style="height: 21px;">4<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">5<span class="ace_fold-widget ace_start ace_open" style="height: 21px;"></span></div><div class="ace_gutter-cell" style="height: 21px;">6</div><div class="ace_gutter-cell" style="height: 21px;">7</div><div class="ace_gutter-cell" style="height: 21px;">8</div><div class="ace_gutter-cell" style="height: 21px;">9</div></div><div class="ace_gutter-active-line" style="top: 0px; height: 21px;"></div></div><div class="ace_scroller" style="left: 41px; right: 0px; bottom: 0px;"><div class="ace_content" style="margin-top: 0px; width: 642px; height: 536px; margin-left: 0px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 644px; visibility: visible;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_active-line" style="height:21px;top:0px;left:0;right:0;"></div></div><div class="ace_layer ace_text-layer" style="padding: 0px 4px;"><div class="ace_line" style="height:21px"><span class="ace_variable">.block</span>&nbsp;<span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px">&nbsp;&nbsp;bart:&nbsp;smells;</div><div class="ace_line" style="height:21px"><span class="ace_paren ace_rparen">}</span></div><div class="ace_line" style="height:21px"><span class="ace_string">@media&nbsp;only&nbsp;screen&nbsp;and&nbsp;(max-device-width:&nbsp;500px)&nbsp;{</span></div><div class="ace_line" style="height:21px">&nbsp;&nbsp;<span class="ace_variable">.block</span>&nbsp;<span class="ace_paren ace_lparen">{</span></div><div class="ace_line" style="height:21px"><span class="ace_indent-guide">&nbsp;&nbsp;</span>&nbsp;&nbsp;foo:&nbsp;bar;</div><div class="ace_line" style="height:21px">&nbsp;&nbsp;<span class="ace_paren ace_rparen">}</span></div><div class="ace_line" style="height:21px"><span class="ace_string">}</span></div><div class="ace_line" style="height:21px"></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="left: 4px; top: 0px; width: 8px; height: 21px;"></div></div></div></div><div style="height: auto; width: auto; top: -100px; left: -100px; visibility: hidden; position: fixed; overflow: visible; white-space: nowrap;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="ace_scrollbar" style="width: 20px; display: none; overflow-y: scroll; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 189px;"></div></div><div class="ace_scrollbar-h" style="height: 20px; overflow-x: scroll; left: 41px; right: 0px; display: none;"><div class="ace_scrollbar-inner" style="height: 20px; width: 642px;"></div></div></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    <div class="panel" data-name="html" style="display: none;">
+      <div class="edit_container">
+  <div class="editor-header">
+    <h2 class="html-syntax-display">HTML</h2>
+  </div>
+
+  <div class="editor-mask">
+    <div class="editor-wrapper">
+      <div class="editor ace_editor ace-tomorrow" id="html"><textarea class="ace_text-input" wrap="off" spellcheck="false" style="bottom: 2000em;"></textarea><div class="ace_gutter"><div class="ace_layer ace_gutter-layer ace_folding-enabled"></div><div class="ace_gutter-active-line"></div></div><div class="ace_scroller" style="left: 0px; right: 0px; bottom: 0px;"><div class="ace_content"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 654.225px; visibility: visible;"></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_text-layer" style="padding: 0px 4px;"></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor"></div></div></div></div><div style="height: auto; width: auto; top: -100px; left: -100px; visibility: hidden; position: fixed; overflow: visible; white-space: nowrap;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div><div class="ace_scrollbar" style="width: 20px; display: none; overflow-y: scroll; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px;"></div></div><div class="ace_scrollbar-h" style="height: 20px; display: none; overflow-x: scroll; left: 0px; right: 0px;"><div class="ace_scrollbar-inner" style="height: 20px;"></div></div></div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="panel" id="rendered" data-name="rendered" style="display: none;">
+    <iframe id="rendered-html" sandbox="allow-scripts allow-same-origin" src="./breakpoint-mixin_files/saved_resource.html"></iframe>
+
+    <div id="sash_cover" style="display: none;"></div>
+  </div>
+</div>
+
+<script>
+  var sandbox = 'http://sandbox.sassmeister.com';
+  var gist = null;
+  var gist_output =  null;
+  
+</script>
+
+  </section>
+
+  <footer>
+  <p class="info">
+    <a href="http://sassmeister.com/about#support" title="Help keep the lights on." class="heart-icon"><span>Support SassMeister</span></a>
+    <a href="https://twitter.com/sassmeisterapp" title="Follow @sassmeisterapp" class="twitter-icon" target="_blank"><span>Follow @sassmeisterapp</span></a>
+    <a href="http://sassmeister.com/about" title="About SassMeister"><span>About</span></a>
+  </p>
+  
+  <p class="copyright">© 2015 <a href="http://jedfoster.com/" target="_blank">Jed Foster</a> &amp; <a href="http://www.dalesande.com/" target="_blank">Dale Sande</a></p>
+</footer>
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+     _gaq.push(['_setAccount', 'UA-35407426-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <script src="./breakpoint-mixin_files/jquery-cb875196230e1e7e.js"></script>
+  <script src="./breakpoint-mixin_files/utilities-6b664947498769a4.js"></script>
+  <script src="./breakpoint-mixin_files/application-02a07e1455d354b4.js"></script>
+
+
+<script src="./breakpoint-mixin_files/nr-515.min.js"></script><script type="text/javascript" src="./breakpoint-mixin_files/85efbc3dc4"></script></body></html>

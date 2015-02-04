@@ -43,7 +43,7 @@ img {
   border-radius: 5px; }
   .brain-data-container:hover {
     text-decoration: underline; }
-  @media (min-width: 700px) {
+  @media (min-width: 600px) {
     .brain-data-container {
       width: 30%;
       float: left; } }

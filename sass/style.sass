@@ -1,12 +1,8 @@
 @import reset
 
-@import calc-em
+@import 'functions/calc-em'
+@import 'functions/border-radius'
 
-=border-radius($radius)
-	-webkit-border-radius: $radius
-	-moz-border-radius:    $radius
-	-ms-border-radius:     $radius
-	border-radius:         $radius
 
 %box
 	background-color: #133133
@@ -16,7 +12,6 @@
 
 img
 	max-width: 100%
-
 .page
 	@extend %box
 	background-color: #334455	
@@ -44,7 +39,7 @@ img
 	+border-radius(5px)
 	&:hover
 		text-decoration: underline
-	@media (min-width: 700px)
+	@media (min-width: 600px)
 		width: 30%
 		float: left
 
@@ -55,7 +50,7 @@ img
 	padding: 0 10px 0 10px
 	+border-radius(10px)
 
-.brain-data-row 
+.brain-data-row
 	display : block
 	color : #123456
 	padding : 0 0 10px 0
