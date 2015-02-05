@@ -1,8 +1,10 @@
 .brain-page-heading
-	padding: calc-em(10px,60px)
-	margin: 0 0 20px 0
+	padding: $padding
+	margin: $margin
 	width: 100%
 	font:  Helvetica, sans-serif
-	display : inline-block
+	display : $display
 	+border-radius(10px)	
-	color: #fdffdf
+	color: $color-secondary
+	text-shadow: $text-shadow 
+	@include transform(scale(0.9) rotate(-3deg))	

@@ -115,7 +115,7 @@ suite("mockEegData", function(){
 
 suite("eeg_db_Functions", function(){
 
-	test("addShot() should not throw an error 8 numbers are submitted as input", function(done){
+	test("addShot() should not throw an error if 	8 numbers are submitted as input", function(done){
 		expect(function(){eeg.addShot(
 								eeg.mockData(),
 			        			eeg.mockData(),

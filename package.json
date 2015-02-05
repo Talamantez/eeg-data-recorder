@@ -39,6 +39,7 @@
     "mocha": "^2.1.0",
     "mocha-phantomjs": "^3.5.2",
     "node-neat": "^1.4.2",
+    "node-refills": "^1.0.1",
     "phantomjs": "^1.9.13",
     "supertest": "^0.15.0",
     "supervisor": "^0.6.0"

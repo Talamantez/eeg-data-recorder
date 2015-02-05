@@ -2,8 +2,7 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     clean: 
-      ["dist/", "src/css/*"]
-    ,
+      ["dist/", "src/css/*"],
     jshint: {
       files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
       options: {
@@ -15,8 +14,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options:{
-	  loadPath: require('node-bourbon').includePaths,
-	  loadPath: require('node-neat').includePaths
+        	  loadPath: require('node-bourbon').includePaths,
+        	  loadPath: require('node-neat').includePaths
             },
         files: {
           'src/css/style.css': 'sass/style.sass'
@@ -66,17 +65,9 @@ module.exports = function(grunt) {
     copy: {
           main: {
             files: [
-              // includes files within path
-/*              {expand: false, src: ['src/html/*'], dest: 'dist', filter: 'isFile'}
-
-              // includes files within path and its sub-directories
               {expand: true, src: ['path/**'], dest: 'dest/'},
-
-              // makes all src relative to cwd
               {expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'},
-
-*/              // flattens results to a single level
-              {expand: true, flatten: true, src: ['src/html/**'], dest: 'dist/', filter: 'isFile'},
+              {expand: true, flatten: true, src: ['src/views/**'], dest: 'dist/', filter: 'isFile'},
 	            {expand: true, flatten: true, src: ['src/img/**'], dest: 'dist/img/', filter:'isFile'}
             ]
          }

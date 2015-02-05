@@ -1,8 +1,9 @@
 @import 'bourbon'
 @import 'neat'
+@import 'functions/manifest'
+@import config
 @import 'reset/reset'
-@import 'functions/functions'
-@import 'ui/ui'
+@import 'ui/manifest'
 
 .button-red
 	+button($base-color: red)
@@ -13,4 +14,11 @@
 .button-blue
 	+button($base-color: blue)
 
-
+section
+	@include outer-container
+	aside
+		@include span-columns(3)
+	article
+		@include span-columns(9)
+		div
+			@include span-columns(3 of 9)

@@ -1,13 +1,16 @@
 .brain-data-container 
-	background-color: #133133
-	padding: calc-em(10px,60px)
-	margin: 0 0 20px 0
+	@include span-columns(4)
+	@include omega()
+//	@include shift(0)
+	background-color: $bg-secondary
+	padding: $padding
+	margin: $margin
 	width: 100%
 	font: 100% Helvetica, sans-serif
-	display : inline-block
-	+border-radius(5px)
+	display : $display
+	+border-radius(1)
 	&:hover
 		font-weight: bold
-	@media (min-width: 600px)
-		width: 30%
-		float: left
+	@media (min-width: 500px)
+		@include span-columns(12)
+		@include shift(10)

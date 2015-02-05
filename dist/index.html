@@ -267,13 +267,14 @@
     </script>
   </head>
 
-      <body><img src = 'img/bg.jpg' ></img><div class="page">
-        <div class ='button-red'>Banana Fruit</div>
-        <div class ='button-green'>Banana Fruit</div>
-        <div class ='button-blue'>Banana Fruit</div>                     
+      <body><img src = 'img/bg.jpg' ></img><div class="page"> 
+
+<div class=''>
+<aside>                   
 	<div class="page-header">
                 <h1 class="brain-page-heading">8 Channel EEG Output</h1>
-              </div>
+</aside>              
+            <article>
               <div class="brain-data-container">
                     <h3 class="brain-data-heading">New Reading</h3>
                         <div class="brain-data-row delta">
@@ -311,7 +312,7 @@
               </div>
 
               <div class="brain-data-container">
-              <h3 class="brain-data-heading">Avg Last 10</h3>
+              <h3 class="brain-data-heading">Mean 10</h3>
                       <div class="brain-data-row delta">
                           <div class="brain-data-category">Delta: </div> 
                           <div class="brain-data-value" id="avg-delta">avgData["delta"]</div>
@@ -347,7 +348,7 @@
               </div>
 
               <div class="brain-data-container">
-              <h3 class="brain-data-heading">Avg Last 1000</h3>
+              <h3 class="brain-data-heading">Mean 1000</h3>
                       <div class="brain-data-row delta">
                           <div class="brain-data-category">Delta: </div> 
                           <div class="brain-data-value" id="avg-1000-delta">avg1000Data["delta"]</div>
@@ -380,7 +381,9 @@
                           <div class="brain-data-category">Mid Gamma: </div>
                           <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["midGamma"]</div>
                       </div>
-              </div>     
+              </div>
+  </article>
+  <article>                 
               <div style="width:30%">
                 <div>
                   <canvas class="graph" id="canvas" height= '450'
@@ -388,6 +391,10 @@
                 </div>
               </div>       
             </div>
+</article>
+</div>
+
+</section>
      </body>
 <footer>   
 </footer>
