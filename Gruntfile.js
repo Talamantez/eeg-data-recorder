@@ -15,7 +15,8 @@ module.exports = function(grunt) {
       dist: {
         options:{
         	  loadPath: require('node-bourbon').includePaths,
-        	  loadPath: require('node-neat').includePaths
+        	  loadPath: require('node-neat').includePaths,
+            loadPath: require('node-refills').includePaths
             },
         files: {
           'src/css/style.css': 'sass/style.sass'

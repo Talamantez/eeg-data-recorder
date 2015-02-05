@@ -1,6 +1,5 @@
 .brain-data-container 
 	@include span-columns(4)
-	@include omega()
 //	@include shift(0)
 	background-color: $bg-secondary
 	padding: $padding
@@ -14,3 +13,5 @@
 	@media (min-width: 500px)
 		@include span-columns(12)
 		@include shift(10)
+
+	@retina-image('../img/bg.jpg', $background-size, $extension*, $retina-filename*, $retina-suffix*, $asset-pipeline*)
