@@ -1,6 +1,6 @@
 .hover-tile-outer {
-  @include span-columns(8);
-  $hover-tile-height: 10em;
+  @include span-columns(12);
+  $hover-tile-height: 30em;
 
   background-position: bottom;
   background-size: cover;

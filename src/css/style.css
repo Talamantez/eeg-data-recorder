@@ -364,14 +364,14 @@ img {
   float: left;
   display: block;
   margin-right: 2.35765%;
-  width: 65.88078%;
+  width: 100%;
   background-position: bottom;
   background-size: cover;
   background: url("/images/mountains.png");
   background-size: cover;
   background-color: #BEB56E;
   border: 1px solid #DDD;
-  height: 10em;
+  height: 30em;
   margin-bottom: 1.5;
   cursor: pointer; }
   .hover-tile-outer:last-child {
@@ -385,7 +385,7 @@ img {
       .hover-tile-outer:last-child {
         margin-right: 0; } }
   .hover-tile-outer .hover-tile-container {
-    height: 10em;
+    height: 30em;
     overflow: hidden; }
   .hover-tile-outer .hover-tile-container:hover > .hover-tile {
     -webkit-transform: translate(0, -100%);
