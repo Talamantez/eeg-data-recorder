@@ -1,3 +1,4 @@
+// @import variables
 @import 'bourbon'
 @import 'base/base'
 @import 'neat'
@@ -5,6 +6,7 @@
 @import config
 @import 'reset/reset'
 @import 'ui/manifest'
+@import 'refills/manifest'
 
 .button-red
 	+button($base-color: red)
@@ -23,43 +25,3 @@ section
 		@include span-columns(9)
 		div
 			@include span-columns(3 of 9)
-
-
-
-.hover-tile-outer
-	$base-border-color: gainsboro !default
-	$base-line-height: 1.5em !default
-	$medium-screen: em(640) !default
-	h4
-		margin: 0
-		p
-		line-height: $base-line-height
-		$hover-tile-height: 10em
-	background: url("https://raw.githubusercontent.thoughtbot/refills/master/source/images/mountains.png")
-	background-position: top
-	background-size: cover
-	background-color: beige
-	border: 1px solid $base-border-color
-	cursor: pointer
-	height: $hover-tile-height
-	margin-bottom: $base-line-height
-	+media($medium-screen)
-		width: 40%
-	.hover-tile-container
-		height: $hover-tile-height
-		overflow: hidden
-	.hover-tile-container:hover > .hover-tile
-		+transform(translate(0, -100%))
-	.hover-tile
-		+transition(all, 0.2s ease-in-out)
-		background: inherit
-		color: white
-		height: inherit
-		overflow: hidden
-		padding: $base-spacing
-	.hover-tile-hidden
-		background: transparentize(#000, 0.5)
-		p
-			color: transparentize(#fff, 0.3)
-		h4
-			margin-bottom: 0.5em

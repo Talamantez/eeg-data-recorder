@@ -1,0 +1,56 @@
+.hover-tile-outer {
+  @include span-columns(8);
+  $hover-tile-height: 10em;
+
+  background-position: bottom;
+  background-size: cover;
+  background: url("/images/mountains.png");
+  background-size: cover;
+  background-color: #BEB56E;
+  border: 1px solid $base-border-color;
+  height: $hover-tile-height;
+  margin-bottom: $base-line-height;
+  cursor: pointer;
+  
+  @include media($medium-screen) {
+    @include span-columns(3);
+  }
+  @include media($large-screen){
+   // @include span-columns(4);
+  }
+
+  .hover-tile-container {
+    height: $hover-tile-height;
+    overflow: hidden;
+  }
+
+  .hover-tile-container:hover > .hover-tile {
+    @include transform(translate(0, -100%));
+  }
+
+  .hover-tile {
+    @include transition(all, .2s ease-in-out);
+    background:inherit;
+    color: white;
+    height:inherit;
+    padding: 1em 1.5em;
+  }
+
+  .hover-tile-visible {
+    color: transparentize(white, .3);
+    font-size: 2em;
+    font-weight: 200;  
+    padding-top: 2em;
+    text-align: center;
+  }
+
+  .hover-tile-hidden {
+    background: transparentize(black, .5);
+    h4 {
+      margin-bottom: .5em;
+    }
+    p {
+      color: transparentize(white, .3);
+    }
+  }
+}

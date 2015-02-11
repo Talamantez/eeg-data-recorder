@@ -101,7 +101,7 @@ once per second
 
 */
 
-// setInterval(mockHeadset,1000);
+setInterval(mockHeadset,1000);
 
 /* 
 

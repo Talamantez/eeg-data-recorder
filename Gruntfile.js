@@ -52,6 +52,7 @@ module.exports = function(grunt) {
           } 
       }
     },
+  // Take out cssmin, do this with sass
     cssmin: {
       target: {
         files: [{
