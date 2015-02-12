@@ -4,9 +4,9 @@
 
   background-position: bottom;
   background-size: cover;
-  background: url("/images/mountains.png");
+  // background: url("../img/bg.jpg");
   background-size: cover;
-  background-color: #BEB56E;
+  
   border: 1px solid $base-border-color;
   height: $hover-tile-height;
   margin-bottom: $base-line-height;
@@ -38,7 +38,7 @@
 
   .hover-tile-visible {
     color: transparentize(white, .3);
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 200;  
     padding-top: 2em;
     text-align: center;

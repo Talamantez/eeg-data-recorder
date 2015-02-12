@@ -284,8 +284,23 @@
 
     </script>
   </head>
-  <div class="page">
+
       <body>
+        <button type="button" class="js-menu-trigger sliding-menu-button">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/menu-white.png" alt="Menu Icon">
+        </button>
+
+        <nav class="js-menu sliding-menu-content">
+          <ul>
+            <li><a href="javascript:void(0)">Item 1</a></li>
+            <li><a href="javascript:void(0)">Item 2</a></li>
+            <li><a href="javascript:void(0)">Item 3</a></li>
+          </ul>
+        </nav>
+
+        <div class="js-menu-screen sliding-menu-fade-screen"></div>
+
+        <div class="page">
         <div class="hover-tile-outer">
           <div class="hover-tile-container">
             <div class="hover-tile hover-tile-visible"></div>
@@ -419,10 +434,8 @@
               </div>
         <div class="hover-tile-outer">
           <div class="hover-tile-container">
-            <div class="hover-tile hover-tile-visible"></div>
-            <div class="hover-tile hover-tile-hidden">
-            
-              <div class="brain-data-container">
+            <div class="hover-tile hover-tile-visible">
+            <div class="brain-data-container">
               <h3 class="brain-data-heading">Mean 1000</h3>
                       <div class="brain-data-row delta">
                           <div class="brain-data-category">Delta: </div> 
@@ -456,7 +469,12 @@
                           <div class="brain-data-category">Mid Gamma: </div>
                           <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["midGamma"]</div>
                       </div>
-              </div>
+              </div>              
+            </div>
+            <div class="hover-tile hover-tile-hidden">
+            13123132132132312
+            
+             
             </div>
           </div>
          </div>               
@@ -498,7 +516,19 @@
  
 jQuery(function(){
   jQuery.mark.jump();
-});</script>
+});
+</script>
+
+<script>
+$(document).ready(function(){
+  $('.js-menu-trigger,.js-menu-screen').on('click touchstart',function (e) {
+    $('.js-menu,.js-menu-screen').toggleClass('is-visible');
+    e.preventDefault();
+  });
+});
+
+</script>
+
      </body>
 
 <footer>   
