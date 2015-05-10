@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     clean: 
       ["dist/", "src/css/*"],
     jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'test/**/*.js'],
       options: {
         globals: {
           jQuery: true
@@ -14,8 +14,6 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options:{
-        	  loadPath: require('node-bourbon').includePaths,
-        	  loadPath: require('node-neat').includePaths,
             loadPath: require('node-refills').includePaths
             },
         files: {
@@ -76,7 +74,7 @@ module.exports = function(grunt) {
       }    
   });
   require('load-grunt-tasks')(grunt);
-  grunt.registerTask('clear-dist', 'clean')
+  grunt.registerTask('clear-dist', 'clean');
   grunt.registerTask('sassy', ['sass']);
   grunt.registerTask('default', ['clear-dist','jshint','sassy','buildbower','buildcss','copy','test']);
   grunt.registerTask('concat', ['bower_concat']);

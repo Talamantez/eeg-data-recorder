@@ -1,24 +1,42 @@
 var eegSnapshot = require('./models/eegSnapshot');
 
 module.exports = {
+
      addShot: function(delta, theta, loAlpha, hiAlpha, loBeta, hiBeta,loGamma, midGamma){
-    		   var newShot = new eegSnapshot({
-    	    		delta:    delta,
-    	    		theta:    theta,
-    	    		loAlpha:  loAlpha,
-    	    		hiAlpha:  hiAlpha,
-    	    		loBeta:   loBeta,
-                    hiBeta:   hiBeta,
-    	    		loGamma:  loGamma,
-    	    		midGamma: midGamma
-        });
-        console.log('Saving Shot to EEG Database: ' + '\n' + newShot + '\n');
-        newShot.save(function (err) {
-            if (err){
-                throw new Error('Shot did not save to database');
-            } else {
-                console.log ('Save successful');
-            }
+        var typeCheckObj = {
+            delta:    delta,
+            theta:    theta,
+            loAlpha:  loAlpha,
+            hiAlpha:  hiAlpha,
+            loBeta:   loBeta,
+            hiBeta:   hiBeta,
+            loGamma:  loGamma,
+            midGamma: midGamma
+        }
+
+        // If typecheck passes, save shot to database
+
+        this.typecheckKeyValues(typeCheckObj, function(){
+           var newShot = new eegSnapshot({
+                delta:    delta,
+                theta:    theta,
+                loAlpha:  loAlpha,
+                hiAlpha:  hiAlpha,
+                loBeta:   loBeta,
+                hiBeta:   hiBeta,
+                loGamma:  loGamma,
+                midGamma: midGamma
+            });
+
+            console.log('Saving Shot to EEG Database: ' + '\n' + newShot + '\n');
+
+            newShot.save(function (err) {
+                if (err){
+                    throw new Error('Shot did not save to database');
+                } else {
+                    console.log ('Save successful');
+                }
+            });
         });
     },
 
@@ -129,10 +147,27 @@ module.exports = {
                }
             );
         },
+
+    // This function should build a ratio of delta to midgamma
+    // any large, sudden changes are indicative of a change in 
+    // creature consciousness from wake to sleep and vice versa
+
     delta_midgamma: function(callback){
         eegSnapshot.aggregate([
                 { $sort : { timeStamp: -1 } },
                 { $limit: 1000 }
-            ])
-    }
+            ]);
+    },
+
+    typecheckKeyValues: function(obj, callback){
+        for (var prop in obj) {
+            console.log(obj + " " + prop + " = " + obj[prop]);
+            if( typeof obj[prop] != "number"){
+                throw new Error(obj + " " + prop + " = " + obj[prop] + " is not a number.");
+            }
+        }
+        if( callback ){
+            callback();
+        }
+    }    
 }

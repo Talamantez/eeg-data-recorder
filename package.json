@@ -1,7 +1,7 @@
 {
   "name": "cylon-mindwave-eeg-recorder",
   "version": "0.0.0",
-  "description": "use mongoose to record cylon eeg data",
+  "description": "Record and store single-stream EEG data",
   "main": "app.js",
   "scripts": {
     "start": "python connect-and-run.py",
@@ -36,14 +36,9 @@
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.4",
-    "jasmine": "^2.2.1",
     "load-grunt-tasks": "^2.0.0",
     "mocha": "^2.1.0",
-    "mocha-phantomjs": "^3.5.2",
     "node-neat": "^1.4.2",
-    "node-refills": "^1.0.1",
-    "phantomjs": "^1.9.13",
-    "supertest": "^0.15.0",
-    "supervisor": "^0.6.0"
+    "node-refills": "^1.0.1"
   }
 }
