@@ -95,7 +95,7 @@ module.exports = {
     },
 
     avgLastTen: function(callback){
-                 eegSnapshot.aggregate(
+            eegSnapshot.aggregate(
                [
                  { $sort : { timeStamp: -1 } },
                  { $limit: 10 },
@@ -118,7 +118,7 @@ module.exports = {
                ], function(err, eegData){
                     return callback(eegData[0]);
                }
-            );
+          );
     },
 
     avgLast1000: function(callback){
@@ -153,10 +153,23 @@ module.exports = {
     // creature consciousness from wake to sleep and vice versa
 
     delta_midgamma: function(callback){
-        eegSnapshot.aggregate([
-                { $sort : { timeStamp: -1 } },
-                { $limit: 1000 }
-            ]);
+        eegSnapshot.aggregate(
+           [
+             { $sort : { timeStamp: -1 } },
+             { $limit: 10 },
+             {
+               $group:
+                 {
+                    _id: "delta_midgamma 10 EEG Data",
+                    timeWindowStart:    { $last:  "$timeStamp" },
+                    timeWindowEnd:      { $first: "$timeStamp" },
+                    delta:              { $avg:   "$delta"     },
+                    midGamma:           { $avg:   "$midGamma"  }
+                 }
+             }
+           ], function(err, eegData){
+                return callback( eegData[0].delta / eegData[0].midGamma );
+        });
     },
 
     typecheckKeyValues: function(obj, callback){

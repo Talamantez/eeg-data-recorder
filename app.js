@@ -87,10 +87,12 @@ cylon.robot({
     eeg.avgLastTen(function(data){
         avg10Data = data;
     }),
+    
     eeg.avgLast1000(function(data){
         avg1000Data = data;
     }),
-    sendData(newData,avg10Data,avg1000Data);
+
+    sendData( newData, avg10Data, avg1000Data, delta_midgamma );
 
 })})
 .start();
@@ -111,8 +113,8 @@ Helper Functions
 */
 
 // Send data to website using socket.io
-function sendData(newData,avg10,avg1000){
-    var brainDataChunk = [newData,avg10,avg1000];
+function sendData( newData, avg10, avg1000, delta_midgamma){
+    var brainDataChunk = [ newData, avg10, avg1000, delta_midgamma ];
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
@@ -122,10 +124,12 @@ function mockHeadset(){
     var mockNew = eeg.mockBrainData();
     var mock10Avg = eeg.mockBrainData();
     var mock1000Avg = eeg.mockBrainData();
+    var mockDeltaMidgamma = eeg.mockData();
 
     console.log('mockNew' + mockNew);
     console.log('mock10Avg' + mock10Avg);
     console.log('mock1000Avg' + mock1000Avg);
+    console.log('mockDeltaMidgamma' + mockDeltaMidgamma);
 
-    sendData(mockNew,mock10Avg,mock1000Avg);
+    sendData( mockNew, mock10Avg, mock1000Avg, mockDeltaMidgamma );
 }

@@ -67,6 +67,8 @@
       var avg1000LoGammaText    = $('#avg-1000-lo-gamma');
       var avg1000MidGammaText   = $('#avg-1000-mid-gamma');
 
+      var delta_midgammaText    = $('#delta_midgamma');
+
       var newBrainData;
       var avgBrainData;
       var avg1000BrainData;
@@ -180,8 +182,10 @@
           avgBrainData = brainData[1];
           // Extract avg last 1000 readings
           avg1000BrainData = brainData[2];
+          // Extract delta_midgamma ratio
+          delta_midgamma = brainData[3];
 
-          //console.dir(brainData);
+          console.dir(brainData);
 
           // Extract timestamp from new reading
           newTimeStamp = newBrainData["timeStamp"];
@@ -228,7 +232,7 @@
           last10LoGammaArray.push(newBrainData["loGamma"]);
           last10LoGammaArray.shift();
           /*
-          push the new loGamma data and shift off the oldest reading
+          push the new midGamma data and shift off the oldest reading
           */
           last10MidGammaArray.push(newBrainData["midGamma"]);
           last10MidGammaArray.shift();                                        
@@ -270,7 +274,9 @@
           avg1000LoBetaText.html(avg1000BrainData["loBeta"]);
           avg1000HiBetaText.html(avg1000BrainData["hiBeta"]);           
           avg1000LoGammaText.html(avg1000BrainData["loGamma"]);
-          avg1000MidGammaText.html(avg1000BrainData["midGamma"]);       
+          avg1000MidGammaText.html(avg1000BrainData["midGamma"]); 
+
+          delta_midgammaText.html( delta_midgamma );  
 
           window.myLine = new Chart(ctx).Line(lineChartData, {
               responsive: true,
@@ -399,7 +405,13 @@
               <div class="brain-data-value"  id="avg-1000-mid-gamma">avg1000Data["midGamma"]</div>
           </div>
         </div>
-
+        
+        <div class="brain-data-container">
+          <h3 class="brain-data-heading">Delta-Midgamma Ratio</h3>
+          <div class="brain-data-row"> 
+              <div class="brain-data-value" id="delta_midgamma">delta_midgamma</div>
+          </div>
+        </div>
        </article>
   </div>
 

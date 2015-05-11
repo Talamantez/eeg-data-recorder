@@ -13,16 +13,24 @@ var port = 3000;
 
 app.use(express.static(__dirname + '/dist'));
 
-var headsetPort = '/dev/rfcomm0'; //this might be rfcomm0, rfcomm1, or rfcomm2. Check your connection.
-var activeDB = 'eegControl'; /*use 'eeg'  for general testing', 
-                        'eegNap'   for napping,
-                        'eegSleep' for sleeping,
-                        'eegAwake' for wake recording
-                        Be sure this matches db in models/eegSnapshot
-                        and to switch mongo  to this db,
-                        'eegControl' for control data                          
-                        and 'eegMock' for mock data
-                        */ 
+/* 
+ * The headset port may be rfcomm0, rfcomm1, or rfcomm2. 
+ * Check the connection via gort cli
+ */
+
+var headsetPort = '/dev/rfcomm0';
+
+/* Use 'eeg'  for general testing', 
+ * 'eegNap'   for napping,
+ * 'eegSleep' for sleeping,
+ * 'eegAwake' for wake recording
+ * Be sure this matches db in models/eegSnapshot
+ * and to switch mongo  to this db,
+ * 'eegControl' for control data                          
+ * and 'eegMock' for mock data
+ */ 
+
+var activeDB = 'eegControl'; 
 
 var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 
@@ -38,7 +46,7 @@ http.listen(port, function(){
 
 /*
 
-Log out a message when a user connects to the website
+    Log out a message when a user connects to the website
 
 */
 
@@ -48,11 +56,12 @@ io.on('connection', function(socket){
 
 /*
 
-Connect to MongoDB
+    Connect to MongoDB
 
 */
 
-mongoose.connect(uristring);
+mongoose.connect( uristring );
+
 /*
 
     Initialize the Cylon robot,
@@ -87,10 +96,12 @@ cylon.robot({
     eeg.avgLastTen(function(data){
         avg10Data = data;
     }),
+
     eeg.avgLast1000(function(data){
         avg1000Data = data;
     }),
-    sendData(newData,avg10Data,avg1000Data);
+
+    sendData( newData, avg10Data, avg1000Data, delta_midgamma );
 
 })})
 .start();
@@ -111,8 +122,8 @@ Helper Functions
 */
 
 // Send data to website using socket.io
-function sendData(newData,avg10,avg1000){
-    var brainDataChunk = [newData,avg10,avg1000];
+function sendData( newData, avg10, avg1000, delta_midgamma){
+    var brainDataChunk = [ newData, avg10, avg1000, delta_midgamma ];
     console.log(brainDataChunk);
     io.sockets.emit('brain-data', brainDataChunk);
 }
@@ -122,10 +133,12 @@ function mockHeadset(){
     var mockNew = eeg.mockBrainData();
     var mock10Avg = eeg.mockBrainData();
     var mock1000Avg = eeg.mockBrainData();
+    var mockDeltaMidgamma = eeg.mockData();
 
     console.log('mockNew' + mockNew);
     console.log('mock10Avg' + mock10Avg);
     console.log('mock1000Avg' + mock1000Avg);
+    console.log('mockDeltaMidgamma' + mockDeltaMidgamma);
 
-    sendData(mockNew,mock10Avg,mock1000Avg);
+    sendData( mockNew, mock10Avg, mock1000Avg, mockDeltaMidgamma );
 }
