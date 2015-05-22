@@ -77,7 +77,8 @@ cylon.robot({
 .on('ready', function(robot) {
   var newData;
   var avg10Data;
-  var avg1000Data;  
+  var avg1000Data;
+  var delta_midgamma;
   robot.headset.on('eeg', function(data) {
     eeg.addShot(	data.delta,
         			data.theta,
@@ -101,6 +102,9 @@ cylon.robot({
         avg1000Data = data;
     }),
 
+    eeg.delta_midgamma(function(data){
+        delta_midgamma = data;
+    })
     sendData( newData, avg10Data, avg1000Data, delta_midgamma );
 
 })})
