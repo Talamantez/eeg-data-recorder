@@ -2,7 +2,7 @@ var eegSnapshot = require('./models/eegSnapshot');
 
 module.exports = {
 
-     addShot: function(delta, theta, loAlpha, hiAlpha, loBeta, hiBeta,loGamma, midGamma){
+     addShot: function(delta, theta, loAlpha, hiAlpha, loBeta, hiBeta,loGamma, midGamma, delta_midgamma_ratio){
         var typeCheckObj = {
             delta:    delta,
             theta:    theta,
@@ -11,7 +11,8 @@ module.exports = {
             loBeta:   loBeta,
             hiBeta:   hiBeta,
             loGamma:  loGamma,
-            midGamma: midGamma
+            midGamma: midGamma,
+            delta_midgamma_ratio: delta_midgamma_ratio
         }
 
         // If typecheck passes, save shot to database
@@ -25,7 +26,8 @@ module.exports = {
                 loBeta:   loBeta,
                 hiBeta:   hiBeta,
                 loGamma:  loGamma,
-                midGamma: midGamma
+                midGamma: midGamma,
+                delta_midgamma_ratio: delta_midgamma_ratio                
             });
 
             console.log('Saving Shot to EEG Database: ' + '\n' + newShot + '\n');
@@ -54,7 +56,8 @@ module.exports = {
                 loBeta: this.mockData(),
                 hiBeta: this.mockData(),                
                 loGamma: this.mockData(),
-                midGamma: this.mockData()
+                midGamma: this.mockData(),
+                delta_midgamma_ratio: this.mockData()
              };
             console.log(fakeBrainData);
             return fakeBrainData;
@@ -62,8 +65,7 @@ module.exports = {
 
     findAll: function(callback){
         eegSnapshot.find({}, function(err, eegData){
-/*            console.log('eegData' + eegData + '\n');*/
-            return callback(eegData);
+            return callback( eegData );
          });        
     },
 
@@ -85,7 +87,8 @@ module.exports = {
                         loBeta:             { $avg:   "$loBeta"    },
                         hiBeta:             { $avg:   "$hiBeta"    },                        
                         loGamma:            { $avg:   "$loGamma"   },
-                        midGamma:           { $avg:   "$midGamma"  }
+                        midGamma:           { $avg:   "$midGamma"  },
+                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}
                      }
                  }
                ], function(err, eegData){
@@ -112,7 +115,8 @@ module.exports = {
                         loBeta:             { $avg:   "$loBeta"    },
                         hiBeta:             { $avg:   "$hiBeta"    },
                         loGamma:            { $avg:   "$loGamma"   },
-                        midGamma:           { $avg:   "$midGamma"  }
+                        midGamma:           { $avg:   "$midGamma"  },
+                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}
                      }
                  }
                ], function(err, eegData){
@@ -139,7 +143,8 @@ module.exports = {
                         loBeta:             { $avg:   "$loBeta"     },
                         hiBeta:             { $avg:   "$hiBeta"     },
                         loGamma:            { $avg:   "$loGamma"    },
-                        midGamma:           { $avg:   "$midGamma"   }
+                        midGamma:           { $avg:   "$midGamma"   },
+                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}                        
                      }
                  }
                ], function(err, eegData){
@@ -147,31 +152,7 @@ module.exports = {
                }
             );
         },
-
-    // This function should build a ratio of delta to midgamma
-    // any large, sudden changes are indicative of a change in 
-    // creature consciousness from wake to sleep and vice versa
-
-    delta_midgamma: function(callback){
-        eegSnapshot.aggregate(
-           [
-             { $sort : { timeStamp: -1 } },
-             { $limit: 10 },
-             {
-               $group:
-                 {
-                    _id: "delta_midgamma 10 EEG Data",
-                    timeWindowStart:    { $last:  "$timeStamp" },
-                    timeWindowEnd:      { $first: "$timeStamp" },
-                    delta:              { $avg:   "$delta"     },
-                    midGamma:           { $avg:   "$midGamma"  }
-                 }
-             }
-           ], function(err, eegData){
-                return callback( eegData[0].delta / eegData[0].midGamma );
-        });
-    },
-
+        
     typecheckKeyValues: function(obj, callback){
         for (var prop in obj) {
             console.log(obj + " " + prop + " = " + obj[prop]);

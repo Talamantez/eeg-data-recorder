@@ -78,7 +78,8 @@ cylon.robot({
         			data.loBeta,
                     data.hiBeta,
         			data.loGamma,
-        			data.midGamma
+        			data.midGamma,
+                    (data.delta/data.midGamma)
     		),
 
     eeg.lastShot(function(data){
@@ -93,11 +94,7 @@ cylon.robot({
         avg1000Data = data;
     }),
 
-    eeg.delta_midgamma(function(data){
-        delta_midgamma = data;
-    })
-
-    sendData( newData, avg10Data, avg1000Data, delta_midgamma );
+    sendData( newData, avg10Data, avg1000Data);
 
 })})
 .start();

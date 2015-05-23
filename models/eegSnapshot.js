@@ -9,7 +9,8 @@ var eegSchema = new mongoose.Schema({
   loBeta: Number,
   hiBeta: Number,
   loGamma: Number,
-  midGamma: Number
+  midGamma: Number,
+  delta_midgamma_ratio: Number
 },{
 	collection: 'eegTest'     /*
 
