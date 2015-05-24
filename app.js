@@ -69,8 +69,10 @@ cylon.robot({
   var newData;
   var avg10Data;
   var avg1000Data;
-  var delta_midgamma;
+  var delta_midgamma_ratio;
   robot.headset.on('eeg', function(data) {
+    delta_midgamma_ratio = data.delta/data.midGamma;
+    console.log('<<<<  '    +  delta_midgamma_ratio +       '       >>>>>');
     eeg.addShot(	data.delta,
         			data.theta,
         			data.loAlpha,
@@ -79,7 +81,7 @@ cylon.robot({
                     data.hiBeta,
         			data.loGamma,
         			data.midGamma,
-                    (data.delta/data.midGamma)
+                    delta_midgamma_ratio
     		),
 
     eeg.lastShot(function(data){
@@ -94,7 +96,7 @@ cylon.robot({
         avg1000Data = data;
     }),
 
-    sendData( newData, avg10Data, avg1000Data);
+    sendData( newData, avg10Data, avg1000Data );
 
 })})
 .start();
@@ -115,10 +117,10 @@ Helper Functions
 */
 
 // Send data to website using socket.io
-function sendData( newData, avg10, avg1000, delta_midgamma){
-    var brainDataChunk = [ newData, avg10, avg1000, delta_midgamma ];
-    console.log(brainDataChunk);
-    io.sockets.emit('brain-data', brainDataChunk);
+function sendData( newData, avg10, avg1000){
+    var brainDataChunk = [ newData, avg10, avg1000 ];
+    console.log( brainDataChunk );
+    io.sockets.emit( 'brain-data' , brainDataChunk );
 }
 
 // Send simulated brain data using socket.io
@@ -126,12 +128,10 @@ function mockHeadset(){
     var mockNew = eeg.mockBrainData();
     var mock10Avg = eeg.mockBrainData();
     var mock1000Avg = eeg.mockBrainData();
-    var mockDeltaMidgamma = eeg.mockData();
 
     console.log('mockNew' + mockNew);
     console.log('mock10Avg' + mock10Avg);
     console.log('mock1000Avg' + mock1000Avg);
-    console.log('mockDeltaMidgamma' + mockDeltaMidgamma);
 
-    sendData( mockNew, mock10Avg, mock1000Avg, mockDeltaMidgamma );
+    sendData( mockNew, mock10Avg, mock1000Avg );
 }

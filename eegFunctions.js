@@ -88,7 +88,7 @@ module.exports = {
                         hiBeta:             { $avg:   "$hiBeta"    },                        
                         loGamma:            { $avg:   "$loGamma"   },
                         midGamma:           { $avg:   "$midGamma"  },
-                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}
+                        delta_midgamma_ratio: { $avg: "$delta_midgamma_ratio"}
                      }
                  }
                ], function(err, eegData){
@@ -116,7 +116,7 @@ module.exports = {
                         hiBeta:             { $avg:   "$hiBeta"    },
                         loGamma:            { $avg:   "$loGamma"   },
                         midGamma:           { $avg:   "$midGamma"  },
-                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}
+                        delta_midgamma_ratio: { $avg: "$delta_midgamma_ratio"}
                      }
                  }
                ], function(err, eegData){
@@ -144,7 +144,7 @@ module.exports = {
                         hiBeta:             { $avg:   "$hiBeta"     },
                         loGamma:            { $avg:   "$loGamma"    },
                         midGamma:           { $avg:   "$midGamma"   },
-                        delta_midgamma_ratio: { $avg: "delta_midgamma_ratio"}                        
+                        delta_midgamma_ratio: { $avg: "$delta_midgamma_ratio"}                        
                      }
                  }
                ], function(err, eegData){
