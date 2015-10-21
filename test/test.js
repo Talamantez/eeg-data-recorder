@@ -75,7 +75,6 @@ suite("mockEegData", function(){
 
 	test("mockBrainData() '_id' field should be the string 'Data' ", function(){
 			expect(eeg.mockBrainData()['_id']).to.equal('Data');
-
 	});
 
 	test("mockBrainData() 'delta' field should be a number", function(){

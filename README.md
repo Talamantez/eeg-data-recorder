@@ -35,3 +35,11 @@ To Do:
      * band pass
      * high pass
      * low pass
+
+
+------------------------------------------------
+
+Put stuff on your path
+export PATH=$PATH:$HOME/go/bin
+export PATH=$PATH:$HOME/gort/bin
+

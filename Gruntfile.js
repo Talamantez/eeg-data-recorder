@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         dist: {
             // the files to concatenate
-            src: ['bower_components/jquery/dist/jquery.js', 'bower_components/bootstrap/dist/js/bootstrap.js', 'bower_components/bootstrap-select/dist/js/bootstrap-select.js'],
+            src: ['bower_components/socket.io-client/socket.io.js','bower_components/jquery/dist/jquery.js', 'bower_components/bootstrap/dist/js/bootstrap.js', 'bower_components/bootstrap-select/dist/js/bootstrap-select.js'],
             // the location of the resulting JS file
             dest: 'dist/js/<%= pkg.name %>.js'
         }

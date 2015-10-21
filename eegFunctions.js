@@ -2,6 +2,16 @@ var eegSnapshot = require('./models/eegSnapshot');
 
 module.exports = {
      addShot: function(delta, theta, loAlpha, hiAlpha, loBeta, hiBeta,loGamma, midGamma){
+        var args = Array.prototype.slice.call( arguments );
+        for ( var i = 0 ; i < args.length ; i++){
+            if ( typeof args[i] !== "number" ){
+                throw new Error( args[i] 
+                                    + ' is of type ' 
+                                    + typeof args[i] 
+                                    + '. Value needs to be a number, instead'
+                                )
+            }
+        }
     		   var newShot = new eegSnapshot({
     	    		delta:    delta,
     	    		theta:    theta,

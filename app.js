@@ -14,9 +14,9 @@ var db = mongoose.connection;
 
 var headsetPort = '/dev/rfcomm0'; 
                         /* 
-                            this might be rfcomm0, 
-                            rfcomm1, 
-                            or rfcomm2. 
+                            this might be rfcomm0,
+                            rfcomm1,
+                            or rfcomm2.
                             Check your connection.
                         */
 
