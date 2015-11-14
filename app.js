@@ -36,10 +36,6 @@ var uristring = process.env.MONGOLAB_URI || 'mongodb://localhost/' + activeDB;
 
 app.use( express.static( __dirname + '/dist' ) );
 
-
-
-
-
 db.on( 'error' , console.error );
 db.once( 'open', function callback(){
         console.log( 'db ' + activeDB + ' ready' );
