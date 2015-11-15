@@ -70,8 +70,12 @@ mongoose.connect( uristring );
     grab data from MongoDB and emit it to website
 
 */
+setInterval(function() {
+    console.log('mocking headset');
+    mockHeadset();
+}, 2000);
 
-cylon.robot({
+/*cylon.robot({
       connection:   { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
       device:       { name: 'headset', driver: 'neurosky' }
 })
@@ -101,7 +105,7 @@ cylon.robot({
         sendData(newData,avg10Data,avg1000Data);
     })
 })
-.start();
+.start();*/
 
 /* 
 

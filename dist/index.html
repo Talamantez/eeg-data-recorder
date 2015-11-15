@@ -2,11 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	
+	<link rel="stylesheet" type="text/css" href="./css/cylon-mindwave-eeg-recorder.css">
+	
+	<script src = "./js/cylon-mindwave-eeg-recorder.js"></script>
+    
     <title>EEG Data</title>
-    <h3>A recorder and visualizer.</h3>
+    
 </head>
 <body>
+    <h3>An EEG recorder and visualizer.</h3>
     <div id="dataContainer"></div>
     <script src="./js/build.js"></script>
+    <script>
+    	var socketHandler = function( trigger ){
+    		var self = this;
+    		self.trigger = trigger;
+    		self.socket = io();
+    		self.bindSocket = function(){
+    			console.log('binding socket');
+    			self.socket.on( self.trigger, function(){
+    				console.log('triggered');
+    			});
+    		}
+    	}
+    	$( document ).ready( function(){
+    		var eegHandler = new socketHandler( 'brain-data' );
+    		eegHandler.bindSocket();
+    	});
+    </script>
 </body>
 </html>
