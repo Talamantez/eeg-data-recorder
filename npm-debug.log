@@ -1,5 +1,9 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '--save', 'jquery' ]
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-dom' ]
 2 info using npm@2.11.3
 3 info using node@v0.12.7
 4 verbose node symlink /usr/bin/node
@@ -32,419 +36,178 @@
 31 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/grunt-express/package.json
 32 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/grunt-mocha-test/package.json
 33 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/grunt-open/package.json
-34 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/load-grunt-tasks/package.json
-35 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/matchdep/package.json
-36 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mocha/package.json
-37 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mocha-phantomjs/package.json
-38 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mongodb/package.json
-39 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mongoose/package.json
-40 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/phantomjs/package.json
-41 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/pm2/package.json
-42 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/react/package.json
-43 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/reactify/package.json
-44 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/socket.io/package.json
-45 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/socket.io-client/package.json
-46 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/supertest/package.json
-47 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/supervisor/package.json
-48 info package.json cylon@0.20.2 license should be a valid SPDX license expression
-49 info package.json cylon-neurosky@0.7.0 No license field.
-50 info package.json grunt-browserify@4.0.1 No license field.
+34 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/jquery/package.json
+35 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/load-grunt-tasks/package.json
+36 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/matchdep/package.json
+37 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mocha/package.json
+38 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mocha-phantomjs/package.json
+39 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mongodb/package.json
+40 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/mongoose/package.json
+41 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/phantomjs/package.json
+42 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/pm2/package.json
+43 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/react/package.json
+44 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/reactify/package.json
+45 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/socket.io/package.json
+46 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/socket.io-client/package.json
+47 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/supertest/package.json
+48 verbose installManyTop reading scoped package data from /home/robert/Documents/eeg-data-recorder/node_modules/supervisor/package.json
+49 info package.json cylon@0.20.2 license should be a valid SPDX license expression
+50 info package.json cylon-neurosky@0.7.0 No license field.
 51 info package.json grunt-env@0.4.4 No license field.
-52 info package.json socket.io@1.3.7 No license field.
-53 info package.json chart.js@1.0.2 No license field.
-54 info package.json grunt@0.4.5 No license field.
-55 info package.json grunt-bower-concat@0.4.0 No license field.
-56 info package.json grunt-bower-install@1.6.0 No license field.
-57 info package.json grunt-contrib-concat@0.5.1 No license field.
-58 info package.json grunt-contrib-qunit@0.7.0 No license field.
-59 info package.json grunt-contrib-watch@0.6.1 No license field.
-60 info package.json grunt-express@1.4.1 No license field.
-61 info package.json grunt-mocha-test@0.12.7 No license field.
-62 info package.json grunt-open@0.2.3 No license field.
-63 info package.json matchdep@0.3.0 No license field.
-64 info package.json mocha-phantomjs@3.6.0 No license field.
-65 info package.json mongodb@1.4.39 No license field.
-66 info package.json supervisor@0.6.0 No license field.
-67 info package.json grunt-contrib-clean@0.6.0 No license field.
-68 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/package.json
-69 silly cache add args [ 'jquery', null ]
-70 verbose cache add spec jquery
-71 silly cache add parsed spec { raw: 'jquery',
-71 silly cache add   scope: null,
-71 silly cache add   name: 'jquery',
-71 silly cache add   rawSpec: '',
-71 silly cache add   spec: '*',
-71 silly cache add   type: 'range' }
-72 silly addNamed jquery@*
-73 verbose addNamed "*" is a valid semver range for jquery
-74 silly addNameRange { name: 'jquery', range: '*', hasData: false }
-75 silly mapToRegistry name jquery
-76 silly mapToRegistry using default registry
-77 silly mapToRegistry registry https://registry.npmjs.org/
-78 silly mapToRegistry uri https://registry.npmjs.org/jquery
-79 verbose addNameRange registry:https://registry.npmjs.org/jquery not in flight; fetching
-80 verbose request uri https://registry.npmjs.org/jquery
-81 verbose request no auth needed
-82 info attempt registry request try #1 at 12:06:00
-83 verbose request id 5f085ef59f6f4f5c
-84 verbose etag "9MMBT74WSLCBV7KWQGTF8W1OB"
-85 http request GET https://registry.npmjs.org/jquery
-86 http 200 https://registry.npmjs.org/jquery
-87 silly get cb [ 200,
-87 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-87 silly get     etag: '"C24HDK4725RJKXBWPERBF7X0F"',
-87 silly get     'content-type': 'application/json',
-87 silly get     'cache-control': 'max-age=60',
-87 silly get     'content-length': '58019',
-87 silly get     'accept-ranges': 'bytes',
-87 silly get     date: 'Sun, 15 Nov 2015 20:06:01 GMT',
-87 silly get     via: '1.1 varnish',
-87 silly get     age: '0',
-87 silly get     connection: 'keep-alive',
-87 silly get     'x-served-by': 'cache-lax1425-LAX',
-87 silly get     'x-cache': 'HIT',
-87 silly get     'x-cache-hits': '1',
-87 silly get     'x-timer': 'S1447617961.144169,VS0,VE160',
-87 silly get     vary: 'Accept' } ]
-88 verbose get saving jquery to /home/robert/.npm/registry.npmjs.org/jquery/.cache.json
-89 silly addNameRange number 2 { name: 'jquery', range: '*', hasData: true }
-90 silly addNameRange versions [ 'jquery',
-90 silly addNameRange   [ '1.5.1',
-90 silly addNameRange     '1.6.2',
-90 silly addNameRange     '1.6.3',
-90 silly addNameRange     '1.7.2',
-90 silly addNameRange     '1.7.3',
-90 silly addNameRange     '1.8.2',
-90 silly addNameRange     '1.8.3',
-90 silly addNameRange     '2.1.0-beta2',
-90 silly addNameRange     '2.1.0-beta3',
-90 silly addNameRange     '1.11.0-beta3',
-90 silly addNameRange     '1.11.0-rc1',
-90 silly addNameRange     '2.1.0-rc1',
-90 silly addNameRange     '1.11.0',
-90 silly addNameRange     '2.1.0',
-90 silly addNameRange     '2.1.1-beta1',
-90 silly addNameRange     '1.11.1-beta1',
-90 silly addNameRange     '2.1.1-rc1',
-90 silly addNameRange     '1.11.1-rc1',
-90 silly addNameRange     '2.1.1-rc2',
-90 silly addNameRange     '1.11.1-rc2',
-90 silly addNameRange     '2.1.1',
-90 silly addNameRange     '1.11.1',
-90 silly addNameRange     '1.9.1',
-90 silly addNameRange     '2.1.2',
-90 silly addNameRange     '1.11.2',
-90 silly addNameRange     '2.1.3',
-90 silly addNameRange     '2.1.4',
-90 silly addNameRange     '1.11.3',
-90 silly addNameRange     '3.0.0-alpha1' ] ]
-91 silly addNamed jquery@2.1.4
-92 verbose addNamed "2.1.4" is a plain semver version for jquery
-93 silly cache afterAdd jquery@2.1.4
-94 verbose afterAdd /home/robert/.npm/jquery/2.1.4/package/package.json not in flight; writing
-95 verbose afterAdd /home/robert/.npm/jquery/2.1.4/package/package.json written
-96 silly install resolved [ { name: 'jquery',
-96 silly install resolved     title: 'jQuery',
-96 silly install resolved     description: 'JavaScript library for DOM operations',
-96 silly install resolved     version: '2.1.4',
-96 silly install resolved     main: 'dist/jquery.js',
-96 silly install resolved     homepage: 'http://jquery.com',
-96 silly install resolved     author:
-96 silly install resolved      { name: 'jQuery Foundation and other contributors',
-96 silly install resolved        url: 'https://github.com/jquery/jquery/blob/2.1.4/AUTHORS.txt' },
-96 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/jquery/jquery.git' },
-96 silly install resolved     keywords: [ 'jquery', 'javascript', 'browser', 'library' ],
-96 silly install resolved     bugs: { url: 'http://bugs.jquery.com' },
-96 silly install resolved     licenses: [ [Object] ],
-96 silly install resolved     dependencies: {},
-96 silly install resolved     devDependencies:
-96 silly install resolved      { commitplease: '2.0.0',
-96 silly install resolved        grunt: '0.4.2',
-96 silly install resolved        'grunt-bowercopy': '0.7.1',
-96 silly install resolved        'grunt-cli': '0.1.13',
-96 silly install resolved        'grunt-compare-size': '0.4.0',
-96 silly install resolved        'grunt-contrib-jshint': '0.8.0',
-96 silly install resolved        'grunt-contrib-uglify': '0.3.2',
-96 silly install resolved        'grunt-contrib-watch': '0.5.3',
-96 silly install resolved        'grunt-git-authors': '1.2.0',
-96 silly install resolved        'grunt-jscs-checker': '0.4.1',
-96 silly install resolved        'grunt-jsonlint': '1.0.4',
-96 silly install resolved        'gzip-js': '0.3.2',
-96 silly install resolved        jsdom: '1.5.0',
-96 silly install resolved        'load-grunt-tasks': '0.3.0',
-96 silly install resolved        requirejs: '2.1.10',
-96 silly install resolved        testswarm: '1.1.0' },
-96 silly install resolved     scripts:
-96 silly install resolved      { build: 'npm install && grunt',
-96 silly install resolved        start: 'grunt watch',
-96 silly install resolved        test: 'grunt' },
-96 silly install resolved     gitHead: '7751e69b615c6eca6f783a81e292a55725af6b85',
-96 silly install resolved     _id: 'jquery@2.1.4',
-96 silly install resolved     _shasum: '228bde698a0c61431dc2630a6a154f15890d2317',
-96 silly install resolved     _from: 'jquery@*',
-96 silly install resolved     _npmVersion: '2.7.4',
-96 silly install resolved     _nodeVersion: '0.12.2',
-96 silly install resolved     _npmUser: { name: 'timmywil', email: 'timmywillisn@gmail.com' },
-96 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
-96 silly install resolved     dist:
-96 silly install resolved      { shasum: '228bde698a0c61431dc2630a6a154f15890d2317',
-96 silly install resolved        tarball: 'http://registry.npmjs.org/jquery/-/jquery-2.1.4.tgz' },
-96 silly install resolved     directories: {},
-96 silly install resolved     _resolved: 'https://registry.npmjs.org/jquery/-/jquery-2.1.4.tgz',
-96 silly install resolved     readme: 'ERROR: No README data found!' } ]
-97 info install jquery@2.1.4 into /home/robert/Documents/eeg-data-recorder
-98 info installOne jquery@2.1.4
-99 verbose installOne of jquery to /home/robert/Documents/eeg-data-recorder not in flight; installing
-100 verbose lock using /home/robert/.npm/_locks/jquery-7b05f454784d757b.lock for /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-101 silly install write writing jquery 2.1.4 to /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-102 verbose unbuild node_modules/jquery
-103 silly gentlyRm /home/robert/Documents/eeg-data-recorder/node_modules/jquery is being purged from base /home/robert/Documents/eeg-data-recorder
-104 verbose gentlyRm don't care about contents; nuking /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-105 verbose tar unpack /home/robert/.npm/jquery/2.1.4/package.tgz
-106 verbose tar unpacking to /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-107 silly gentlyRm /home/robert/Documents/eeg-data-recorder/node_modules/jquery is being purged
-108 verbose gentlyRm don't care about contents; nuking /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-109 silly gunzTarPerm modes [ '775', '664' ]
-110 silly gunzTarPerm extractEntry package.json
-111 silly gunzTarPerm modified mode [ 'package.json', 420, 436 ]
-112 silly gunzTarPerm extractEntry .npmignore
-113 silly gunzTarPerm modified mode [ '.npmignore', 420, 436 ]
-114 silly gunzTarPerm extractEntry README.md
-115 silly gunzTarPerm modified mode [ 'README.md', 420, 436 ]
-116 silly gunzTarPerm extractEntry CONTRIBUTING.md
-117 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 420, 436 ]
-118 silly gunzTarPerm extractEntry .bowerrc
-119 silly gunzTarPerm modified mode [ '.bowerrc', 420, 436 ]
-120 silly gunzTarPerm extractEntry AUTHORS.txt
-121 silly gunzTarPerm modified mode [ 'AUTHORS.txt', 420, 436 ]
-122 silly gunzTarPerm extractEntry MIT-LICENSE.txt
-123 silly gunzTarPerm modified mode [ 'MIT-LICENSE.txt', 420, 436 ]
-124 silly gunzTarPerm extractEntry bower.json
-125 silly gunzTarPerm modified mode [ 'bower.json', 420, 436 ]
-126 silly gunzTarPerm extractEntry dist/jquery.js
-127 silly gunzTarPerm modified mode [ 'dist/jquery.js', 420, 436 ]
-128 silly gunzTarPerm extractEntry dist/jquery.min.js
-129 silly gunzTarPerm modified mode [ 'dist/jquery.min.js', 420, 436 ]
-130 silly gunzTarPerm extractEntry dist/jquery.min.map
-131 silly gunzTarPerm modified mode [ 'dist/jquery.min.map', 420, 436 ]
-132 silly gunzTarPerm extractEntry src/wrap.js
-133 silly gunzTarPerm modified mode [ 'src/wrap.js', 420, 436 ]
-134 silly gunzTarPerm extractEntry src/dimensions.js
-135 silly gunzTarPerm modified mode [ 'src/dimensions.js', 420, 436 ]
-136 silly gunzTarPerm extractEntry src/effects.js
-137 silly gunzTarPerm modified mode [ 'src/effects.js', 420, 436 ]
-138 silly gunzTarPerm extractEntry src/event.js
-139 silly gunzTarPerm modified mode [ 'src/event.js', 420, 436 ]
-140 silly gunzTarPerm extractEntry src/deprecated.js
-141 silly gunzTarPerm modified mode [ 'src/deprecated.js', 420, 436 ]
-142 silly gunzTarPerm extractEntry src/intro.js
-143 silly gunzTarPerm modified mode [ 'src/intro.js', 420, 436 ]
-144 silly gunzTarPerm extractEntry src/jquery.js
-145 silly gunzTarPerm modified mode [ 'src/jquery.js', 420, 436 ]
-146 silly gunzTarPerm extractEntry src/manipulation.js
-147 silly gunzTarPerm modified mode [ 'src/manipulation.js', 420, 436 ]
-148 silly gunzTarPerm extractEntry src/offset.js
-149 silly gunzTarPerm modified mode [ 'src/offset.js', 420, 436 ]
-150 silly gunzTarPerm extractEntry src/outro.js
-151 silly gunzTarPerm modified mode [ 'src/outro.js', 420, 436 ]
-152 silly gunzTarPerm extractEntry src/deferred.js
-153 silly gunzTarPerm modified mode [ 'src/deferred.js', 420, 436 ]
-154 silly gunzTarPerm extractEntry src/queue.js
-155 silly gunzTarPerm modified mode [ 'src/queue.js', 420, 436 ]
-156 silly gunzTarPerm extractEntry src/data.js
-157 silly gunzTarPerm modified mode [ 'src/data.js', 420, 436 ]
-158 silly gunzTarPerm extractEntry src/selector-native.js
-159 silly gunzTarPerm modified mode [ 'src/selector-native.js', 420, 436 ]
-160 silly gunzTarPerm extractEntry src/css.js
-161 silly gunzTarPerm modified mode [ 'src/css.js', 420, 436 ]
-162 silly gunzTarPerm extractEntry src/selector-sizzle.js
-163 silly gunzTarPerm modified mode [ 'src/selector-sizzle.js', 420, 436 ]
-164 silly gunzTarPerm extractEntry src/core.js
-165 silly gunzTarPerm modified mode [ 'src/core.js', 420, 436 ]
-166 silly gunzTarPerm extractEntry src/selector.js
-167 silly gunzTarPerm modified mode [ 'src/selector.js', 420, 436 ]
-168 silly gunzTarPerm extractEntry src/callbacks.js
-169 silly gunzTarPerm modified mode [ 'src/callbacks.js', 420, 436 ]
-170 silly gunzTarPerm extractEntry src/serialize.js
-171 silly gunzTarPerm modified mode [ 'src/serialize.js', 420, 436 ]
-172 silly gunzTarPerm extractEntry src/attributes.js
-173 silly gunzTarPerm modified mode [ 'src/attributes.js', 420, 436 ]
-174 silly gunzTarPerm extractEntry src/traversing.js
-175 silly gunzTarPerm modified mode [ 'src/traversing.js', 420, 436 ]
-176 silly gunzTarPerm extractEntry src/ajax.js
-177 silly gunzTarPerm modified mode [ 'src/ajax.js', 420, 436 ]
-178 silly gunzTarPerm extractEntry src/data/Data.js
-179 silly gunzTarPerm modified mode [ 'src/data/Data.js', 420, 436 ]
-180 silly gunzTarPerm extractEntry src/data/accepts.js
-181 silly gunzTarPerm modified mode [ 'src/data/accepts.js', 420, 436 ]
-182 silly gunzTarPerm extractEntry src/data/var/data_priv.js
-183 silly gunzTarPerm modified mode [ 'src/data/var/data_priv.js', 420, 436 ]
-184 silly gunzTarPerm extractEntry src/data/var/data_user.js
-185 silly gunzTarPerm modified mode [ 'src/data/var/data_user.js', 420, 436 ]
-186 silly gunzTarPerm extractEntry src/event/ajax.js
-187 silly gunzTarPerm modified mode [ 'src/event/ajax.js', 420, 436 ]
-188 silly gunzTarPerm extractEntry src/event/alias.js
-189 silly gunzTarPerm modified mode [ 'src/event/alias.js', 420, 436 ]
-190 silly gunzTarPerm extractEntry src/event/support.js
-191 silly gunzTarPerm modified mode [ 'src/event/support.js', 420, 436 ]
-192 silly gunzTarPerm extractEntry src/queue/delay.js
-193 silly gunzTarPerm modified mode [ 'src/queue/delay.js', 420, 436 ]
-194 silly gunzTarPerm extractEntry src/core/access.js
-195 silly gunzTarPerm modified mode [ 'src/core/access.js', 420, 436 ]
-196 silly gunzTarPerm extractEntry src/core/init.js
-197 silly gunzTarPerm modified mode [ 'src/core/init.js', 420, 436 ]
-198 silly gunzTarPerm extractEntry src/core/parseHTML.js
-199 silly gunzTarPerm modified mode [ 'src/core/parseHTML.js', 420, 436 ]
-200 silly gunzTarPerm extractEntry src/core/ready.js
-201 silly gunzTarPerm modified mode [ 'src/core/ready.js', 420, 436 ]
-202 silly gunzTarPerm extractEntry src/core/var/rsingleTag.js
-203 silly gunzTarPerm modified mode [ 'src/core/var/rsingleTag.js', 420, 436 ]
-204 silly gunzTarPerm extractEntry src/ajax/jsonp.js
-205 silly gunzTarPerm modified mode [ 'src/ajax/jsonp.js', 420, 436 ]
-206 silly gunzTarPerm extractEntry src/ajax/load.js
-207 silly gunzTarPerm modified mode [ 'src/ajax/load.js', 420, 436 ]
-208 silly gunzTarPerm extractEntry src/ajax/parseJSON.js
-209 silly gunzTarPerm modified mode [ 'src/ajax/parseJSON.js', 420, 436 ]
-210 silly gunzTarPerm extractEntry src/ajax/parseXML.js
-211 silly gunzTarPerm modified mode [ 'src/ajax/parseXML.js', 420, 436 ]
-212 silly gunzTarPerm extractEntry src/ajax/script.js
-213 silly gunzTarPerm modified mode [ 'src/ajax/script.js', 420, 436 ]
-214 silly gunzTarPerm extractEntry src/ajax/xhr.js
-215 silly gunzTarPerm modified mode [ 'src/ajax/xhr.js', 420, 436 ]
-216 silly gunzTarPerm extractEntry src/ajax/var/nonce.js
-217 silly gunzTarPerm modified mode [ 'src/ajax/var/nonce.js', 420, 436 ]
-218 silly gunzTarPerm extractEntry src/ajax/var/rquery.js
-219 silly gunzTarPerm modified mode [ 'src/ajax/var/rquery.js', 420, 436 ]
-220 silly gunzTarPerm extractEntry src/css/addGetHookIf.js
-221 silly gunzTarPerm modified mode [ 'src/css/addGetHookIf.js', 420, 436 ]
-222 silly gunzTarPerm extractEntry src/css/curCSS.js
-223 silly gunzTarPerm modified mode [ 'src/css/curCSS.js', 420, 436 ]
-224 silly gunzTarPerm extractEntry src/css/defaultDisplay.js
-225 silly gunzTarPerm modified mode [ 'src/css/defaultDisplay.js', 420, 436 ]
-226 silly gunzTarPerm extractEntry src/css/hiddenVisibleSelectors.js
-227 silly gunzTarPerm modified mode [ 'src/css/hiddenVisibleSelectors.js', 420, 436 ]
-228 silly gunzTarPerm extractEntry src/css/support.js
-229 silly gunzTarPerm modified mode [ 'src/css/support.js', 420, 436 ]
-230 silly gunzTarPerm extractEntry src/css/swap.js
-231 silly gunzTarPerm modified mode [ 'src/css/swap.js', 420, 436 ]
-232 silly gunzTarPerm extractEntry src/css/var/cssExpand.js
-233 silly gunzTarPerm modified mode [ 'src/css/var/cssExpand.js', 420, 436 ]
-234 silly gunzTarPerm extractEntry src/css/var/getStyles.js
-235 silly gunzTarPerm modified mode [ 'src/css/var/getStyles.js', 420, 436 ]
-236 silly gunzTarPerm extractEntry src/css/var/isHidden.js
-237 silly gunzTarPerm modified mode [ 'src/css/var/isHidden.js', 420, 436 ]
-238 silly gunzTarPerm extractEntry src/css/var/rmargin.js
-239 silly gunzTarPerm modified mode [ 'src/css/var/rmargin.js', 420, 436 ]
-240 silly gunzTarPerm extractEntry src/css/var/rnumnonpx.js
-241 silly gunzTarPerm modified mode [ 'src/css/var/rnumnonpx.js', 420, 436 ]
-242 silly gunzTarPerm extractEntry src/attributes/attr.js
-243 silly gunzTarPerm modified mode [ 'src/attributes/attr.js', 420, 436 ]
-244 silly gunzTarPerm extractEntry src/attributes/classes.js
-245 silly gunzTarPerm modified mode [ 'src/attributes/classes.js', 420, 436 ]
-246 silly gunzTarPerm extractEntry src/attributes/prop.js
-247 silly gunzTarPerm modified mode [ 'src/attributes/prop.js', 420, 436 ]
-248 silly gunzTarPerm extractEntry src/attributes/support.js
-249 silly gunzTarPerm modified mode [ 'src/attributes/support.js', 420, 436 ]
-250 silly gunzTarPerm extractEntry src/attributes/val.js
-251 silly gunzTarPerm modified mode [ 'src/attributes/val.js', 420, 436 ]
-252 silly gunzTarPerm extractEntry src/manipulation/_evalUrl.js
-253 silly gunzTarPerm modified mode [ 'src/manipulation/_evalUrl.js', 420, 436 ]
-254 silly gunzTarPerm extractEntry src/manipulation/support.js
-255 silly gunzTarPerm modified mode [ 'src/manipulation/support.js', 420, 436 ]
-256 silly gunzTarPerm extractEntry src/manipulation/var/rcheckableType.js
-257 silly gunzTarPerm modified mode [ 'src/manipulation/var/rcheckableType.js', 420, 436 ]
-258 silly gunzTarPerm extractEntry src/sizzle/dist/sizzle.js
-259 silly gunzTarPerm modified mode [ 'src/sizzle/dist/sizzle.js', 420, 436 ]
-260 silly gunzTarPerm extractEntry src/sizzle/dist/sizzle.min.js
-261 silly gunzTarPerm modified mode [ 'src/sizzle/dist/sizzle.min.js', 420, 436 ]
-262 silly gunzTarPerm extractEntry src/sizzle/dist/sizzle.min.map
-263 silly gunzTarPerm modified mode [ 'src/sizzle/dist/sizzle.min.map', 420, 436 ]
-264 silly gunzTarPerm extractEntry src/sizzle/test/jquery.js
-265 silly gunzTarPerm modified mode [ 'src/sizzle/test/jquery.js', 420, 436 ]
-266 silly gunzTarPerm extractEntry src/sizzle/test/data/empty.js
-267 silly gunzTarPerm modified mode [ 'src/sizzle/test/data/empty.js', 420, 436 ]
-268 silly gunzTarPerm extractEntry src/sizzle/test/data/testinit.js
-269 silly gunzTarPerm modified mode [ 'src/sizzle/test/data/testinit.js', 420, 436 ]
-270 silly gunzTarPerm extractEntry src/sizzle/test/data/mixed_sort.html
-271 silly gunzTarPerm modified mode [ 'src/sizzle/test/data/mixed_sort.html', 420, 436 ]
-272 silly gunzTarPerm extractEntry src/sizzle/test/index.html
-273 silly gunzTarPerm modified mode [ 'src/sizzle/test/index.html', 420, 436 ]
-274 silly gunzTarPerm extractEntry src/sizzle/test/unit/extending.js
-275 silly gunzTarPerm modified mode [ 'src/sizzle/test/unit/extending.js', 420, 436 ]
-276 silly gunzTarPerm extractEntry src/sizzle/test/unit/selector.js
-277 silly gunzTarPerm modified mode [ 'src/sizzle/test/unit/selector.js', 420, 436 ]
-278 silly gunzTarPerm extractEntry src/sizzle/test/unit/utilities.js
-279 silly gunzTarPerm modified mode [ 'src/sizzle/test/unit/utilities.js', 420, 436 ]
-280 silly gunzTarPerm extractEntry src/traversing/findFilter.js
-281 silly gunzTarPerm modified mode [ 'src/traversing/findFilter.js', 420, 436 ]
-282 silly gunzTarPerm extractEntry src/traversing/var/rneedsContext.js
-283 silly gunzTarPerm modified mode [ 'src/traversing/var/rneedsContext.js', 420, 436 ]
-284 silly gunzTarPerm extractEntry src/effects/Tween.js
-285 silly gunzTarPerm modified mode [ 'src/effects/Tween.js', 420, 436 ]
-286 silly gunzTarPerm extractEntry src/effects/animatedSelector.js
-287 silly gunzTarPerm modified mode [ 'src/effects/animatedSelector.js', 420, 436 ]
-288 silly gunzTarPerm extractEntry src/var/arr.js
-289 silly gunzTarPerm modified mode [ 'src/var/arr.js', 420, 436 ]
-290 silly gunzTarPerm extractEntry src/var/concat.js
-291 silly gunzTarPerm modified mode [ 'src/var/concat.js', 420, 436 ]
-292 silly gunzTarPerm extractEntry src/var/hasOwn.js
-293 silly gunzTarPerm modified mode [ 'src/var/hasOwn.js', 420, 436 ]
-294 silly gunzTarPerm extractEntry src/var/indexOf.js
-295 silly gunzTarPerm modified mode [ 'src/var/indexOf.js', 420, 436 ]
-296 silly gunzTarPerm extractEntry src/var/pnum.js
-297 silly gunzTarPerm modified mode [ 'src/var/pnum.js', 420, 436 ]
-298 silly gunzTarPerm extractEntry src/var/class2type.js
-299 silly gunzTarPerm modified mode [ 'src/var/class2type.js', 420, 436 ]
-300 silly gunzTarPerm extractEntry src/var/rnotwhite.js
-301 silly gunzTarPerm modified mode [ 'src/var/rnotwhite.js', 420, 436 ]
-302 silly gunzTarPerm extractEntry src/var/slice.js
-303 silly gunzTarPerm modified mode [ 'src/var/slice.js', 420, 436 ]
-304 silly gunzTarPerm extractEntry src/var/strundefined.js
-305 silly gunzTarPerm modified mode [ 'src/var/strundefined.js', 420, 436 ]
-306 silly gunzTarPerm extractEntry src/var/support.js
-307 silly gunzTarPerm modified mode [ 'src/var/support.js', 420, 436 ]
-308 silly gunzTarPerm extractEntry src/var/toString.js
-309 silly gunzTarPerm modified mode [ 'src/var/toString.js', 420, 436 ]
-310 silly gunzTarPerm extractEntry src/var/push.js
-311 silly gunzTarPerm modified mode [ 'src/var/push.js', 420, 436 ]
-312 silly gunzTarPerm extractEntry src/exports/amd.js
-313 silly gunzTarPerm modified mode [ 'src/exports/amd.js', 420, 436 ]
-314 silly gunzTarPerm extractEntry src/exports/global.js
-315 silly gunzTarPerm modified mode [ 'src/exports/global.js', 420, 436 ]
-316 silly gunzTarPerm extractEntry .jscsrc
-317 silly gunzTarPerm modified mode [ '.jscsrc', 420, 436 ]
-318 verbose write writing to /home/robert/Documents/eeg-data-recorder/node_modules/jquery/package.json
-319 info preinstall jquery@2.1.4
-320 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/node_modules/jquery/package.json
-321 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/node_modules/jquery/package.json
-322 silly install resolved []
-323 verbose about to build /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-324 info build /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-325 info linkStuff jquery@2.1.4
-326 silly linkStuff jquery@2.1.4 has /home/robert/Documents/eeg-data-recorder/node_modules as its parent node_modules
-327 verbose linkBins jquery@2.1.4
-328 verbose linkMans jquery@2.1.4
-329 verbose rebuildBundles jquery@2.1.4
-330 info install jquery@2.1.4
-331 info postinstall jquery@2.1.4
-332 verbose unlock done using /home/robert/.npm/_locks/jquery-7b05f454784d757b.lock for /home/robert/Documents/eeg-data-recorder/node_modules/jquery
-333 verbose validateInstall loading /home/robert/Documents/eeg-data-recorder/package.json for validation
-334 verbose stack Error: The package phantomjs does not satisfy its siblings' peerDependencies requirements!
-334 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:125:32
-334 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:267:7
-334 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:138:5
-334 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
-334 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-334 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
-334 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-334 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
-334 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
-334 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
-335 verbose cwd /home/robert/Documents/eeg-data-recorder
-336 error Linux 3.19.0-31-generic
-337 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--save" "jquery"
-338 error node v0.12.7
-339 error npm  v2.11.3
-340 error code EPEERINVALID
-341 error peerinvalid The package phantomjs does not satisfy its siblings' peerDependencies requirements!
-342 verbose exit [ 1, true ]
+52 info package.json grunt-browserify@4.0.1 No license field.
+53 info package.json socket.io@1.3.7 No license field.
+54 info package.json jquery@2.1.4 No license field.
+55 info package.json chart.js@1.0.2 No license field.
+56 info package.json grunt@0.4.5 No license field.
+57 info package.json grunt-bower-concat@0.4.0 No license field.
+58 info package.json grunt-bower-install@1.6.0 No license field.
+59 info package.json grunt-contrib-clean@0.6.0 No license field.
+60 info package.json grunt-contrib-concat@0.5.1 No license field.
+61 info package.json grunt-contrib-qunit@0.7.0 No license field.
+62 info package.json grunt-contrib-watch@0.6.1 No license field.
+63 info package.json grunt-express@1.4.1 No license field.
+64 info package.json grunt-mocha-test@0.12.7 No license field.
+65 info package.json grunt-open@0.2.3 No license field.
+66 info package.json matchdep@0.3.0 No license field.
+67 info package.json mocha-phantomjs@3.6.0 No license field.
+68 info package.json mongodb@1.4.39 No license field.
+69 info package.json supervisor@0.6.0 No license field.
+70 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/package.json
+71 silly cache add args [ 'react-dom', null ]
+72 verbose cache add spec react-dom
+73 silly cache add parsed spec { raw: 'react-dom',
+73 silly cache add   scope: null,
+73 silly cache add   name: 'react-dom',
+73 silly cache add   rawSpec: '',
+73 silly cache add   spec: '*',
+73 silly cache add   type: 'range' }
+74 silly addNamed react-dom@*
+75 verbose addNamed "*" is a valid semver range for react-dom
+76 silly addNameRange { name: 'react-dom', range: '*', hasData: false }
+77 silly mapToRegistry name react-dom
+78 silly mapToRegistry using default registry
+79 silly mapToRegistry registry https://registry.npmjs.org/
+80 silly mapToRegistry uri https://registry.npmjs.org/react-dom
+81 verbose addNameRange registry:https://registry.npmjs.org/react-dom not in flight; fetching
+82 verbose request uri https://registry.npmjs.org/react-dom
+83 verbose request no auth needed
+84 info attempt registry request try #1 at 12:37:55
+85 verbose request id 4d1d0d7f616c7739
+86 verbose etag "3S3MVWUH4GFVOY1GQG7C28OEJ"
+87 http request GET https://registry.npmjs.org/react-dom
+88 http 304 https://registry.npmjs.org/react-dom
+89 silly get cb [ 304,
+89 silly get   { date: 'Sun, 15 Nov 2015 20:37:55 GMT',
+89 silly get     via: '1.1 varnish',
+89 silly get     'cache-control': 'max-age=60',
+89 silly get     etag: '"3S3MVWUH4GFVOY1GQG7C28OEJ"',
+89 silly get     age: '0',
+89 silly get     connection: 'keep-alive',
+89 silly get     'x-served-by': 'cache-sjc3125-SJC',
+89 silly get     'x-cache': 'HIT',
+89 silly get     'x-cache-hits': '1',
+89 silly get     'x-timer': 'S1447619875.746691,VS0,VE83',
+89 silly get     vary: 'Accept' } ]
+90 verbose etag https://registry.npmjs.org/react-dom from cache
+91 verbose get saving react-dom to /home/robert/.npm/registry.npmjs.org/react-dom/.cache.json
+92 silly addNameRange number 2 { name: 'react-dom', range: '*', hasData: true }
+93 silly addNameRange versions [ 'react-dom',
+93 silly addNameRange   [ '0.1.0',
+93 silly addNameRange     '0.14.0-beta1',
+93 silly addNameRange     '0.14.0-beta2',
+93 silly addNameRange     '0.14.0-beta3',
+93 silly addNameRange     '0.14.0-rc1',
+93 silly addNameRange     '0.14.0',
+93 silly addNameRange     '0.14.1',
+93 silly addNameRange     '0.14.2' ] ]
+94 silly addNamed react-dom@0.14.2
+95 verbose addNamed "0.14.2" is a plain semver version for react-dom
+96 silly cache afterAdd react-dom@0.14.2
+97 verbose afterAdd /home/robert/.npm/react-dom/0.14.2/package/package.json not in flight; writing
+98 verbose afterAdd /home/robert/.npm/react-dom/0.14.2/package/package.json written
+99 silly install resolved [ { name: 'react-dom',
+99 silly install resolved     version: '0.14.2',
+99 silly install resolved     description: 'React package for working with the DOM.',
+99 silly install resolved     main: 'index.js',
+99 silly install resolved     repository:
+99 silly install resolved      { type: 'git',
+99 silly install resolved        url: 'git+https://github.com/facebook/react.git' },
+99 silly install resolved     keywords: [ 'react' ],
+99 silly install resolved     license: 'BSD-3-Clause',
+99 silly install resolved     bugs: { url: 'https://github.com/facebook/react/issues' },
+99 silly install resolved     homepage: 'https://github.com/facebook/react/tree/master/npm-react-dom',
+99 silly install resolved     peerDependencies: { react: '^0.14.2' },
+99 silly install resolved     scripts: { start: 'node server.js' },
+99 silly install resolved     _id: 'react-dom@0.14.2',
+99 silly install resolved     _shasum: 'ba979850dca2513f99cf9fb3fb574ad9de3dab84',
+99 silly install resolved     _resolved: 'https://registry.npmjs.org/react-dom/-/react-dom-0.14.2.tgz',
+99 silly install resolved     _from: 'react-dom@*',
+99 silly install resolved     _npmVersion: '2.14.9',
+99 silly install resolved     _nodeVersion: '4.2.0',
+99 silly install resolved     _npmUser: { name: 'zpao', email: 'paul@oshannessy.com' },
+99 silly install resolved     maintainers: [ [Object], [Object] ],
+99 silly install resolved     dist:
+99 silly install resolved      { shasum: 'ba979850dca2513f99cf9fb3fb574ad9de3dab84',
+99 silly install resolved        tarball: 'http://registry.npmjs.org/react-dom/-/react-dom-0.14.2.tgz' },
+99 silly install resolved     directories: {},
+99 silly install resolved     readme: 'ERROR: No README data found!' } ]
+100 info install react-dom@0.14.2 into /home/robert/Documents/eeg-data-recorder
+101 info installOne react-dom@0.14.2
+102 verbose installOne of react-dom to /home/robert/Documents/eeg-data-recorder not in flight; installing
+103 verbose lock using /home/robert/.npm/_locks/react-dom-5ffeaf8e0bda32e7.lock for /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+104 silly install write writing react-dom 0.14.2 to /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+105 verbose unbuild node_modules/react-dom
+106 silly gentlyRm /home/robert/Documents/eeg-data-recorder/node_modules/react-dom is being purged from base /home/robert/Documents/eeg-data-recorder
+107 verbose gentlyRm don't care about contents; nuking /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+108 verbose tar unpack /home/robert/.npm/react-dom/0.14.2/package.tgz
+109 verbose tar unpacking to /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+110 silly gentlyRm /home/robert/Documents/eeg-data-recorder/node_modules/react-dom is being purged
+111 verbose gentlyRm don't care about contents; nuking /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+112 silly gunzTarPerm modes [ '775', '664' ]
+113 silly gunzTarPerm extractEntry package.json
+114 silly gunzTarPerm modified mode [ 'package.json', 420, 436 ]
+115 silly gunzTarPerm extractEntry README.md
+116 silly gunzTarPerm modified mode [ 'README.md', 420, 436 ]
+117 silly gunzTarPerm extractEntry index.js
+118 silly gunzTarPerm modified mode [ 'index.js', 420, 436 ]
+119 silly gunzTarPerm extractEntry server.js
+120 silly gunzTarPerm modified mode [ 'server.js', 420, 436 ]
+121 silly gunzTarPerm extractEntry dist/react-dom.js
+122 silly gunzTarPerm modified mode [ 'dist/react-dom.js', 420, 436 ]
+123 silly gunzTarPerm extractEntry dist/react-dom.min.js
+124 silly gunzTarPerm modified mode [ 'dist/react-dom.min.js', 420, 436 ]
+125 verbose write writing to /home/robert/Documents/eeg-data-recorder/node_modules/react-dom/package.json
+126 info preinstall react-dom@0.14.2
+127 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/node_modules/react-dom/package.json
+128 verbose readDependencies loading dependencies from /home/robert/Documents/eeg-data-recorder/node_modules/react-dom/package.json
+129 silly install resolved []
+130 verbose about to build /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+131 info build /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+132 info linkStuff react-dom@0.14.2
+133 silly linkStuff react-dom@0.14.2 has /home/robert/Documents/eeg-data-recorder/node_modules as its parent node_modules
+134 verbose linkBins react-dom@0.14.2
+135 verbose linkMans react-dom@0.14.2
+136 verbose rebuildBundles react-dom@0.14.2
+137 info install react-dom@0.14.2
+138 info postinstall react-dom@0.14.2
+139 verbose unlock done using /home/robert/.npm/_locks/react-dom-5ffeaf8e0bda32e7.lock for /home/robert/Documents/eeg-data-recorder/node_modules/react-dom
+140 verbose validateInstall loading /home/robert/Documents/eeg-data-recorder/package.json for validation
+141 verbose stack Error: The package phantomjs does not satisfy its siblings' peerDependencies requirements!
+141 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:125:32
+141 verbose stack     at /usr/lib/node_modules/npm/lib/install.js:267:7
+141 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:138:5
+141 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+141 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+141 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+141 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+141 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+141 verbose stack     at cb (/usr/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+141 verbose stack     at /usr/lib/node_modules/npm/node_modules/read-installed/read-installed.js:251:14
+142 verbose cwd /home/robert/Documents/eeg-data-recorder
+143 error Linux 3.19.0-31-generic
+144 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--save" "react-dom"
+145 error node v0.12.7
+146 error npm  v2.11.3
+147 error code EPEERINVALID
+148 error peerinvalid The package phantomjs does not satisfy its siblings' peerDependencies requirements!
+149 verbose exit [ 1, true ]

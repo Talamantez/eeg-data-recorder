@@ -7,7 +7,6 @@ module.exports = function(grunt) {
         NODE_ENV: 'production'
       }
     },
-
     browserify: {
       dev: {
         options: {
