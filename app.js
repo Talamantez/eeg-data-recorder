@@ -115,7 +115,10 @@ Helper Functions
 
 // Send data to website using socket.io
 function sendData(newData,avg10,avg1000){
-    var brainDataChunk = [ newData , avg10 , avg1000 ];
+    var brainDataChunk = { newData: newData,
+                           avg10: avg10,
+                           avg1000: avg1000
+                         };
     console.log( brainDataChunk );
     io.sockets.emit( 'brain-data' , brainDataChunk );
 }

@@ -1,10 +1,28 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var io = require( 'socket.io-client' );
 
 var DataViewContainer = React.createClass({
+    SocketHandler: function( trigger ){
+    	console.log('from SocketHandler: ');
+    	console.dir( this )
+		var trigger = trigger;
+		var socket = io();
+		socket.on( trigger, function( data ){
+				console.log('View Container Triggered');
+				console.dir( data );
+				this.setState({
+					rows: data.rows,
+					views: data.views
+				})				
+		});
+	},
 	render: function(){
-		console.log( this.props );
-		console.log( 'this.props: ' + this.props );
+		var eegHandler = new this.SocketHandler( 'brain-data' );
+		console.dir( eegHandler );
+
+		console.log( 'this.props: ' );
+		console.dir( this.props );
 		var rows = this.props.rows;
 		var viewArray = this.props.views.map( function( view, idx ){
 			return (
@@ -58,20 +76,35 @@ ReactDOM.render(
 			[
 				{
 					title: "Delta",
-				},				{
-					title: "Theta"
-				},				{
-					title: "loAlpha"
-				},				{
-					title: "hiAlpha"
-				},				{
-					title: "loBeta"
-				},				{
-					title: "hiBeta"
-				},				{
-					title: "loGamma"
-				},				{
-					title: "midGamma"
+					value: 0
+				},				
+				{
+					title: "Theta",
+					value: 0
+				},				
+				{
+					title: "loAlpha",
+					value: 0
+				},				
+				{
+					title: "hiAlpha",
+					value: 0
+				},				
+				{
+					title: "loBeta",
+					value: 0
+				},				
+				{
+					title: "hiBeta",
+					value: 0
+				},				
+				{
+					title: "loGamma",
+					value: 0
+				},				
+				{
+					title: "midGamma",
+					value: 0
 				}
 			]
 		}  
