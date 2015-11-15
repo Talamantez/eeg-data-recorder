@@ -2,6 +2,32 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON( 'package.json' ),
+    env: {
+      build: {
+        NODE_ENV: 'production'
+      }
+    },
+
+    browserify: {
+      dev: {
+        options: {
+          debug: true,
+          transform: ['reactify']
+        },
+        files: {
+          'dist/js/build.js': ['src/js/**/*.js','src/js/**/*.jsx']
+        }
+      },
+      build: {
+        options: {
+          debug: false,
+          transform: ['reactify']
+        },
+        files: {
+          'dist/js/build.js': ['src/js/**/*.js','src/js/**/*.jsx']
+        }
+      }
+    },    
     copy: {
         main:{
             files:[
@@ -71,6 +97,10 @@ module.exports = function(grunt) {
   });
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks('grunt-env');
+
   grunt.registerTask('cleanit', ['clean']);
 
   grunt.registerTask('cssit',['cssmin']);
@@ -91,7 +121,7 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('notest', ['cleanit', 'cssit', 'concatit', 'uglyit', 'copyit']);
+  grunt.registerTask('notest', ['cleanit', 'cssit', 'concatit', 'uglyit', 'copyit','env:build', 'browserify:build']);
   grunt.registerTask('default', ['cssit', 'concatit', 'uglyit', 'hintit', 'test']);
 
 };
