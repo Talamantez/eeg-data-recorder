@@ -6,8 +6,11 @@ var DataViewContainer = React.createClass({
 	
 	updateState: function( data ){
 		console.log('updating state');
-		console.log('this: ' + this);
-		this.setState( { data: data } );
+		console.log('this: ');
+		console.dir(this);
+		this.setState( { data: {
+			rows: data.rows
+		} } );
 	},
 	handleSocket:  function( trigger, callback ){
     	console.log('self from SocketHandler: ');
@@ -26,8 +29,8 @@ var DataViewContainer = React.createClass({
 		console.log( this.props );
 		this.handleSocket( 'brain-data', this.updateState() );
 
-		var rows = this.props.rows;
-		var viewArray = this.props.views.map( function( view, idx ){
+		var rows = this.props.data.rows;
+		var viewArray = this.props.data.views.map( function( view, idx ){
 			return (
 				<DataView key={ idx } title={ view.title } desc={ view.description } rows={ rows }/>
 			)
@@ -45,15 +48,16 @@ var DataViewContainer = React.createClass({
 
 var DataView = React.createClass({
 	render: function(){
-		var rowArray = this.props.rows.map( function( row, idx ){
+		var rowArray = this.props.data.rows.map( function( row, idx ){
 			return (
-				<DataRow key={ idx } title={ row.title }/>
+				<DataRow key={ idx } title={ row.title } value={ row.value }/>
 			)
 		} )
 		return (
 			<div>
 				<h4>
 					{ this.props.title }
+					{ this.props.value }
 				</h4>
 				<div>
 					{ this.props.description }
@@ -74,59 +78,19 @@ var DataRow = React.createClass({
 
 ReactDOM.render(
 	<DataViewContainer
-		
-		rows={
-			[
-				{
-					title: "Delta",
-					value: 0
-				},				
-				{
-					title: "Theta",
-					value: 0
-				},				
-				{
-					title: "loAlpha",
-					value: 0
-				},				
-				{
-					title: "hiAlpha",
-					value: 0
-				},				
-				{
-					title: "loBeta",
-					value: 0
-				},				
-				{
-					title: "hiBeta",
-					value: 0
-				},				
-				{
-					title: "loGamma",
-					value: 0
-				},				
-				{
-					title: "midGamma",
-					value: 0
-				}
-			]
-		}  
+			rows={[	{title: "Delta"		,value: 0},				
+				 	{title: "Theta"		,value: 0},				
+				 	{title: "loAlpha"	,value: 0},				
+				 	{title: "hiAlpha"	,value: 0},				
+				 	{title: "loBeta"	,value: 0},				
+				 	{title: "hiBeta"	,value: 0},				
+				 	{title: "loGamma"	,value: 0},				
+				 	{title: "midGamma"	,value: 0}
+			]}   
 
-		views={
-			[					
-				{
-					title:"First",
-					description: "Desc of first"
-				},
-				{
-					title:"Second",
-					description: "Desc of second"
-				},
-				{
-					title:"Third",
-					description: "Desc of third"
-				}
-			]
-		}/>,
+			views={[ {title:"First",	description: "Desc of first"},
+					 {title:"Second",	description: "Desc of second"},
+					 {title:"Third",	description: "Desc of third"}
+			]}/>,
 	document.getElementById('dataContainer')
 );
