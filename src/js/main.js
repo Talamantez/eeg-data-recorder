@@ -4,41 +4,34 @@ var io 			= require( 'socket.io-client' );
 
 var DataViewContainer = React.createClass({
 	getInitialState: function(){
-		return { 
+		return {
 					data: {
-						rows:[	{title: "Delta"		,value: 0},				
-							 	{title: "Theta"		,value: 0},				
-							 	{title: "loAlpha"	,value: 0},				
-							 	{title: "hiAlpha"	,value: 0},				
-							 	{title: "loBeta"	,value: 0},				
-							 	{title: "hiBeta"	,value: 0},				
-							 	{title: "loGamma"	,value: 0},				
-							 	{title: "midGamma"	,value: 0}
+						views:[ {title:"First",		description: "Desc of first"},
+								{title:"Second",	description: "Desc of second"},
+								{title:"Third",		description: "Desc of third"}
 						],
-						views:[ {title:"First",	description: "Desc of first"},
-								 {title:"Second",	description: "Desc of second"},
-								 {title:"Third",	description: "Desc of third"}
-						]
+						rows:[
+								{title: "Delta"		},			
+							 	{title: "Theta"		},
+							 	{title: "loAlpha"	},
+							 	{title: "hiAlpha"	},
+							 	{title: "loBeta"	},
+							 	{title: "hiBeta"	},
+							 	{title: "loGamma"	},
+							 	{title: "midGamma"	}
+						],
+						values:[[],[],[]]
 					}
 		}
 	},
 	updateState: function( data ){
 		console.log( 'updating state' );
+		console.log( data )
 		this.setState( { data:  {
-						rows:[	{title: "Delta"		,value: 200},				
-							 	{title: "Theta"		,value: 200},				
-							 	{title: "loAlpha"	,value: 200},				
-							 	{title: "hiAlpha"	,value: 200},				
-							 	{title: "loBeta"	,value: 0},				
-							 	{title: "hiBeta"	,value: 0},				
-							 	{title: "loGamma"	,value: 0},				
-							 	{title: "midGamma"	,value: 0}
-						],
-						views:[ {title:"First",	description: "Desc of first"},
-								 {title:"Second",	description: "Desc of second"},
-								 {title:"Third",	description: "Desc of third"}
-						]
-		} } );
+							values: { data }
+						} 
+					} );
+		console.log( this.state.data.values );
 	},
 	handleSocket:  function( trigger, callback ){
     	console.log( 'self from SocketHandler: ' );
@@ -61,8 +54,11 @@ var DataViewContainer = React.createClass({
 		console.dir( this.state );
 		this.handleSocket( 'brain-data', this.updateState );
 
-		console.log( this.state.data.views )
+		console.log( this.state.data.values );
 
+		var dataSetArray = this.state.data.values.map( function( value, idx ){
+
+		} )
 		var rows = this.state.data.rows;
 		var viewArray = this.state.data.views.map( function( view, idx ){
 			return (
