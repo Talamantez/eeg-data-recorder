@@ -5,32 +5,31 @@ var io = require( 'socket.io-client' );
 var DataViewContainer = React.createClass({
 	
 	updateState: function( data ){
-		console.log('updating state');
-		console.log('this: ');
-		console.dir(this);
-		this.setState( { data: {
-			rows: data.rows
-		} } );
+		console.log( 'updating state with: ');
+		console.dir( data );
 	},
 	handleSocket:  function( trigger, callback ){
     	console.log('self from SocketHandler: ');
-		var trigger = trigger;
-		var socket = io();
-		var data = null;
+		var trigger 	= trigger;
+		var socket 		= io();
+		var data;
+		var checkUpdate = function( data ){
+			if( callback ){
+				callback( data );
+			}
+		};
 		socket.on( trigger, function( data ){
-						console.log('View Container Triggered');
-						console.dir( data );				
+				console.log( 'View Container Triggered' );
+				data = data;
+				checkUpdate( data );
 		});
-		if( callback ){
-			callback( data );
-		}
 	},
 	render: function(){
 		console.log( this.props );
-		this.handleSocket( 'brain-data', this.updateState() );
+		this.handleSocket( 'brain-data', this.updateState );
 
-		var rows = this.props.data.rows;
-		var viewArray = this.props.data.views.map( function( view, idx ){
+		var rows = this.props.rows;
+		var viewArray = this.props.views.map( function( view, idx ){
 			return (
 				<DataView key={ idx } title={ view.title } desc={ view.description } rows={ rows }/>
 			)
@@ -48,7 +47,7 @@ var DataViewContainer = React.createClass({
 
 var DataView = React.createClass({
 	render: function(){
-		var rowArray = this.props.data.rows.map( function( row, idx ){
+		var rowArray = this.props.rows.map( function( row, idx ){
 			return (
 				<DataRow key={ idx } title={ row.title } value={ row.value }/>
 			)
