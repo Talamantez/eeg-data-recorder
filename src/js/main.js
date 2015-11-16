@@ -3,26 +3,29 @@ var ReactDOM = require('react-dom');
 var io = require( 'socket.io-client' );
 
 var DataViewContainer = React.createClass({
-    SocketHandler: function( trigger ){
-    	console.log('from SocketHandler: ');
-    	console.dir( this )
+	
+	updateState: function( data ){
+		console.log('updating state');
+		console.log('this: ' + this);
+		this.setState( { data: data } );
+	},
+	handleSocket:  function( trigger, callback ){
+    	console.log('self from SocketHandler: ');
 		var trigger = trigger;
 		var socket = io();
+		var data = null;
 		socket.on( trigger, function( data ){
-				console.log('View Container Triggered');
-				console.dir( data );
-				this.setState({
-					rows: data.rows,
-					views: data.views
-				})				
+						console.log('View Container Triggered');
+						console.dir( data );				
 		});
+		if( callback ){
+			callback( data );
+		}
 	},
 	render: function(){
-		var eegHandler = new this.SocketHandler( 'brain-data' );
-		console.dir( eegHandler );
+		console.log( this.props );
+		this.handleSocket( 'brain-data', this.updateState() );
 
-		console.log( 'this.props: ' );
-		console.dir( this.props );
 		var rows = this.props.rows;
 		var viewArray = this.props.views.map( function( view, idx ){
 			return (
@@ -64,7 +67,7 @@ var DataView = React.createClass({
 var DataRow = React.createClass({
 	render: function(){
 		return (
-			<div>{this.props.title}</div>
+			<div>{ this.props.title }</div>
 		)
 	}
 });
