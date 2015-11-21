@@ -8,7 +8,7 @@ var express     = require( 'express' ),
     io          = require( 'socket.io' )( http ),
     eeg         = require( './eegFunctions' );
 
-var port = process.env.PORT || 3000 ;
+var port = process.env.PORT || 3001 ;
 
 var db = mongoose.connection;
 
@@ -73,7 +73,7 @@ mongoose.connect( uristring );
 setInterval(function() {
     console.log('mocking headset');
     mockHeadset();
-}, 2000);
+}, 1000);
 
 /*cylon.robot({
       connection:   { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
@@ -115,16 +115,26 @@ Helper Functions
 
 // Send data to website using socket.io
 function sendData(newData,avg10,avg1000){
+    newData.title = 'newData';
+    newData.description = 'Data prints in at 1/s';
+    avg10.title = 'avg10';
+    avg10.description = 'average of the last 10 shots';
+    avg1000.title = 'avg1000';
+    avg1000.description = 'average of last 1000 shots';
     var brainDataChunk = [ newData, avg10, avg1000 ];
+    // var brainDataChunk = [ newData ];
     console.log( brainDataChunk );
     io.sockets.emit( 'brain-data' , brainDataChunk );
 }
 
 // Send simulated brain data using socket.io
 function mockHeadset(){
-    var mockNew                 = eeg.mockBrainData();
-    var mock10Avg               = eeg.mockBrainData();
-    var mock1000Avg             = eeg.mockBrainData();
+    var mockNew = {};
+    var mock10Avg = {};
+    var mock1000Avg = {};
+    mockNew.values                 = eeg.mockBrainData();
+    mock10Avg.values               = eeg.mockBrainData();
+    mock1000Avg.values             = eeg.mockBrainData();
 
     console.log('mockNew'       + mockNew);
     console.log('mock10Avg'     + mock10Avg);

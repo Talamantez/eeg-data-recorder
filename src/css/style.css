@@ -1,91 +1,16 @@
-  html{
-    background-color: #adc689;
-  }
-  body{
-    margin: 0 0 0 50px;
-  }
-  h1{
-    background-color: #fff;
-   -webkit-border-radius: 10px;
-   -moz-border-radius: 10px;
-   border-radius: 10px;
-   padding: 10px;  
-   width: 475px;
-  }
-  .page-header {
-  margin : 0 auto 0 50px;
-  color : #349948;
-  width : 100%;
-  transform: translate(-40px);
+.dataContainer{
+  max-width: 1000px;
+  margin: 20px auto;
+  font-weight: bold;
+  text-align: center;
 }
-.brain-data-container {
-  margin : 10px 10px 10px 10px;
-  min-width : 200px;
-  display : inline-block;
-  background-image:
-    linear-gradient(
-      red, #222, #123456,#65432f, #aaa222
-    );
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 0 5px 5px 5px;
+.dataContainer .dataRow div{
+  text-align: left;
+  display: inline-block;
 }
-.brain-data-heading{
-  background-color: #266299;
-  color : #ffffff;
-  transform: translate(-10px);
-  padding: 0 10px 0 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+.dataContainer .dataRow div.title{
+  padding: 0 30px 0 0;
 }
-.brain-data-row {
-  display : block;
-  color : #123456;
-  padding : 0 0 10px 0;
-}
-.brain-data-value{
-  background-color: #fff;
-  width: 100px;
-  padding: 0 10px 0 10px;
-   -webkit-border-radius: 3px;
-   -moz-border-radius: 3px;
-   border-radius: 3px;
-
-}
-.delta{
-  color : rgb(19,207,187);
-}
-.theta{
-  color : rgb(18,212,115);
-}
-.loAlpha{
-  color : rgb(17,218,37);
-}
-.hiAlpha{
-  color : rgb(76,223,16);
-}
-.loBeta{
-  color : rgb(161,228,15);
-}
-.hiBeta{
-  color : rgb(233,215,13);
-}
-.loGamma{
-  color : rgb(238,130,12);
-}
-.midGamma{
-  color : rgb(244,40,10);
-}
-.brain-data-category {
-  width : 100px;
-  display : inline-block;
-}
-.brain-data-value {
-  color : #ff0000;
-  display : inline-block;
-}
-.cleared-data-value{
-  color: #000000;
+.dataContainer .dataRow div.value{
+  padding: 0 0 0 40px;
 }
