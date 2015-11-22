@@ -73,7 +73,7 @@ mongoose.connect( uristring );
 setInterval(function() {
     console.log('mocking headset');
     mockHeadset();
-}, 200);
+}, 10);
 
 /*cylon.robot({
       connection:   { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
