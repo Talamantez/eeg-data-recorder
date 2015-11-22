@@ -3,10 +3,10 @@ var ReactDOM 	= require( 'react-dom' );
 var io 			= require( 'socket.io-client' );
 
 var DataViewContainer = React.createClass({
+	linkedSocket: false,
 	getInitialState: function(){
 		return {
-				views:[
-					]
+				views:[{},{},{}]
 		}
 	},
 	updateState: function( data ){
@@ -14,7 +14,7 @@ var DataViewContainer = React.createClass({
 		this.setState( { views: data } );
 	},
 	handleSocket:  function( trigger, callback ){
-		var trigger 	= trigger;
+		this.linkedSocket = true;
 		var socket 		= io();
 		var data = [];
 		var update = function( data ){
@@ -29,8 +29,14 @@ var DataViewContainer = React.createClass({
 				update( data );
 		});
 	},
-	render: function(){
+	linkSocket: function(){
 		this.handleSocket( 'brain-data', this.updateState );
+	},
+	render: function(){
+		if( this.linkedSocket !== true ){
+			console.log('linking socket');
+			this.linkSocket();
+		}
 		var viewArray = this.state.views.map( function( view, idx ){
 			return (
 				<DataView key={ idx } title={ view.title } desc={ view.description } values={ view.values }/>
