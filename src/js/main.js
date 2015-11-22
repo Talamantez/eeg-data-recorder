@@ -6,7 +6,8 @@ var DataViewContainer = React.createClass({
 	linkedSocket: false,
 	getInitialState: function(){
 		return {
-				views:[{},{},{}]
+				views:[],
+				badSignal: true
 		}
 	},
 	updateState: function( data ){
@@ -29,8 +30,13 @@ var DataViewContainer = React.createClass({
 				update( data );
 		});
 	},
+	setBadSignal: function(){
+			// this.state.badSignal = true;
+			console.dir( this.state );
+	},
 	linkSocket: function(){
 		this.handleSocket( 'brain-data', this.updateState );
+		this.handleSocket( 'poor-signal', this.setBadSignal );
 	},
 	render: function(){
 		if( this.linkedSocket !== true ){
@@ -42,9 +48,17 @@ var DataViewContainer = React.createClass({
 				<DataView key={ idx } title={ view.title } desc={ view.description } values={ view.values }/>
 			)
 		} );
+		var signalQuality = 'poor';
+		if( !this.state.badSignal ){
+				signalQuality = 'good';
+		}
+
 		return (
 			<div className="row col-xs-12 dataContainer">
-				<h1>EEG Readings</h1>
+				<div>
+					<h1>EEG Readings</h1>
+					<SignalMonitor signalQuality={ signalQuality }/>
+				</div>
 				{ viewArray }
 			</div>
 		)
@@ -88,6 +102,16 @@ var DataRow = React.createClass({
 				<div className="col-xs-6 value">{ this.props.value }</div>
 			</div>
 
+		)
+	}
+});
+
+var SignalMonitor = React.createClass({
+	render: function(){
+		return (
+			<div className="signalQuality">
+				{ this.props.signalQuality } signal
+			</div>
 		)
 	}
 });

@@ -113,7 +113,9 @@ cylon.robot({
                 avg1000Data.values = data;
             }),
             sendData(newData,avg10Data,avg1000Data);
-        }    
+        } else {
+            io.sockets.emit( 'poor-signal' );
+        }  
     })
 })
 .start();
@@ -124,6 +126,9 @@ Helper Functions
 
 */
 
+function sendPoorSignal(){
+    io.sockets.emit( 'poor-signal' );
+}
 // Send data to website using socket.io
 function sendData(newData,avg10,avg1000){
     newData.title = 'newData';
