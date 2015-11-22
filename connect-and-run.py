@@ -1,8 +1,8 @@
 from subprocess import Popen
 
 commands = [
-	'gort bluetooth unpair 20:68:9D:4C:0D:B7 hci0 ; gort bluetooth connect 20:68:9D:4C:0D:B7 hci0',    
-    'sleep 14;pm2 start app.js'
+	'gort bluetooth pair 20:68:9D:4C:0D:B7','gort bluetooth connect 20:68:9D:4C:0D:B7',    
+    'sleep 14;node app.js'
 ]
 
 processes = [Popen(cmd, shell=True) for cmd in commands]

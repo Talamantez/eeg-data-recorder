@@ -4,7 +4,7 @@
   "description": "use mongoose to record cylon eeg data",
   "main": "app.js",
   "scripts": {
-    "start":"python mock-and-run.py",
+    "start":"python connect-and-run.py",
     "test": "make test"
   },
   "author": "Robert Talamantez",
