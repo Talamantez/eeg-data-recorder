@@ -31,16 +31,12 @@ var DataViewContainer = React.createClass({
 		});
 	},
 	setBadSignal: function(){
-		console.log('outside setting bad signal');
-		if( this.state.badSignal == false ){
-			console.log('setting bad signal');
-			this.state.badSignal = true;
+		if( this.state.badSignal === false ){
 			this.setState({ badSignal:true });
 		}
 	},
 	setGoodSignal: function() {	
-		if( this.state.badSignal == true ){
-			this.state.badSignal = false;
+		if( this.state.badSignal === true ){
 			this.setState({ badSignal:false });		
 		}
 	},
@@ -54,8 +50,6 @@ var DataViewContainer = React.createClass({
 			console.log('linking socket');
 			this.linkSocket();
 		}
-		console.log( 'this.state.badSignal ');
-		console.log( this.state.badSignal );
 		var signalQuality;
 		if( !this.state.badSignal ){
 			signalQuality = 'good';
