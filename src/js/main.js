@@ -31,27 +31,42 @@ var DataViewContainer = React.createClass({
 		});
 	},
 	setBadSignal: function(){
-			// this.state.badSignal = true;
-			console.dir( this.state );
+		console.log('outside setting bad signal');
+		if( this.state.badSignal == false ){
+			console.log('setting bad signal');
+			this.state.badSignal = true;
+			this.setState({ badSignal:true });
+		}
+	},
+	setGoodSignal: function() {	
+		if( this.state.badSignal == true ){
+			this.state.badSignal = false;
+			this.setState({ badSignal:false });		
+		}
 	},
 	linkSocket: function(){
-		this.handleSocket( 'brain-data', this.updateState );
-		this.handleSocket( 'poor-signal', this.setBadSignal );
+		this.handleSocket( 'brain-data' , this.updateState   );
+		this.handleSocket( 'poor-signal', this.setBadSignal  );
+		this.handleSocket( 'good-signal', this.setGoodSignal );
 	},
 	render: function(){
 		if( this.linkedSocket !== true ){
 			console.log('linking socket');
 			this.linkSocket();
 		}
+		console.log( 'this.state.badSignal ');
+		console.log( this.state.badSignal );
+		var signalQuality;
+		if( !this.state.badSignal ){
+			signalQuality = 'good';
+		} else {
+			signalQuality = 'poor';
+		}
 		var viewArray = this.state.views.map( function( view, idx ){
 			return (
 				<DataView key={ idx } title={ view.title } desc={ view.description } values={ view.values }/>
 			)
 		} );
-		var signalQuality = 'poor';
-		if( !this.state.badSignal ){
-				signalQuality = 'good';
-		}
 
 		return (
 			<div className="row col-xs-12 dataContainer">

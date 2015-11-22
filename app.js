@@ -94,6 +94,7 @@ cylon.robot({
     });
     robot.headset.on( 'eeg' , function(data) {
         if( !pauseRecord){
+            io.sockets.emit( 'good-signal' );
             eeg.addShot(    data.delta,
                             data.theta,
                             data.loAlpha,
@@ -113,6 +114,7 @@ cylon.robot({
                 avg1000Data.values = data;
             }),
             sendData(newData,avg10Data,avg1000Data);
+
         } else {
             io.sockets.emit( 'poor-signal' );
         }  
