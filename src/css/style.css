@@ -4,7 +4,7 @@
   font-weight: bold;
   text-align: center;
 }
-.dataContainer .dataRow div{
+.dataContainer .dataView{
   text-align: left;
   display: inline-block;
 }

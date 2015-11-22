@@ -70,42 +70,53 @@ mongoose.connect( uristring );
     grab data from MongoDB and emit it to website
 
 */
-setInterval(function() {
+/*setInterval(function() {
     console.log('mocking headset');
     mockHeadset();
-}, 10);
+}, 0);*/
 
-/*cylon.robot({
+cylon.robot({
       connection:   { name: 'neurosky', adaptor: 'neurosky', port: headsetPort },
       device:       { name: 'headset', driver: 'neurosky' }
 })
 .on( 'ready' , function(robot) {
-    var newData;
-    var avg10Data;
-    var avg1000Data;  
+    var newData = {};
+    var avg10Data = {};
+    var avg1000Data = {};
+    var pauseRecord = true;
+    robot.headset.on('signal', function( data ){
+        console.log( data );
+        if( data !== 0 ){
+            pauseRecord = true;
+        } else {
+            pauseRecord = false
+        }
+    });
     robot.headset.on( 'eeg' , function(data) {
-        eeg.addShot(	data.delta,
-            			data.theta,
-            			data.loAlpha,
-            			data.hiAlpha,
-            			data.loBeta,
-                        data.hiBeta,
-            			data.loGamma,
-            			data.midGamma
-        		),
-        eeg.lastShot(function(data){
-            newData = data;
-        }),
-        eeg.avgLastTen(function(data){
-            avg10Data = data;
-        }),
-        eeg.avgLast1000(function(data){
-            avg1000Data = data;
-        }),
-        sendData(newData,avg10Data,avg1000Data);
+        if( !pauseRecord){
+            eeg.addShot(    data.delta,
+                            data.theta,
+                            data.loAlpha,
+                            data.hiAlpha,
+                            data.loBeta,
+                            data.hiBeta,
+                            data.loGamma,
+                            data.midGamma
+                    ),
+            eeg.lastShot(function(data){
+                newData.values = data;
+            }),
+            eeg.avgLastTen(function(data){
+                avg10Data.values = data;
+            }),
+            eeg.avgLast1000(function(data){
+                avg1000Data.values = data;
+            }),
+            sendData(newData,avg10Data,avg1000Data);
+        }    
     })
 })
-.start();*/
+.start();
 
 /* 
 

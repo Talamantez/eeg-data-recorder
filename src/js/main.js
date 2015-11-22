@@ -67,7 +67,7 @@ var DataView = React.createClass({
 				}
 			}
 		return (
-			<div className="col-xs-4">
+			<div className="col-sm-4 col-xs-12 dataView">
 				<h4>
 					{ this.props.title }
 				</h4>
