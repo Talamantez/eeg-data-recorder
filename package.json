@@ -4,7 +4,7 @@
   "description": "use mongoose to record cylon eeg data",
   "main": "app.js",
   "scripts": {
-    "start": "python connect-and-run.py",
+    "start":"python connect-and-run.py",
     "test": "make test"
   },
   "author": "Robert Talamantez",
@@ -25,16 +25,23 @@
     "grunt": "^0.4.5",
     "grunt-bower-concat": "^0.4.0",
     "grunt-bower-install": "^1.6.0",
-    "grunt-contrib-cssmin": "^0.11.0",
-    "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.4",
     "load-grunt-tasks": "^2.0.0",
-    "mocha": "^2.1.0",
-    "mocha-phantomjs": "^3.5.2",
-    "phantomjs": "^1.9.13",
-    "supertest": "^0.15.0",
-    "supervisor": "^0.6.0"
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^0.11.2",
+    "grunt-contrib-copy": "^0.8.1",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-htmlmin": "^0.5.0",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-qunit": "^0.7.0",
+    "grunt-contrib-uglify": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-express": "^1.4.1",
+    "grunt-open": "^0.2.3",
+    "matchdep": "^0.3.0",
+    "mocha": "^2.1.0"
   }
 }
