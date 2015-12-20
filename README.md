@@ -17,7 +17,7 @@ eeg-data-recorder
 
 * Then build the project with:
 ```
-	grunt --force
+	grunt notest
 ```
 
 * Then, put the Headset into discoverable mode and type:
@@ -36,7 +36,16 @@ To Do:
      * high pass
      * low pass
 
+* theta/beta power ratio (adhd)
+	' A well-established phenomenon is that slow wave/fast wave ratios (SW/FW) are increased in attention-deficit/hyperactivity disorder'
+		(http://www.ncbi.nlm.nih.gov/pubmed/19897008)
 
+* upper/low alpha frequency (MCI, Alzheimers)
+	(http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3807715/)
+
+* Relative Band Ratio (RBR), Shannon Entropy, Kullback-Leibler (KL) Entropy 
+	(drowsiness detection)
+	(http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342623/) 
 ------------------------------------------------
 
 Put stuff on your path
